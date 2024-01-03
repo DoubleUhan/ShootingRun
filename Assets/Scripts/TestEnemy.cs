@@ -20,7 +20,6 @@ public class TestEnemy : MonoBehaviour
     void Update()
     {
         Walk();
-        Debug.Log(player.transform.position);
     }
     void Walk()
     {
