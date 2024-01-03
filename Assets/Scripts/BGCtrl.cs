@@ -4,16 +4,17 @@ using UnityEngine;
 
 public class BGCtrl : MonoBehaviour
 {
-    MeshRenderer meshRenderer;
-    public float bg_Speed;
-    void Start()
+    Renderer rend;
+    readonly float scrollSpeed = 0.5f;
+
+    private void Awake()
     {
-        meshRenderer = GetComponent<MeshRenderer>();
+        rend = GetComponent<Renderer>();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        meshRenderer.material.SetTextureOffset("_MainTex", new Vector2(Time.time * bg_Speed, 0));
+        rend.material.mainTextureOffset =
+            new Vector2(0, -Time.deltaTime * scrollSpeed);
     }
 }
