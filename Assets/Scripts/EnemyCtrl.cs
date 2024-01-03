@@ -28,7 +28,6 @@ public class EnemyCtrl : MonoBehaviour
 
     void Move()
     {
-
         // 현재 위치를 가져오고 x축으로 이동
         Vector3 newPosition = transform.position + new Vector3(moveSpeed * Time.deltaTime, 0f, 0f);
         // 새로운 위치로 이동
