@@ -5,28 +5,50 @@ using UnityEngine;
 public class PlayCtrl : MonoBehaviour
 {
     [SerializeField] float speed;
-    public GameObject playerPrefab; // º¹Á¦ÇÒ ÇÃ·¹ÀÌ¾î ¿ÀºêÁ§Æ®
-    float cloneOffset = 2f; // ÇÃ·¹ÀÌ¾î °£ÀÇ °£°İ
+    [SerializeField] GameObject bullet1;
+    [SerializeField] float maxShotDelay;
+    [SerializeField] float curShorDelay;
+    [SerializeField] float objectDestroy = 5.0f;
+    public GameObject playerPrefab; // ë³µì œí•  í”Œë ˆì´ì–´ ì˜¤ë¸Œì íŠ¸
+    float cloneOffset = 2f; // í”Œë ˆì´ì–´ ê°„ì˜ ê°„ê²©
 
     // Update is called once per frame
     void Update()
     {
         Move();
+        Shot();
+        Reload();
     }
     void Move()
     {
         float h = 0, v = 0;
 
         h = Input.GetAxisRaw("Horizontal");
-        v = Input.GetAxisRaw("Vertical");
 
         var curPos = transform.position;
-        curPos += new Vector3(-v, 0, h) * speed * Time.deltaTime;
-        curPos.x = Mathf.Clamp(curPos.x, 4f, 7.5f);
+        curPos += new Vector3(0, 0, h) * speed * Time.deltaTime;
         curPos.z = Mathf.Clamp(curPos.z, -2.6f, 2.6f);
 
         transform.position = curPos;
     }
+
+    void Shot()
+    {
+        if (curShorDelay < maxShotDelay)
+            return;
+        GameObject bullet = Instantiate(bullet1, transform.position, transform.rotation);
+        Rigidbody rigid = bullet.GetComponent<Rigidbody>();
+        rigid.AddForce(Vector3.left * 10, ForceMode.Impulse);
+        curShorDelay = 0;
+
+        Destroy(bullet, objectDestroy);
+    }
+
+    void Reload()
+    {
+        curShorDelay += Time.deltaTime;
+    }
+    
     //void OnTriggerEnter(Collider other)
     //{
     //    switch (other.gameObject.tag)
@@ -48,16 +70,16 @@ public class PlayCtrl : MonoBehaviour
     //}
     //void ClonePlayers()
     //{
-    //    // ¿ŞÂÊ¿¡ ÇÃ·¹ÀÌ¾î º¹Á¦
+    //    // ì™¼ìª½ì— í”Œë ˆì´ì–´ ë³µì œ
     //    GameObject leftClonedPlayer = InstantiatePlayer(transform.position - new Vector3(cloneOffset, 0f, 0f));
 
-    //    // ¿À¸¥ÂÊ¿¡ ÇÃ·¹ÀÌ¾î º¹Á¦
+    //    // ì˜¤ë¥¸ìª½ì— í”Œë ˆì´ì–´ ë³µì œ
     //    GameObject rightClonedPlayer = InstantiatePlayer(transform.position + new Vector3(cloneOffset, 0f, 0f));
     //}
 
     //GameObject InstantiatePlayer(Vector3 position)
     //{
-    //    // ÇÃ·¹ÀÌ¾î ¿ÀºêÁ§Æ®¸¦ ÁÖ¾îÁø À§Ä¡¿¡ º¹Á¦
+    //    // í”Œë ˆì´ì–´ ì˜¤ë¸Œì íŠ¸ë¥¼ ì£¼ì–´ì§„ ìœ„ì¹˜ì— ë³µì œ
     //    GameObject clonedPlayer = Instantiate(playerPrefab, position, Quaternion.identity);
 
     //    return clonedPlayer;
