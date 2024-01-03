@@ -2,15 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayCtrl : MonoBehaviour
+public class PlayCtrl : Stats
 {
     [SerializeField] float speed;
     [SerializeField] GameObject bullet1;
     [SerializeField] float maxShotDelay;
     [SerializeField] float curShorDelay;
-    [SerializeField] float objectDestroy = 5.0f;
-    public GameObject playerPrefab; // 복제할 플레이어 오브젝트
-    float cloneOffset = 2f; // 플레이어 간의 간격
 
     // Update is called once per frame
     void Update()
@@ -30,25 +27,39 @@ public class PlayCtrl : MonoBehaviour
         curPos.z = Mathf.Clamp(curPos.z, -2.6f, 2.6f);
 
         transform.position = curPos;
+
+        PlusATK();
     }
 
     void Shot()
     {
         if (curShorDelay < maxShotDelay)
             return;
+
         GameObject bullet = Instantiate(bullet1, transform.position, transform.rotation);
+        BulletCtrl bulletCtrl = bullet.GetComponent<BulletCtrl>();
+        bulletCtrl.player = this;
+
         Rigidbody rigid = bullet.GetComponent<Rigidbody>();
         rigid.AddForce(Vector3.left * 10, ForceMode.Impulse);
         curShorDelay = 0;
 
-        Destroy(bullet, objectDestroy);
+        Destroy(bullet, 5f);
     }
 
     void Reload()
     {
         curShorDelay += Time.deltaTime;
     }
-    
+
+    void PlusATK()
+    {
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            ATK += 10;
+        }
+    }
+
     //void OnTriggerEnter(Collider other)
     //{
     //    switch (other.gameObject.tag)

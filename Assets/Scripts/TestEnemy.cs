@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class TestEnemy : MonoBehaviour
+public class TestEnemy : Stats
 {
     NavMeshAgent agent;
     public Transform player;
@@ -20,12 +20,20 @@ public class TestEnemy : MonoBehaviour
     void Update()
     {
         Walk();
-        Debug.Log(player.transform.position);
     }
     void Walk()
     {
         agent.destination = player.position;
         // 길찾기 시작
         agent.isStopped = false;
+    }
+
+    public void OnDamaged(float Damage)
+    {
+        HP -= Damage;
+        if (HP <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 }
