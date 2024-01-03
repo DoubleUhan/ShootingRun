@@ -343,12 +343,16 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 2772417272811492228, guid: 1b8fed1386a9789458e83ccac6a275ab, type: 3}
+      propertyPath: ATK
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2772417272811492228, guid: 1b8fed1386a9789458e83ccac6a275ab, type: 3}
       propertyPath: bullet1
       value: 
       objectReference: {fileID: 2407855297332404219, guid: f479b17497c0f32428f09312c125b651, type: 3}
     - target: {fileID: 2772417272811492228, guid: 1b8fed1386a9789458e83ccac6a275ab, type: 3}
       propertyPath: maxShotDelay
-      value: 10
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 2772417272811492228, guid: 1b8fed1386a9789458e83ccac6a275ab, type: 3}
       propertyPath: playerPrefab
