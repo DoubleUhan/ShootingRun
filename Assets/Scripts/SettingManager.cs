@@ -2,15 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SettingManager : MonoBehaviour
 {
     [SerializeField] GameObject settingPopUp;
-
-    private void Start()
-    {
-        
-    }
     void Awake()
     {
         Time.timeScale = 1.0f;
@@ -30,5 +26,10 @@ public class SettingManager : MonoBehaviour
     {
         settingPopUp.SetActive(false);
         Time.timeScale = 1;
+    }
+
+    public void Home()
+    {
+        SceneManager.LoadScene("Home");
     }
 }
