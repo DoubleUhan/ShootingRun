@@ -12,8 +12,10 @@ public class PlayCtrl : Stats
     [SerializeField] float maxShotDelay;
     [SerializeField] float curShorDelay;
 
+
     [SerializeField] GameObject[] copyPlayer_Pos;
 
+    Collider colliders;
     NavMeshAgent agent;
 
     public GameObject main_Camera;
@@ -22,6 +24,7 @@ public class PlayCtrl : Stats
 
     void Awake()
     {
+        colliders = GetComponent<Collider>();
         agent = GetComponent<NavMeshAgent>();
     }
     // Update is called once per frame
@@ -83,7 +86,7 @@ public class PlayCtrl : Stats
 
             if (clone.TryGetComponent<PlayCtrl>(out var playCtrl))
             {
-
+                Destroy(playCtrl.colliders);
                 Destroy(playCtrl.main_Camera);
             }
         }
