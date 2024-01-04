@@ -7,6 +7,8 @@ using UnityEngine.SceneManagement;
 public class SettingManager : MonoBehaviour
 {
     [SerializeField] GameObject settingPopUp;
+    bool isPaused = false;
+
     void Awake()
     {
         Time.timeScale = 1.0f;
@@ -14,16 +16,28 @@ public class SettingManager : MonoBehaviour
     }
     private void Update()
     {
-        Debug.Log(Time.timeScale);
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (isPaused)
+            {
+                CloseClick();
+            }
+            else
+            {
+                OnClickSetting();
+            }
+        }
     }
     public void OnClickSetting()
     {
         settingPopUp.SetActive(true);
+        isPaused = true;
         Time.timeScale = 0;
     }
 
     public void CloseClick()
     {
+        isPaused = false;
         settingPopUp.SetActive(false);
         Time.timeScale = 1;
     }
