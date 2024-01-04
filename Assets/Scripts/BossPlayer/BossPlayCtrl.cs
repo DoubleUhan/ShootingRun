@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UIElements;
 
 public class BossPlayCtrl : Stats
 {
@@ -18,6 +19,7 @@ public class BossPlayCtrl : Stats
 
     Collider colliders;
     NavMeshAgent agent;
+    Rigidbody rb;
 
     public GameObject main_Camera;
 
@@ -28,6 +30,8 @@ public class BossPlayCtrl : Stats
     private float zRange = 20; // 맵 이동 범위
 
     // 원으로 이동 관련
+    float tempAngle = 0;
+    [SerializeField]
     float angle; // 각도를 저장할 변수
     float radius = 20.8f; // 원의 반지름
 
@@ -35,6 +39,7 @@ public class BossPlayCtrl : Stats
     {
         colliders = GetComponent<Collider>();
         agent = GetComponent<NavMeshAgent>();
+        rb = GetComponent<Rigidbody>();
     }
     // Update is called once per frame
     void Update()
@@ -49,14 +54,23 @@ public class BossPlayCtrl : Stats
     }
     void Move() // 원형 곡선 이동
     {
+
         float h = Input.GetAxisRaw("Horizontal");
 
-        // 각도 업데이트
         angle += h * speed * Time.deltaTime;
 
         // 각도를 이용하여 원 위의 위치 계산
         float x = Mathf.Cos(angle) * radius;
         float z = Mathf.Sin(angle) * radius;
+        if (x < -4f || x > 22f || z < -20f || z > 20f)
+        {
+            angle = tempAngle;
+            // 움직이지 않도록 처리
+            return;
+        }
+        tempAngle = angle;
+
+        // x 좌표를 -4에서 20 사이로, z 좌표를 -20에서 20 사이로 제한
 
 
         // 캐릭터의 위치를 업데이트
@@ -65,7 +79,6 @@ public class BossPlayCtrl : Stats
         Vector3 vector = target.transform.position - transform.position;
         transform.rotation = Quaternion.LookRotation(vector).normalized;
     }
-
     void Shot()
     {
         if (curShorDelay < maxShotDelay)
