@@ -5,8 +5,13 @@ using UnityEngine;
 public class BulletCtrl : MonoBehaviour
 {
     public PlayCtrl player;
+
+    private Rigidbody rigid;
     void Start()
     {
+        rigid = gameObject.GetComponent<Rigidbody>();
+        rigid.AddForce(Vector3.left * 10, ForceMode.Impulse);
+        Destroy(gameObject, 5f);
     }
 
     void Update()
