@@ -9,6 +9,11 @@ public class PlayCtrl : Stats
     [SerializeField] float maxShotDelay;
     [SerializeField] float curShorDelay;
 
+    public GameObject main_Camera;
+
+    public GameObject prefabToSpawn; // 생성할 프리팹
+
+
     // Update is called once per frame
     void Update()
     {
@@ -60,25 +65,42 @@ public class PlayCtrl : Stats
         }
     }
 
-    //void OnTriggerEnter(Collider other)
-    //{
-    //    switch (other.gameObject.tag)
-    //    {
-    //        case "Add":
-    //            ClonePlayers();
-    //            GameObject AddPlayer = Instantiate(gameObject, transform.position - new Vector3(0, 0, 1), Quaternion.identity);
-    //            break;
+    void Add(int num)
+    {
+            GameObject clone = Instantiate(prefabToSpawn, new Vector3(transform.position.x, transform.position.y, transform.position.z + 1), Quaternion.identity);
 
-    //        case "Sub":
-    //            break;
+            if (clone.TryGetComponent<PlayCtrl>(out var playCtrl))
+            {
+                Destroy(playCtrl.main_Camera);
+            }
+        //for (int i = 0; i < num; i++)
+        //{
 
-    //        case "Mul":
-    //            break;
+        //}
+    }
+    void OnTriggerEnter(Collider other)
+    {
+        switch (other.gameObject.tag)
+        {
+            case "Add10":
+                Destroy(other);
+                Add(10);
+                break;
 
-    //        case "Div":
-    //            break;
-    //    }
-    //}
+            case "Add":
+                // Instantiate(prefabToSpawn, transform.position + GetComponent<Collider>().bounds.size.x, Quaternion.identity);
+                break;
+
+            case "Sub":
+                break;
+
+            case "Mul":
+                break;
+
+            case "Div":
+                break;
+        }
+    }
     //void ClonePlayers()
     //{
     //    // 왼쪽에 플레이어 복제

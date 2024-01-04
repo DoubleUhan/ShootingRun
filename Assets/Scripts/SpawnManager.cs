@@ -6,8 +6,8 @@ public class SpawnManager : MonoBehaviour
 {
     public static SpawnManager instance;
 
-    public GameObject[] arithmetic_Object;
     [SerializeField] GameObject enemy_Object;
+    [SerializeField] GameObject arithmetic_Object;
     int randomIndex;
     private void Awake()
     {
@@ -17,6 +17,7 @@ public class SpawnManager : MonoBehaviour
     {
         //   StartCoroutine(Arithmetic_Produce());
         StartCoroutine(Enemy_Produce());
+        StartCoroutine(Arithmetic_Produce());
     }
     void Arithmetic() // 사칙연산
     {
@@ -34,25 +35,13 @@ public class SpawnManager : MonoBehaviour
         }
     }
 
-    //IEnumerator Enemy_Produce1() 
-    //{
-    //    while (true)
-    //    {
-
-    //    }
-
-    //}
-
-
-
-
-    //IEnumerator Arithmetic_Produce()
-    //{
-    //    while (true)
-    //    {
-    //        randomIndex = Random.Range(0, 4);
-    //        GameObject randomObject = Instantiate(arithmetic_Object[randomIndex], new Vector3(-9, 1, -2.5f), Quaternion.identity);
-    //        yield return new WaitForSeconds(3f);
-    //    }
-    //}
+    IEnumerator Arithmetic_Produce()
+    {
+        while (true)
+        {
+            GameObject randomObject1 = Instantiate(arithmetic_Object, new Vector3(-9, 1, -2.5f), Quaternion.identity);
+            GameObject randomObject2 = Instantiate(arithmetic_Object, new Vector3(-9, 1, 2.5f), Quaternion.identity);
+            yield return new WaitForSeconds(3f);
+        }
+    }
 }
