@@ -2,16 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletCtrl : MonoBehaviour
+public class BossBulletCtrl : MonoBehaviour
 {
-    public PlayCtrl player;
+    public BossPlayCtrl player;
 
-    private Rigidbody rigid;
     void Start()
     {
-        rigid = gameObject.GetComponent<Rigidbody>();
-        rigid.AddForce(Vector3.left * 10, ForceMode.Impulse);
-        Destroy(gameObject, 5f);
     }
 
     void Update()
