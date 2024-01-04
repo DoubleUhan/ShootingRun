@@ -7,6 +7,7 @@ public class TestEnemy : Stats
 {
     NavMeshAgent agent;
     public Transform player;
+    int deadCount;
 
     void Awake()
     {

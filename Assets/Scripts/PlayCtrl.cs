@@ -5,6 +5,8 @@ using UnityEngine.AI;
 
 public class PlayCtrl : Stats
 {
+    public GameObject shooters;
+
     [SerializeField] float speed;
 
     [Header("플레이어 공격 관련 변수")]
@@ -30,8 +32,8 @@ public class PlayCtrl : Stats
     // Update is called once per frame
     void Update()
     {
-        Shot();
-        Reload();
+        //Shot();
+        //Reload();
         Move();
         //Follow();
     }
@@ -58,37 +60,37 @@ public class PlayCtrl : Stats
     //    agent.isStopped = false;
     //}
 
-    void Shot()
-    {
-        if (curShorDelay < maxShotDelay)
-            return;
+    //void Shot()
+    //{
+    //    if (curShorDelay < maxShotDelay)
+    //        return;
 
-        GameObject bullet = Instantiate(bullet1, transform.position, transform.rotation);
-        BulletCtrl bulletCtrl = bullet.GetComponent<BulletCtrl>();
-        bulletCtrl.player = this;
+    //    GameObject bullet = Instantiate(bullet1, transform.position, transform.rotation);
+    //    BulletCtrl bulletCtrl = bullet.GetComponent<BulletCtrl>();
+    //    bulletCtrl.player = this;
 
-        Rigidbody rigid = bullet.GetComponent<Rigidbody>();
-        rigid.AddForce(Vector3.left * 10, ForceMode.Impulse);
-        curShorDelay = 0;
+    //    Rigidbody rigid = bullet.GetComponent<Rigidbody>();
+    //    rigid.AddForce(Vector3.left * 10, ForceMode.Impulse);
+    //    curShorDelay = 0;
 
-        Destroy(bullet, 5f);
-    }
+    //    Destroy(bullet, 5f);
+    //}
 
-    void Reload()
-    {
-        curShorDelay += Time.deltaTime;
-    }
-    void Add(int num)
+    //void Reload()
+    //{
+    //    curShorDelay += Time.deltaTime;
+    //}
+    public void Add(int num)
     {
         for (int i = 0; i < num; i++)
         {
-            GameObject clone = Instantiate(prefabToSpawn, copyPlayer_Pos[i].transform.position, Quaternion.identity);
+            GameObject clone = Instantiate(shooters, copyPlayer_Pos[i].transform.position, Quaternion.identity);
 
-            if (clone.TryGetComponent<PlayCtrl>(out var playCtrl))
-            {
-                Destroy(playCtrl.colliders);
-                Destroy(playCtrl.main_Camera);
-            }
+            //if (clone.TryGetComponent<PlayCtrl>(out var playCtrl))
+            //{
+            //    Destroy(playCtrl.colliders);
+            //    Destroy(playCtrl.main_Camera);
+            //}
         }
     }
     void OnTriggerEnter(Collider other)
