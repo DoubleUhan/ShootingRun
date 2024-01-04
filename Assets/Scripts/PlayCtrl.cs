@@ -1,26 +1,40 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class PlayCtrl : Stats
 {
     [SerializeField] float speed;
+
+    [Header("플레이어 공격 관련 변수")]
     [SerializeField] GameObject bullet1;
     [SerializeField] float maxShotDelay;
     [SerializeField] float curShorDelay;
+
+    [SerializeField] GameObject[] copyPlayer_Pos;
+
+    NavMeshAgent agent;
 
     public GameObject main_Camera;
 
     public GameObject prefabToSpawn; // 생성할 프리팹
 
-
+    void Awake()
+    {
+        agent = GetComponent<NavMeshAgent>();
+    }
     // Update is called once per frame
     void Update()
     {
-        Move();
         Shot();
         Reload();
+        Move();
+        //Follow();
     }
+
+
+
     void Move()
     {
         float h = 0, v = 0;
@@ -33,8 +47,13 @@ public class PlayCtrl : Stats
 
         transform.position = curPos;
 
-        PlusATK();
     }
+    //void Follow() // 원형을 따라가도록 구현
+    //{
+    //    agent.destination = playerFollow.position;
+    //    // 길찾기 시작
+    //    agent.isStopped = false;
+    //}
 
     void Shot()
     {
@@ -56,27 +75,18 @@ public class PlayCtrl : Stats
     {
         curShorDelay += Time.deltaTime;
     }
-
-    void PlusATK()
-    {
-        if (Input.GetKeyDown(KeyCode.Z))
-        {
-            ATK += 10;
-        }
-    }
-
     void Add(int num)
     {
-            GameObject clone = Instantiate(prefabToSpawn, new Vector3(transform.position.x, transform.position.y, transform.position.z + 1), Quaternion.identity);
+        for (int i = 0; i < num; i++)
+        {
+            GameObject clone = Instantiate(prefabToSpawn, copyPlayer_Pos[i].transform.position, Quaternion.identity);
 
             if (clone.TryGetComponent<PlayCtrl>(out var playCtrl))
             {
+
                 Destroy(playCtrl.main_Camera);
             }
-        //for (int i = 0; i < num; i++)
-        //{
-
-        //}
+        }
     }
     void OnTriggerEnter(Collider other)
     {
@@ -84,7 +94,7 @@ public class PlayCtrl : Stats
         {
             case "Add10":
                 Destroy(other);
-                Add(10);
+                Add(2);
                 break;
 
             case "Add":
