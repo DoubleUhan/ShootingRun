@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Arithmetic : MonoBehaviour
+public class PosXMove : MonoBehaviour
 {
     float moveSpeed = 5;
     void Update()

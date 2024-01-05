@@ -5,7 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class Shooter : MonoBehaviour
 {
-    [Range(1f, 5f)]
+    [Range(1f, 30f)]
     public float speed;
     [HideInInspector]
     public PlayCtrl player;
@@ -18,6 +18,7 @@ public class Shooter : MonoBehaviour
 
     private void Start()
     {
+        tag= "Player";
         rb = gameObject.GetComponent<Rigidbody>();
         StartCoroutine(ShootingCor());
     }
@@ -33,7 +34,7 @@ public class Shooter : MonoBehaviour
         if (Vector3.Distance(transform.position, player.transform.position) > 0.1f)
         {
             Vector3 dir = (player.transform.position - transform.position).normalized;
-            rb.velocity = dir * speed;
+            rb.velocity = dir *  Vector3.Distance(transform.position, player.transform.position) * speed;
         }
     }
 
