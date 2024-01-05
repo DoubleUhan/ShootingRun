@@ -14,6 +14,10 @@ public class BossCtrl : Stats
     public GameObject target; // 바라볼 타겟이랑 겹치느ㅜ듯
 
     public GameObject warning; // 빨간 예고 범위
+
+    public GameObject failPopup; // 게임 실패 시 뜨는 팝업
+    public GameObject clearPopup; // 게임 클리어 시 뜨는 팝업
+
     public Slider bossHP_bar;
 
     [SerializeField] float maxBossHP;
@@ -42,7 +46,7 @@ public class BossCtrl : Stats
             Vector3 dir = target.transform.position - this.transform.position;
             this.transform.rotation = Quaternion.Lerp(this.transform.rotation, Quaternion.LookRotation(dir), Time.deltaTime * 10);
 
-            bossHP_bar.value = curBossHP / maxBossHP;
+            
 
             Debug.Log(curBossHP);
         }
@@ -86,7 +90,7 @@ public class BossCtrl : Stats
 
         if (warning.GetComponent<BossSkillRange>().isPlayerIn)
         {
-            Destroy(target);
+            GameFail();
         }
         warning.SetActive(false);
         animator.Play("Attack1");
@@ -106,7 +110,7 @@ public class BossCtrl : Stats
 
         if (warning.GetComponent<BossSkillRange>().isPlayerIn)
         {
-            Destroy(target);
+            GameFail();
         }
         warning.SetActive(false);
         animator.Play("Attack1");
@@ -121,7 +125,28 @@ public class BossCtrl : Stats
     public void OnDamaged(float Damage)
     {
         curBossHP -= Damage;
+
         if (curBossHP <= 0)
-            Destroy(gameObject);
+        {
+            GameClear();
+        }
+
+        bossHP_bar.value = curBossHP / maxBossHP;
+    }
+
+    void GameFail()
+    {
+        Camera.main.transform.SetParent(null);
+        Destroy(target);
+        Time.timeScale = 0;
+        failPopup.SetActive(true);
+    }
+
+    void GameClear()
+    {
+        Time.timeScale = 0;
+        Destroy(gameObject);
+        // 게임 클리어 한 거임 -> 클리어 메세지 또는 화면 출력
+        clearPopup.SetActive(true);
     }
 }

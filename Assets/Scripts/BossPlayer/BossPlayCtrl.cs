@@ -116,8 +116,9 @@ public class BossPlayCtrl : Stats
 
             if (clone.TryGetComponent<BossPlayCtrl>(out var playCtrl))
             {
+                playCtrl.main_Camera.transform.SetParent(null);
                 Destroy(playCtrl.colliders);
-                Destroy(playCtrl.main_Camera);
+
             }
         }
     }
