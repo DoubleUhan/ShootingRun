@@ -5,8 +5,8 @@ using UnityEngine.AI;
 
 public class PlayCtrl : Stats
 {
-    public GameObject shooters;
-
+    public GameObject shooterPrefab;
+    public List<Shooter> shooterList = new List<Shooter>();
     [SerializeField] float speed;
 
     [Header("플레이어 공격 관련 변수")]
@@ -23,6 +23,7 @@ public class PlayCtrl : Stats
     public GameObject main_Camera;
 
     public GameObject prefabToSpawn; // 생성할 프리팹
+    private Vector3 dir;
 
     void Awake()
     {
@@ -42,15 +43,17 @@ public class PlayCtrl : Stats
 
     void Move()
     {
-        float h = 0, v = 0;
+        //float h = 0, v = 0;
 
-        h = Input.GetAxisRaw("Horizontal");
+        //h = Input.GetAxisRaw("Horizontal");
 
-        var curPos = transform.position;
-        curPos += new Vector3(0, 0, h) * speed * Time.deltaTime;
-        curPos.z = Mathf.Clamp(curPos.z, -2.6f, 2.6f);
+        //var curPos = transform.position;
+        //curPos += new Vector3(0, 0, h) * speed * Time.deltaTime;
+        //curPos.z = Mathf.Clamp(curPos.z, -2.6f, 2.6f);
 
-        transform.position = curPos;
+        //transform.position = curPos;
+        dir.z = Mathf.Clamp(dir.z + Input.GetAxisRaw("Horizontal") * Time.deltaTime * speed, -2.6f, 2.6f);
+        transform.position = dir;
 
     }
     //void Follow() // 원형을 따라가도록 구현
@@ -80,40 +83,21 @@ public class PlayCtrl : Stats
     //{
     //    curShorDelay += Time.deltaTime;
     //}
+    [ContextMenu("테스트")]
+    public void Test()
+    {
+        Add(1);
+    }
+
     public void Add(int num)
     {
         for (int i = 0; i < num; i++)
         {
-            GameObject clone = Instantiate(shooters, copyPlayer_Pos[i].transform.position, Quaternion.identity);
-
-            //if (clone.TryGetComponent<PlayCtrl>(out var playCtrl))
-            //{
-            //    Destroy(playCtrl.colliders);
-            //    Destroy(playCtrl.main_Camera);
-            //}
-        }
-    }
-    void OnTriggerEnter(Collider other)
-    {
-        switch (other.gameObject.tag)
-        {
-            case "Add10":
-                Destroy(other);
-                Add(2);
-                break;
-
-            case "Add":
-                // Instantiate(prefabToSpawn, transform.position + GetComponent<Collider>().bounds.size.x, Quaternion.identity);
-                break;
-
-            case "Sub":
-                break;
-
-            case "Mul":
-                break;
-
-            case "Div":
-                break;
+            Vector3 randomPos = new Vector3(Random.Range(-0.1f, 0.1f), 1, Random.Range(-0.1f, 0.1f));
+            Shooter clone = Instantiate(shooterPrefab, transform.position + randomPos, Quaternion.identity).GetComponent<Shooter>();
+            clone.player = this;
+            clone.transform.SetParent(clone.player.transform);
+            shooterList.Add(clone);
         }
     }
     //void ClonePlayers()

@@ -7,7 +7,6 @@ public class TestEnemy : Stats
 {
     NavMeshAgent agent;
     public Transform player;
-    int deadCount;
 
     void Awake()
     {
@@ -35,6 +34,7 @@ public class TestEnemy : Stats
         if (HP <= 0)
         {
             Destroy(gameObject);
+            GameManager.Instance.enemyCount++;
         }
     }
 }

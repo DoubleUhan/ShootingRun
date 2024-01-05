@@ -2,37 +2,38 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody))]
 public class Shooter : MonoBehaviour
 {
     [Range(1f, 5f)]
     public float speed;
+    [HideInInspector]
     public PlayCtrl player;
     //ÃÑ¾Ë ÇÁ¸®ÆÕ
     public GameObject bulletPrefab;
     //¹ß»ç °£°Ý
     public float shootInterval;
 
+    private Rigidbody rb;
+
     private void Start()
     {
-        player = FindObjectOfType<PlayCtrl>();
+        rb = gameObject.GetComponent<Rigidbody>();
         StartCoroutine(ShootingCor());
     }
 
     private void Update()
     {
         Move();
-
     }
 
     private void Move()
     {
-        if (Vector3.Distance(transform.position, player.transform.position) <= 0.1f)
-            return;
-        else
+
+        if (Vector3.Distance(transform.position, player.transform.position) > 0.1f)
         {
             Vector3 dir = (player.transform.position - transform.position).normalized;
-            dir.y = 0;
-            transform.Translate(dir * Time.deltaTime * speed, Space.World);
+            rb.velocity = dir * speed;
         }
         //float radius = gameObject.GetComponent<CapsuleCollider>().radius;
         //if(Physics.SphereCast(transform.position, radius, dir, out RaycastHit hit, 1 << LayerMask.NameToLayer("SHOOTER")))
@@ -64,7 +65,7 @@ public class Shooter : MonoBehaviour
         {
             case "Add10":
                 Destroy(other);
-                player.Add(2);
+                player.Add(10);
                 break;
 
             case "Add":
