@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BossCtrl : Stats
 {
@@ -9,12 +10,18 @@ public class BossCtrl : Stats
     float time;
     public float delay;
 
-    public GameObject target;
+    public GameObject target; // 바라볼 타겟이랑 겹치느ㅜ듯
 
-    public GameObject warning;
+    public GameObject warning; // 빨간 예고 범위
 
-    public GameObject lookTarget;
+    public GameObject lookTarget; // 바라볼 타겟
+
     bool isSkillActive;
+
+    public Slider bossHP_bar;
+
+    [SerializeField] float maxBossHP;
+    [SerializeField] float curBossHP; // 보스 체력 설정
 
     Animator animator;
 
@@ -33,6 +40,10 @@ public class BossCtrl : Stats
             // transform.LookAt(target.transform.position);
             Vector3 dir = target.transform.position - this.transform.position;
             this.transform.rotation = Quaternion.Lerp(this.transform.rotation, Quaternion.LookRotation(dir), Time.deltaTime * 10);
+
+            bossHP_bar.value = curBossHP / maxBossHP;
+
+            Debug.Log(curBossHP);
         }
     }
 
@@ -76,5 +87,11 @@ public class BossCtrl : Stats
     void asasd()
     {
         isSkillActive = false;
+    }
+    public void OnDamaged(float Damage)
+    {
+        curBossHP -= Damage;
+        if (curBossHP <= 0)
+            Destroy(gameObject);
     }
 }
