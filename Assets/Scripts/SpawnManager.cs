@@ -4,44 +4,43 @@ using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
 {
-    public static SpawnManager instance;
-
     [SerializeField] GameObject enemy_Object;
     [SerializeField] GameObject arithmetic_Object;
-    int randomIndex;
-    private void Awake()
-    {
-        instance = this;
-    }
+
+    [Header("Enemy 생성 주기를 위한 변수")]
+    [SerializeField] float enemySpawnMin;
+    [SerializeField] float enemySpawnMax;
+    float enemySpawnDelay;
+
+    [Header("Arithmetic 생성 주기를 위한 변수")]
+    [SerializeField] float arithmeticSpawnMin;
+    [SerializeField] float arithmeticSpawnMax;
+    float arithmeticSpawnDelay;
+
     void Start()
     {
-        //   StartCoroutine(Arithmetic_Produce());
         StartCoroutine(Enemy_Produce());
         StartCoroutine(Arithmetic_Produce());
     }
-    void Arithmetic() // 사칙연산
-    {
-
-    }
-
     IEnumerator Enemy_Produce()
     {
         while (true)
         {
-            GameObject Enemy1 = Instantiate(enemy_Object, new Vector3(-9, 1, -2.5f), Quaternion.identity);
-            GameObject Enemy2 = Instantiate(enemy_Object, new Vector3(-9, 1, 2.5f), Quaternion.identity);
-            yield return new WaitForSeconds(1.5f);
+            float enemySpawnPosz = Random.Range(-2.5f, 2.5f);
+            enemySpawnDelay = Random.Range(enemySpawnMin, enemySpawnMax + 1);
+            GameObject Enemy = Instantiate(enemy_Object, new Vector3(-90, 1, enemySpawnPosz), Quaternion.identity);
+            yield return new WaitForSeconds(enemySpawnDelay);
 
         }
     }
-
     IEnumerator Arithmetic_Produce()
     {
         while (true)
         {
-            GameObject randomObject1 = Instantiate(arithmetic_Object, new Vector3(-9, 1, -2.5f), Quaternion.identity);
-            GameObject randomObject2 = Instantiate(arithmetic_Object, new Vector3(-9, 1, 2.5f), Quaternion.identity);
-            yield return new WaitForSeconds(3f);
+            float arithmeticSpawnPosz = Random.Range(-2.5f, 2.5f);
+            arithmeticSpawnDelay = Random.Range(arithmeticSpawnMin, arithmeticSpawnMax + 1);
+            GameObject randomObject1 = Instantiate(arithmetic_Object, new Vector3(-90, 1, arithmeticSpawnPosz), Quaternion.identity);
+            yield return new WaitForSeconds(arithmeticSpawnDelay);
         }
     }
 }
