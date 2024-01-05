@@ -100,6 +100,50 @@ public class PlayCtrl : Stats
             shooterList.Add(clone);
         }
     }
+    public void Sub(int num)
+    {
+        for (int i = 0; i < num; i++)
+        {
+            if (shooterList.Count > 0)
+            {
+                // 리스트에서 가장 최근에 생성된 Shooter를 가져오고, 해당 Shooter를 파괴하고 리스트에서 제거
+                Shooter shooterToRemove = shooterList[shooterList.Count - 1];
+                shooterList.RemoveAt(shooterList.Count - 1);
+                Destroy(shooterToRemove.gameObject);
+            }
+        }
+    }
+
+    public void Mult()
+    {
+        int currentShooterCount = shooterList.Count;
+        int totalShooterCount = currentShooterCount * 2; // 현재의 복제된 수의 2배
+
+        for (int i = 0; i < totalShooterCount; i++)
+        {
+            Vector3 randomPos = new Vector3(Random.Range(-0.1f, 0.1f), 1, Random.Range(-0.1f, 0.1f));
+            Shooter clone = Instantiate(shooterPrefab, transform.position + randomPos, Quaternion.identity).GetComponent<Shooter>();
+            clone.player = this;
+            clone.transform.SetParent(clone.player.transform);
+            shooterList.Add(clone);
+        }
+    }
+    public void Div()
+    {
+        int currentShooterCount = shooterList.Count;
+        int totalShooterCount = Mathf.Max(1, currentShooterCount / 2); // 최소 1개 이상의 Shooter가 생성되도록 보장
+
+        for (int i = 0; i < totalShooterCount; i++)
+        {
+            Vector3 randomPos = new Vector3(Random.Range(-0.1f, 0.1f), 1, Random.Range(-0.1f, 0.1f));
+            Shooter clone = Instantiate(shooterPrefab, transform.position + randomPos, Quaternion.identity).GetComponent<Shooter>();
+            clone.player = this;
+            clone.transform.SetParent(clone.player.transform);
+            shooterList.Add(clone);
+        }
+    }
+
+
     //void ClonePlayers()
     //{
     //    // 왼쪽에 플레이어 복제
