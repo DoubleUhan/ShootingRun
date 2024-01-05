@@ -96,8 +96,6 @@ public class BossPlayCtrl : Stats
         rigid.AddForce(playerDirection * shotPower, ForceMode.Impulse);
 
         curShorDelay = 0;
-
-        Destroy(bullet, 5f);
     }
 
     void Reload()

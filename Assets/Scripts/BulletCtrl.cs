@@ -23,6 +23,7 @@ public class BulletCtrl : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Enemy"))
         {
+            Debug.Log(other);
             TestEnemy testEnemy = other.gameObject.GetComponent<TestEnemy>();
             testEnemy.OnDamaged(player.ATK);
         }

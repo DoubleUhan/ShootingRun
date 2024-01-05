@@ -8,6 +8,7 @@ public class BossBulletCtrl : MonoBehaviour
 
     void Start()
     {
+        
     }
 
     void Update()
@@ -17,10 +18,10 @@ public class BossBulletCtrl : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Enemy"))
+        if (other.CompareTag("Boss"))
         {
-            TestEnemy testEnemy = other.gameObject.GetComponent<TestEnemy>();
-            testEnemy.OnDamaged(player.ATK);
+            BossCtrl testBoss = other.gameObject.GetComponent<BossCtrl>();
+            testBoss.OnDamaged(10f);
         }
     }
 
