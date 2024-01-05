@@ -22,6 +22,7 @@ public class BossBulletCtrl : MonoBehaviour
         {
             BossCtrl testBoss = other.gameObject.GetComponent<BossCtrl>();
             testBoss.OnDamaged(10f);
+            Destroy(gameObject);
         }
     }
 

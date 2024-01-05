@@ -1,29 +1,29 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class BossCtrl : Stats
 {
-    public GameObject[] BossAttackRange;
 
     float time;
+    [Header("보스 공격 딜레이")]
     public float delay;
 
     public GameObject target; // 바라볼 타겟이랑 겹치느ㅜ듯
 
     public GameObject warning; // 빨간 예고 범위
-
-    public GameObject lookTarget; // 바라볼 타겟
-
-    bool isSkillActive;
-
     public Slider bossHP_bar;
 
     [SerializeField] float maxBossHP;
     [SerializeField] float curBossHP; // 보스 체력 설정
 
     Animator animator;
+    bool isSkillActive;
+
+    [Range(0,10)]
+    public float attackArrange;
 
     void Start()
     {
@@ -34,6 +34,7 @@ public class BossCtrl : Stats
     }
     void Update()
     {
+      
         time += Time.deltaTime;
         if (isSkillActive == false)
         {
@@ -63,6 +64,7 @@ public class BossCtrl : Stats
                     break;
 
                 case 1: // 휩쓸기
+                    StartCoroutine(SideAttack());
                     break;
 
                 case 2: // 폭탄 던지기
@@ -78,12 +80,40 @@ public class BossCtrl : Stats
         warning.SetActive(true);
         time = 0;
         isSkillActive = true;
+  
         yield return new WaitForSeconds(2f);
+
+
+        if (warning.GetComponent<BossSkillRange>().isPlayerIn)
+        {
+            Destroy(target);
+        }
         warning.SetActive(false);
         animator.Play("Attack1");
         yield return null;
         // 애니메션 그리고 공격
     }
+
+    IEnumerator SideAttack()
+    {
+        warning.transform.position = new Vector3(target.transform.position.x, 0, target.transform.position.z);
+        warning.SetActive(true);
+        time = 0;
+        isSkillActive = true;
+
+        yield return new WaitForSeconds(2f);
+
+
+        if (warning.GetComponent<BossSkillRange>().isPlayerIn)
+        {
+            Destroy(target);
+        }
+        warning.SetActive(false);
+        animator.Play("Attack1");
+        yield return null;
+        // 애니메션 그리고 공격
+    }
+
     void asasd()
     {
         isSkillActive = false;
