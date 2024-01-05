@@ -5,7 +5,7 @@ using UnityEngine;
 public class SpawnManager : MonoBehaviour
 {
     [SerializeField] GameObject enemy_Object;
-    [SerializeField] GameObject arithmetic_Object;
+    [SerializeField] GameObject[] arithmetic_Object;
 
     [Header("Enemy 생성 주기를 위한 변수")]
     [SerializeField] float enemySpawnMin;
@@ -19,7 +19,7 @@ public class SpawnManager : MonoBehaviour
 
     void Start()
     {
-        StartCoroutine(Enemy_Produce());
+        //    StartCoroutine(Enemy_Produce());
         StartCoroutine(Arithmetic_Produce());
     }
     IEnumerator Enemy_Produce()
@@ -37,9 +37,12 @@ public class SpawnManager : MonoBehaviour
     {
         while (true)
         {
-            float arithmeticSpawnPosz = Random.Range(-2.5f, 2.5f);
+            int spawn1 = Random.Range(0, 8);
+            int spawn2 = Random.Range(0, 8);
+            Debug.Log("spawn1:" + spawn1 + "spawn2:" + spawn2);
             arithmeticSpawnDelay = Random.Range(arithmeticSpawnMin, arithmeticSpawnMax + 1);
-            GameObject randomObject1 = Instantiate(arithmetic_Object, new Vector3(-90, 1, arithmeticSpawnPosz), Quaternion.identity);
+            GameObject randomObject1 = Instantiate(arithmetic_Object[spawn1], new Vector3(-90, 1, -2.5f), Quaternion.identity);
+            GameObject randomObject2 = Instantiate(arithmetic_Object[spawn2], new Vector3(-90, 1, 2.5f), Quaternion.identity);
             yield return new WaitForSeconds(arithmeticSpawnDelay);
         }
     }

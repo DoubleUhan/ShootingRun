@@ -35,23 +35,12 @@ public class Shooter : MonoBehaviour
             Vector3 dir = (player.transform.position - transform.position).normalized;
             rb.velocity = dir * speed;
         }
-        //float radius = gameObject.GetComponent<CapsuleCollider>().radius;
-        //if(Physics.SphereCast(transform.position, radius, dir, out RaycastHit hit, 1 << LayerMask.NameToLayer("SHOOTER")))
-        //{
-        //    Debug.Log(hit.point);
-        //    dir = (hit.point + (-dir * radius) - transform.position).normalized;
-        //    transform.Translate(dir * Time.deltaTime * speed, Space.World);
-        //}
-        //else
-        //{
-        //    transform.Translate(dir * Time.deltaTime * speed, Space.World);
-        //}
     }
 
     private IEnumerator ShootingCor()
     {
         WaitForSeconds delay = new WaitForSeconds(shootInterval);
-        while(true)
+        while (true)
         {
             BulletCtrl bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity).GetComponent<BulletCtrl>();
             bullet.player = player;
@@ -61,24 +50,34 @@ public class Shooter : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
+        string tag = other.gameObject.tag;
+        int value = 0;
         switch (other.gameObject.tag)
         {
+            case "Add3":
+            case "Add5":
             case "Add10":
-                Destroy(other);
-                player.Add(10);
+                value = int.Parse(tag.Substring(3));
+                player.Add(value);
+                Destroy(other.gameObject);
                 break;
 
-            case "Add":
-                // Instantiate(prefabToSpawn, transform.position + GetComponent<Collider>().bounds.size.x, Quaternion.identity);
+            case "Sub3":
+            case "Sub5":
+            case "Sub10":
+                value = int.Parse(tag.Substring(3));
+                player.Sub(value);
+                Destroy(other.gameObject);
                 break;
 
-            case "Sub":
-                break;
-
-            case "Mul":
+            case "Mult":
+                player.Mult();
+                Destroy(other.gameObject);
                 break;
 
             case "Div":
+                player.Div();
+                Destroy(other.gameObject);
                 break;
         }
     }

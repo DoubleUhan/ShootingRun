@@ -8,6 +8,13 @@ TagManager:
   - Add
   - Enemy
   - Add10
+  - Add3
+  - Add5
+  - Div
+  - Mult
+  - Sub3
+  - Sub5
+  - Sub10
   - Boss
   layers:
   - Default
