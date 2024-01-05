@@ -102,6 +102,12 @@ public class BossPlayCtrl : Stats
     {
         curShorDelay += Time.deltaTime;
     }
+
+    public void OnDamege(float damege)
+    {
+        HP -= damege;
+    }
+
     void Add(int num)
     {
         for (int i = 0; i < num; i++)
@@ -110,8 +116,9 @@ public class BossPlayCtrl : Stats
 
             if (clone.TryGetComponent<BossPlayCtrl>(out var playCtrl))
             {
+                playCtrl.main_Camera.transform.SetParent(null);
                 Destroy(playCtrl.colliders);
-                Destroy(playCtrl.main_Camera);
+
             }
         }
     }

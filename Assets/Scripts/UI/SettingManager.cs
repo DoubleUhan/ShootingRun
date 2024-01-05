@@ -46,4 +46,9 @@ public class SettingManager : MonoBehaviour
     {
         SceneManager.LoadScene("Home");
     }
+
+    public void Revenge()
+    {
+        SceneManager.LoadScene("SampleScene"); // 게임에서 죽었을 때 재도전하는 버튼 누르면
+    }
 }

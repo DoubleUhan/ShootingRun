@@ -21,7 +21,8 @@ public class BossBulletCtrl : MonoBehaviour
         if (other.CompareTag("Boss"))
         {
             BossCtrl testBoss = other.gameObject.GetComponent<BossCtrl>();
-            testBoss.OnDamaged(10f);
+            testBoss.OnDamaged(player.ATK); // 플레이어 데미지 10으로 고정값 설정함
+            Destroy(gameObject);
         }
     }
 
