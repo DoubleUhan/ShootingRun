@@ -15,6 +15,7 @@ TagManager:
   - Sub3
   - Sub5
   - Sub10
+  - Boss
   layers:
   - Default
   - TransparentFX
