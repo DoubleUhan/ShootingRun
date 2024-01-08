@@ -6,12 +6,13 @@ using UnityEngine.AI;
 
 public class PlayCtrl : Stats
 {
+    public Transform spawnTr;
     public GameObject shooterPrefab;
     public List<Shooter> shooterList = new List<Shooter>();
     [SerializeField] float speed;
 
     [Header("플레이어 공격 관련 변수")]
-    [SerializeField] GameObject bullet1;
+    // [SerializeField] GameObject bullet1;
     [SerializeField] float maxShotDelay;
     [SerializeField] float curShorDelay;
 
@@ -24,13 +25,14 @@ public class PlayCtrl : Stats
     public float shiftCooldownDuration = 1.5f;
     private bool shiftCooldown = false;
     private float shiftCooldownTimer = 0f;
-
-
-    public GameObject prefabToSpawn; // 생성할 프리팹
     private Vector3 dir;
 
-    void Awake()
+
+    private void Start()
     {
+        Shooter shooter = Instantiate(shooterPrefab, spawnTr.position, Quaternion.Euler(0f, -90f, 0f)).GetComponent<Shooter>();
+        shooter.transform.SetParent(transform);
+        shooter.player = this;
     }
     // Update is called once per frame
     void Update()
@@ -103,12 +105,13 @@ public class PlayCtrl : Stats
     {
         for (int i = 0; i < num; i++)
         {
-            Vector3 randomPos = new Vector3(Random.Range(-0.1f, 0.1f), 1, Random.Range(-0.1f, 0.1f));
-            Shooter clone = Instantiate(shooterPrefab, transform.position + randomPos, Quaternion.identity).GetComponent<Shooter>();
+            Vector3 randomPos = new Vector3(Random.Range(-0.1f, 0.1f), 0, Random.Range(-0.1f, 0.1f));
+            Shooter clone = Instantiate(shooterPrefab, spawnTr.position + randomPos, Quaternion.Euler(0f, -90f, 0f)).GetComponent<Shooter>();
             clone.player = this;
             clone.transform.SetParent(clone.player.transform);
             shooterList.Add(clone);
         }
+        Debug.Log("더하기" + shooterList.Count);
     }
     public void Sub(int num)
     {
@@ -125,6 +128,7 @@ public class PlayCtrl : Stats
                 Destroy(shooterToRemove.gameObject);
             }
         }
+        Debug.Log("빼기" + shooterList.Count);
     }
 
     public void Mult()
@@ -132,29 +136,29 @@ public class PlayCtrl : Stats
         int currentShooterCount = shooterList.Count;
         int totalShooterCount = currentShooterCount * 2; // 현재의 복제된 수의 2배
 
-        for (int i = 0; i < totalShooterCount; i++)
+        Debug.Log(currentShooterCount);
+        for (int i = 0; i < totalShooterCount - currentShooterCount; i++)
         {
-            Vector3 randomPos = new Vector3(Random.Range(-0.1f, 0.1f), 1, Random.Range(-0.1f, 0.1f));
-            Shooter clone = Instantiate(shooterPrefab, transform.position + randomPos, Quaternion.identity).GetComponent<Shooter>();
+            Vector3 randomPos = new Vector3(Random.Range(-0.1f, 0.1f), 0, Random.Range(-0.1f, 0.1f));
+            Shooter clone = Instantiate(shooterPrefab, spawnTr.position + randomPos, Quaternion.Euler(0f, -90f, 0f)).GetComponent<Shooter>();
             clone.player = this;
             clone.transform.SetParent(clone.player.transform);
             shooterList.Add(clone);
         }
+        Debug.Log("곱하기" + shooterList.Count);
     }
     public void Div()
     {
         if (shooterList.Count <= 1)
             return;
-        //int currentShooterCount = shooterList.Count;
-        //int totalShooterCount = Mathf.Max(1, currentShooterCount / 2); // 최소 1개 이상의 Shooter가 생성되도록 보장
-
 
         for (int i = 0; i < Mathf.Round(shooterList.Count / 2); i++)
         {
             GameObject delShooter = shooterList[i].gameObject;
             shooterList.Remove(shooterList[i]);
-            Destroy(delShooter);
+            Destroy(delShooter.gameObject);
         }
+        Debug.Log("나누기" + shooterList.Count);
     }
 
     #endregion

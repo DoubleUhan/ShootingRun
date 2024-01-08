@@ -20,6 +20,7 @@ public class StageManager : MonoBehaviour
 
     public void ArriveStage(int stageNum)
     {
+        Debug.Log("ArriceStage");
         stagePopup.SetActive(true);
         stageNum_T.text = "Stage" + stageNum;
 

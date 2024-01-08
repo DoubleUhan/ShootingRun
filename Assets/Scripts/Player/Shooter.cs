@@ -7,7 +7,6 @@ public class Shooter : MonoBehaviour
 {
     [Range(1f, 30f)]
     public float speed;
-    [HideInInspector]
     public PlayCtrl player;
     //ÃÑ¾Ë ÇÁ¸®ÆÕ
     public GameObject bulletPrefab;
@@ -18,7 +17,7 @@ public class Shooter : MonoBehaviour
 
     private void Start()
     {
-        tag= "Player";
+        tag = "Player";
         rb = gameObject.GetComponent<Rigidbody>();
         StartCoroutine(ShootingCor());
     }
@@ -30,22 +29,24 @@ public class Shooter : MonoBehaviour
 
     private void Move()
     {
-
         if (Vector3.Distance(transform.position, player.transform.position) > 0.1f)
         {
             Vector3 dir = (player.transform.position - transform.position).normalized;
-            rb.velocity = dir *  Vector3.Distance(transform.position, player.transform.position) * speed;
+            rb.velocity = dir * Vector3.Distance(transform.position, player.transform.position) * speed;
         }
     }
 
     private IEnumerator ShootingCor()
     {
-        WaitForSeconds delay = new WaitForSeconds(shootInterval);
-        while (true)
+        if (bulletPrefab != null)
         {
-            BulletCtrl bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity).GetComponent<BulletCtrl>();
-            bullet.player = player;
-            yield return delay;
+            WaitForSeconds delay = new WaitForSeconds(shootInterval);
+            while (true)
+            {
+                BulletCtrl bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity).GetComponent<BulletCtrl>();
+                bullet.player = player;
+                yield return delay;
+            }
         }
     }
 

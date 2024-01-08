@@ -29,7 +29,7 @@ public class StagePlayer : MonoBehaviour
             {
                 Debug.Log("우클릭");
 
-                if (hit.collider.CompareTag("Stage"))
+                if (hit.collider.CompareTag("Stage1") || hit.collider.CompareTag("Stage2"))
                 {
                     MoveToTarget(hit.point);
                 }
@@ -41,7 +41,6 @@ public class StagePlayer : MonoBehaviour
             }
         }
     }
-
     void MoveToTarget(Vector3 targetPosition)
     {
         agent.SetDestination(targetPosition);
@@ -52,10 +51,11 @@ public class StagePlayer : MonoBehaviour
         switch (other.gameObject.tag)
         {
             case "Stage1":
+                Debug.Log("트리거");
                 StageManager.instance.ArriveStage(1);
                 break;
             case "Stage2":
-                
+                StageManager.instance.ArriveStage(2);
                 break;
             case "Stage3":
 
