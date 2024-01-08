@@ -112,6 +112,9 @@ public class PlayCtrl : Stats
     }
     public void Sub(int num)
     {
+        if (shooterList.Count <= 1)
+            return;
+
         for (int i = 0; i < num; i++)
         {
             if (shooterList.Count > 0)

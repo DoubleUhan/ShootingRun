@@ -7,11 +7,10 @@ public class SceneCtrl : MonoBehaviour
 {
     public void SampleScene()
     {
-        SceneManager.LoadScene("SampleScene"); // 원래 SampleScene이었던 씬 이름 바꾸면 
+        SceneManager.LoadScene("Stage1"); // 원래 SampleScene이었던 씬 이름 바꾸면 
     }
-
     public void Home()
     {
-        SceneManager.LoadScene("Home");
+        SceneManager.LoadScene("StageMap");
     }
 }
