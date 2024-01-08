@@ -152,4 +152,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HP: 30
   ATK: 0
-  player: {fileID: 2772417272811492231, guid: 1b8fed1386a9789458e83ccac6a275ab, type: 3}
+  player: {fileID: 3982165000576164678, guid: 401fa80d167e75f4f86e748205d85ab2, type: 3}

@@ -13,4 +13,13 @@ public class SceneCtrl : MonoBehaviour
     {
         SceneManager.LoadScene("StageMap");
     }
+
+    public void OnClickStage1()
+    {
+        SceneManager.LoadScene("Stage1");
+    }
+    public void OnClickStage2()
+    {
+        SceneManager.LoadScene("StageMap");
+    }
 }

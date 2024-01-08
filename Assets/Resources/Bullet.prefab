@@ -127,9 +127,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf308fbc5ac8cb943897c3d5b960f205, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HP: 0
-  ATK: 0
-  speed: 0
-  bullet1: {fileID: 0}
-  maxShotDelay: 0
-  curShorDelay: 0
+  player: {fileID: 6980876924864240401, guid: 401fa80d167e75f4f86e748205d85ab2, type: 3}
