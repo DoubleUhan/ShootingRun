@@ -20,12 +20,13 @@ public class BossPlayCtrl : Stats
     Collider colliders;
     NavMeshAgent agent;
     Rigidbody rb;
+    bool looking = false;
 
     public GameObject main_Camera;
 
     public GameObject prefabToSpawn; // 생성할 프리팹
 
-    public GameObject target; // 바라볼 타겟
+    public GameObject[] target; // 바라볼 타겟
 
     private float zRange = 20; // 맵 이동 범위
 
@@ -47,11 +48,36 @@ public class BossPlayCtrl : Stats
         Shot();
         Reload();
         Move();
-
-        // 위에서 선언한 타겟 방향으로 바라봄(게임오브젝트)
-        transform.LookAt(target.transform.position);
-
+        TargetLook();
     }
+
+    void TargetLook()
+    {
+        transform.LookAt(target[0].transform.position);
+    }
+
+    void TargetLook1()
+    {
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            int random = Random.Range(1, 4);
+            transform.LookAt(target[random].transform.position);
+            Debug.Log(target[random]);
+            StartCoroutine(Wait(5));
+        }
+        else
+        {
+            transform.LookAt(target[0].transform.position);
+        }
+    }
+
+    IEnumerator Wait(float time)
+    {
+        looking = true;
+        yield return new WaitForSeconds(time);
+        looking = false;
+    }
+
     void Move() // 원형 곡선 이동
     {
 
@@ -76,7 +102,7 @@ public class BossPlayCtrl : Stats
         // 캐릭터의 위치를 업데이트
         transform.position = new Vector3(x, transform.position.y, z);
 
-        Vector3 vector = target.transform.position - transform.position;
+        Vector3 vector = target[0].transform.position - transform.position;
         transform.rotation = Quaternion.LookRotation(vector).normalized;
     }
     void Shot()

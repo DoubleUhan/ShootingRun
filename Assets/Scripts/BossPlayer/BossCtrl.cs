@@ -6,8 +6,6 @@ using UnityEngine.UI;
 
 public class BossCtrl : Stats
 {
-
-    float time;
     [Header("보스 공격 딜레이")]
     public float delay;
 
@@ -26,29 +24,23 @@ public class BossCtrl : Stats
     Animator animator;
     bool isSkillActive;
 
-    [Range(0,10)]
+    [Range(0, 10)]
     public float attackArrange;
 
     void Start()
     {
+        target = GameObject.FindGameObjectWithTag("Player");
         StartCoroutine(BossAttack());
-        time = 0.0f;
         delay = 3.0f;
         animator = GetComponent<Animator>();
     }
     void Update()
     {
-      
-        time += Time.deltaTime;
+        Debug.Log(Time.timeScale);
         if (isSkillActive == false)
         {
-            // transform.LookAt(target.transform.position);
-            Vector3 dir = target.transform.position - this.transform.position;
-            this.transform.rotation = Quaternion.Lerp(this.transform.rotation, Quaternion.LookRotation(dir), Time.deltaTime * 10);
-
-            
-
-            Debug.Log(curBossHP);
+            Vector3 dir = target.transform.position - transform.position;
+            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(dir), Time.deltaTime * 10);
         }
     }
 
@@ -57,7 +49,7 @@ public class BossCtrl : Stats
     IEnumerator BossAttack()
     {
         yield return new WaitForSeconds(3f);
-        int num = 0; /*Random.Range(0, 3);*/
+        int num = 0; // Random.Range(0, 3);
         while (true)
         {
             // Random.Range(0, 3);
@@ -82,9 +74,8 @@ public class BossCtrl : Stats
     {
         warning.transform.position = new Vector3(target.transform.position.x, 0, target.transform.position.z);
         warning.SetActive(true);
-        time = 0;
         isSkillActive = true;
-  
+
         yield return new WaitForSeconds(2f);
 
 
@@ -102,7 +93,6 @@ public class BossCtrl : Stats
     {
         warning.transform.position = new Vector3(target.transform.position.x, 0, target.transform.position.z);
         warning.SetActive(true);
-        time = 0;
         isSkillActive = true;
 
         yield return new WaitForSeconds(2f);
@@ -113,7 +103,7 @@ public class BossCtrl : Stats
             GameFail();
         }
         warning.SetActive(false);
-        animator.Play("Attack1");
+        animator.Play("Attack2");
         yield return null;
         // 애니메션 그리고 공격
     }
@@ -137,16 +127,17 @@ public class BossCtrl : Stats
     void GameFail()
     {
         Camera.main.transform.SetParent(null);
-        Destroy(target);
-        Time.timeScale = 0;
+        target.GetComponent<Renderer>().enabled = false;
         failPopup.SetActive(true);
+        Time.timeScale = 0;
     }
 
     void GameClear()
     {
-        Time.timeScale = 0;
-        Destroy(gameObject);
+        // 보스 죽는 애니메이션
+        animator.Play("Death");
         // 게임 클리어 한 거임 -> 클리어 메세지 또는 화면 출력
         clearPopup.SetActive(true);
+        Time.timeScale = 0;
     }
 }
