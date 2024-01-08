@@ -51,4 +51,9 @@ public class SettingManager : MonoBehaviour
     {
         SceneManager.LoadScene("SampleScene"); // 게임에서 죽었을 때 재도전하는 버튼 누르면
     }
+
+    public void GoBoss()
+    {
+        SceneManager.LoadScene("MOB_BossScene");
+    }
 }

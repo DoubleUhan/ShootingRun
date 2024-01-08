@@ -23,6 +23,7 @@ public class BossCtrl : Stats
 
     Animator animator;
     bool isSkillActive;
+    bool isDead; // 보스 죽었는지 안죽었는지 체크하는 변수
 
     [Range(0, 10)]
     public float attackArrange;
@@ -50,7 +51,7 @@ public class BossCtrl : Stats
     {
         yield return new WaitForSeconds(3f);
         int num = 0; // Random.Range(0, 3);
-        while (true)
+        while (!isDead)
         {
             // Random.Range(0, 3);
             switch (num)
@@ -66,7 +67,7 @@ public class BossCtrl : Stats
                 case 2: // 폭탄 던지기
                     break;
             }
-            yield return new WaitForSeconds(5f);
+            yield return new WaitForSeconds(4f);
         }
     }
 
@@ -76,7 +77,7 @@ public class BossCtrl : Stats
         warning.SetActive(true);
         isSkillActive = true;
 
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
 
 
         if (warning.GetComponent<BossSkillRange>().isPlayerIn)
@@ -85,6 +86,8 @@ public class BossCtrl : Stats
         }
         warning.SetActive(false);
         animator.Play("Attack1");
+        SoundManager.Instance.Attack(); // 사운드매니저에서 불러옴
+        Debug.Log("공격 소리 났다");
         yield return null;
         // 애니메션 그리고 공격
     }
@@ -114,11 +117,16 @@ public class BossCtrl : Stats
     }
     public void OnDamaged(float Damage)
     {
+        if (isDead)
+            return;
+
         curBossHP -= Damage;
 
         if (curBossHP <= 0)
         {
-            GameClear();
+            isDead = true;
+            // 보스 죽는 애니메이션
+            animator.Play("Death");
         }
 
         bossHP_bar.value = curBossHP / maxBossHP;
@@ -134,8 +142,6 @@ public class BossCtrl : Stats
 
     void GameClear()
     {
-        // 보스 죽는 애니메이션
-        animator.Play("Death");
         // 게임 클리어 한 거임 -> 클리어 메세지 또는 화면 출력
         clearPopup.SetActive(true);
         Time.timeScale = 0;
