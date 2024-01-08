@@ -16,6 +16,7 @@ TagManager:
   - Sub5
   - Sub10
   - Boss
+  - Stage
   layers:
   - Default
   - TransparentFX
@@ -29,7 +30,7 @@ TagManager:
   - 
   - enemy
   - SHOOTER
-  - 
+  - Object
   - isGoggle
   - 
   - 
