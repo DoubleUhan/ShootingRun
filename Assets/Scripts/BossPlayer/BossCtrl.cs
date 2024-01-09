@@ -34,14 +34,25 @@ public class BossCtrl : Stats
         target = GameObject.FindGameObjectWithTag("Player");
         StartCoroutine(BossAttack());
         delay = 3.0f;
-        animator = GetComponent<Animator>();
+        animator = GetComponentInChildren<Animator>();
     }
     void Update()
     {
         Debug.Log(Time.timeScale);
         if (isSkillActive == false)
         {
+            //transform.LookAt(target.transform);
+            // var a = transform.rotation;
+            //a = new Quaternion(0, transform.rotation.y, 0,0);
             Vector3 dir = target.transform.position - transform.position;
+            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(dir), Time.deltaTime * 10);
+            //Debug.Log("a "+ transform.rotation);
+            //transform.localRotation = new Quaternion(0, transform.rotation.y, 0, 0);
+            //Debug.Log(transform.rotation);
+        }
+        else
+        {
+            Vector3 dir = warning.transform.position - transform.position;
             transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(dir), Time.deltaTime * 10);
         }
     }
@@ -86,7 +97,7 @@ public class BossCtrl : Stats
             GameFail();
         }
         warning.SetActive(false);
-        animator.Play("Attack1");
+        animator.Play("ATK_pattern_1");
         SoundManager.Instance.Boss_Smile(); // 사운드매니저에서 불러옴
         Debug.Log("공격 소리 났다");
         yield return null;

@@ -83,6 +83,7 @@ public class SoundManager : SingletonMonoBase<SoundManager>
 
     public void Boss_BGM() // BossCtrl - 33มู
     {
+        if (audioSource == null) return;
         BGM.clip = BossBGM;
         BGM.volume = 0.5f;
         BGM.Play();
@@ -90,6 +91,7 @@ public class SoundManager : SingletonMonoBase<SoundManager>
 
     public void Boss_PlayerShot()
     {
+        if (audioSource == null) return;
         audioSource.volume = 0.01f;
         audioSource.PlayOneShot(shot);
     }
