@@ -12,6 +12,13 @@ public class SoundManager : SingletonMonoBase<SoundManager>
 
     // 사운드 리스트
     public AudioClip audio_1;
+    public AudioClip audio_2;
+
+
+    private void Start()
+    {
+        Initalize();
+    }
 
     private SoundManager()
     {
@@ -24,7 +31,6 @@ public class SoundManager : SingletonMonoBase<SoundManager>
         // Scene을 이동 했을 때, AudioSource Component가 또 추가되는 것을 막기위한 처리.
         if (audioSource == null && BGM == null)
         {
-            Debug.Log("생성");
             audioSource = gameObject.AddComponent<AudioSource>();
             BGM = gameObject.AddComponent<AudioSource>();
         }
@@ -36,7 +42,6 @@ public class SoundManager : SingletonMonoBase<SoundManager>
 
     public void Attack()
     {
-        Debug.Log(audio_1);
         audioSource.PlayOneShot(audio_1);
     }
 }
