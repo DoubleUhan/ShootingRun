@@ -4165,8 +4165,8 @@ MonoBehaviour:
   failPopup: {fileID: 691847921}
   clearPopup: {fileID: 1751896554}
   bossHP_bar: {fileID: 356532764}
-  maxBossHP: 1000
-  curBossHP: 1000
+  maxBossHP: 1000000
+  curBossHP: 1000000
   attackArrange: 3.77
 --- !u!95 &1684180084
 Animator:

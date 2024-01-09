@@ -120,7 +120,7 @@ public class BossPlayCtrl : Stats
         Vector3 playerDirection = transform.forward;
         // น฿ป็
         rigid.AddForce(playerDirection * shotPower, ForceMode.Impulse);
-
+        SoundManager.Instance.Boss_PlayerShot();
         curShorDelay = 0;
     }
 
