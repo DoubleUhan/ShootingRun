@@ -1,0 +1,387 @@
+fileFormatVersion: 2
+guid: 2fc890bafea5eb945a904cb75391d1dd
+ModelImporter:
+  serializedVersion: 21202
+  internalIDToNameTable:
+  - first:
+      74: 1240866052021308180
+    second: Tile1|Plane003|Take 001|BaseLayer.001
+  - first:
+      74: -6522794032244335578
+    second: Tile1|Plane003|Take 001|BaseLayer.002
+  - first:
+      74: 2854959029687310617
+    second: Tile1|Plane003|Take 001|BaseLayer.025
+  - first:
+      74: 7777334393219293776
+    second: Tile1|Plane014|Take 001|BaseLayer.001
+  - first:
+      74: -3472257185564194220
+    second: Tile1|Plane016|Take 001|BaseLayer.002
+  - first:
+      74: 4033816725284137276
+    second: Tile1|Plane018|Take 001|BaseLayer.001
+  - first:
+      74: -1920305748648315439
+    second: Tile2|Plane003|Take 001|BaseLayer.001
+  - first:
+      74: -4314018907894242440
+    second: Tile2|Plane003|Take 001|BaseLayer.002
+  - first:
+      74: 5926921591332900541
+    second: Tile2|Plane003|Take 001|BaseLayer.025
+  - first:
+      74: -18140038293837060
+    second: Tile2|Plane014|Take 001|BaseLayer.001
+  - first:
+      74: 6343055202744095434
+    second: Tile2|Plane016|Take 001|BaseLayer.002
+  - first:
+      74: 2158531281828871238
+    second: Tile2|Plane018|Take 001|BaseLayer.001
+  - first:
+      74: -7384675925373172910
+    second: Tile3|Plane003|Take 001|BaseLayer.001
+  - first:
+      74: -3819124163863015189
+    second: Tile3|Plane003|Take 001|BaseLayer.002
+  - first:
+      74: 7566505319263737999
+    second: Tile3|Plane003|Take 001|BaseLayer.025
+  - first:
+      74: 5940562195938767730
+    second: Tile3|Plane014|Take 001|BaseLayer.001
+  - first:
+      74: -9117877123164181825
+    second: Tile3|Plane016|Take 001|BaseLayer.002
+  - first:
+      74: 3213592133813047062
+    second: Tile3|Plane018|Take 001|BaseLayer.001
+  - first:
+      74: 768830804567438486
+    second: Tile4|Plane003|Take 001|BaseLayer.001
+  - first:
+      74: -9016162732547006473
+    second: Tile4|Plane003|Take 001|BaseLayer.002
+  - first:
+      74: 6023842160142523282
+    second: Tile4|Plane003|Take 001|BaseLayer.025
+  - first:
+      74: 4903176052694138735
+    second: Tile4|Plane014|Take 001|BaseLayer.001
+  - first:
+      74: -8656329361160816942
+    second: Tile4|Plane016|Take 001|BaseLayer.002
+  - first:
+      74: -5908002635155130070
+    second: Tile4|Plane018|Take 001|BaseLayer.001
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: AngryPumpkin
+    second: {fileID: 2100000, guid: aabaa9e9dde84d9449e766914947678e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Black
+    second: {fileID: 2100000, guid: 5703cd2d43034564f9ec9ac7d8c04d73, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: BlueWindow
+    second: {fileID: 2100000, guid: b11bf336bda6e764585609b51d71af06, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: BrightPostbox
+    second: {fileID: 2100000, guid: ba46448be973e274e8bc5ff513cb4913, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: BrightWall
+    second: {fileID: 2100000, guid: f32f1fe41675f2c48a09bfb08a015bc4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: CrowEye
+    second: {fileID: 2100000, guid: a2b1fd377ff30014aac18a39c549a052, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: DarkPostbox
+    second: {fileID: 2100000, guid: 29c7a08fe66fc3a4093dde2c622eba4b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: DarkStone
+    second: {fileID: 2100000, guid: 71d17ee14c20ce840a1c34483788e3fd, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: DarkWall
+    second: {fileID: 2100000, guid: c22ffadd92963b045b742b783482b2b7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fence
+    second: {fileID: 2100000, guid: 5b64f1cec07f0e049ab8ebe47778d8e2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: GreenWindow
+    second: {fileID: 2100000, guid: d78a3a4b706670e488d7b38d3fa85824, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Ground
+    second: {fileID: 2100000, guid: db9a4841f5a849748bb644cdad5bba0f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Lamp
+    second: {fileID: 2100000, guid: 9c1e4234e8d290140a03b03fcbc3b1ac, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: LampGlow
+    second: {fileID: 2100000, guid: a3c2d9df0ae0a064d8a8164929139ca2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Plank
+    second: {fileID: 2100000, guid: 7af9cabbab37bd1499c4964fb1b318b5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Postbox
+    second: {fileID: 2100000, guid: 6bcbe011790f8bd41804c6653c626bb9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Pumpkin
+    second: {fileID: 2100000, guid: 2afe0de2cf7d1f743922081781681dcf, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: PurpleStone
+    second: {fileID: 2100000, guid: c8c74e9c184f7f240980e4c61c8a7e6d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: RedWindow
+    second: {fileID: 2100000, guid: 39985a1cbfef6624ba312728166ad608, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Road
+    second: {fileID: 2100000, guid: 8b9613202c7f1c7418626bcd9d6da41c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Roof_1
+    second: {fileID: 2100000, guid: d5b1081a39b85cf4d8e821e25c6c732c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Roof_10
+    second: {fileID: 2100000, guid: 308f47cffeca0a341b9ac764bb4cc6ff, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Roof_2
+    second: {fileID: 2100000, guid: fe239ccf32681a547b9c87e09785f18f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Roof_3
+    second: {fileID: 2100000, guid: 1e097a3427412da4a9b93aa4c23ad8e8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Roof_4
+    second: {fileID: 2100000, guid: 768477a99ae2c914380a39106bc569f2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Roof_5
+    second: {fileID: 2100000, guid: 78b959a758d60564eb51a70edc5e6d75, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Roof_6
+    second: {fileID: 2100000, guid: 53c09383b7109b243a2b421083170f92, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Roof_7
+    second: {fileID: 2100000, guid: 42537dbeb787b774893d80ebdb84567f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Roof_8
+    second: {fileID: 2100000, guid: 7f03b7896baf3b74285559cd423e51f8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Roof_9
+    second: {fileID: 2100000, guid: 4aa94521da5727b4f8edf8f56f4b1e95, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ScarecrowClothes
+    second: {fileID: 2100000, guid: 20c31055432feea4dad6197c8ed87773, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ScarecrowHat
+    second: {fileID: 2100000, guid: 8a0672d3905fec34f8865e501f34c893, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ScarecrowWood
+    second: {fileID: 2100000, guid: 6ea64eeb7ec7df041b5b8702afe68325, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ScaryPumkin
+    second: {fileID: 2100000, guid: 90588f9bd43ce5644ac562bbacd86acd, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: SmilePumpkin
+    second: {fileID: 2100000, guid: d421dfdc77789db47a4a0bab670511d2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tree
+    second: {fileID: 2100000, guid: 5ad23a74a56f919428acaba9cf58516e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Water
+    second: {fileID: 2100000, guid: 5187bf10595203946a93819bf51af87a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WaterBowl
+    second: {fileID: 2100000, guid: 4ea6be1f1ae096a41841bdbcabca8252, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: door
+    second: {fileID: 2100000, guid: e5c7570f56357404d96c5e8a341e3f4b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: metal
+    second: {fileID: 2100000, guid: ba5ddc4032de1794f9e62d990210fb4e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: pumpkin_green
+    second: {fileID: 2100000, guid: cb3f006bfa101b34cbc84a2895a3d123, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: skull
+    second: {fileID: 2100000, guid: c2f232d82618919458274f29a58d1ed9, type: 2}
+  materials:
+    materialImportMode: 2
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    removeConstantScaleCurves: 1
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    nodeNameCollisionStrategy: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    optimizeBones: 1
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 1
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 0
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
