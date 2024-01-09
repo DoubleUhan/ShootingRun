@@ -36,9 +36,11 @@ public class Boomb : MonoBehaviour
         {
             if (piece != transform)
             {
+                Rigidbody rb = piece.GetComponent<Rigidbody>();
+
                 piece.GetComponent<MeshRenderer>().enabled = true;
-                piece.GetComponent<Rigidbody>().isKinematic = false;
-                piece.GetComponent<Rigidbody>().AddExplosionForce(explosionForce, transform.position, explosionRadius);
+                rb.isKinematic = false;
+                rb.AddExplosionForce(explosionForce, transform.position, explosionRadius);
             }
         }
 
@@ -54,6 +56,12 @@ public class Boomb : MonoBehaviour
         }
 
         StartCoroutine(DeleteObject());
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, explosionRadius);
     }
 
     IEnumerator DeleteObject()
