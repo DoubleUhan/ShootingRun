@@ -11,9 +11,16 @@ public class SoundManager : SingletonMonoBase<SoundManager>
     private AudioSource audioSource;
 
     // 사운드 리스트
-    public AudioClip audio_1;
-    public AudioClip audio_2;
+    [Header("보스 웃음소리")]
+    public AudioClip smile1;
+    public AudioClip smile2;
+    public AudioClip smile3;
 
+    [Header("보스 BGM")]
+    public AudioClip BossBGM;
+
+    [Header("총 소리")]
+    public AudioClip shot;
 
     private void Start()
     {
@@ -27,7 +34,13 @@ public class SoundManager : SingletonMonoBase<SoundManager>
     public void Initalize()
     {
         // 사운드 리스트
-        audio_1 = Resources.Load<AudioClip>("Sounds/audio_1");
+        smile1 = Resources.Load<AudioClip>("Sounds/laugh 1");
+        smile2 = Resources.Load<AudioClip>("Sounds/laugh 2");
+        smile3 = Resources.Load<AudioClip>("Sounds/laugh 3");
+
+        BossBGM = Resources.Load<AudioClip>("Sounds/test_BGM");
+
+        shot = Resources.Load<AudioClip>("Sounds/shot");
         // Scene을 이동 했을 때, AudioSource Component가 또 추가되는 것을 막기위한 처리.
         if (audioSource == null && BGM == null)
         {
@@ -40,9 +53,34 @@ public class SoundManager : SingletonMonoBase<SoundManager>
         audioSource.playOnAwake = false;
     }
 
-    public void Attack()
+    public void Boss_Smile() // BossCtrl - 89줄
     {
-        audioSource.PlayOneShot(audio_1);
+        int random = Random.Range(1, 4);
+        switch (random)
+        {
+            case 1:
+                audioSource.PlayOneShot(smile1);
+                break;
+            case 2:
+                audioSource.PlayOneShot(smile2);
+                break;
+            case 3:
+                audioSource.PlayOneShot(smile3);
+                break;
+        }
+    }
+
+    public void Boss_BGM() // BossCtrl - 33줄
+    {
+        BGM.clip = BossBGM;
+        BGM.volume = 0.5f;
+        BGM.Play();
+    }
+
+    public void Boss_PlayerShot()
+    {
+        audioSource.volume = 0.1f;
+        audioSource.PlayOneShot(shot);
     }
 }
 

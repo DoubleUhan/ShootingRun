@@ -30,6 +30,7 @@ public class BossCtrl : Stats
 
     void Start()
     {
+        SoundManager.Instance.Boss_BGM();
         target = GameObject.FindGameObjectWithTag("Player");
         StartCoroutine(BossAttack());
         delay = 3.0f;
@@ -86,7 +87,7 @@ public class BossCtrl : Stats
         }
         warning.SetActive(false);
         animator.Play("Attack1");
-        SoundManager.Instance.Attack(); // 사운드매니저에서 불러옴
+        SoundManager.Instance.Boss_Smile(); // 사운드매니저에서 불러옴
         Debug.Log("공격 소리 났다");
         yield return null;
         // 애니메션 그리고 공격

@@ -700,8 +700,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78e3a0097edbb1144b79272467ece76f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audio_1: {fileID: 8300000, guid: a15d282a307a1bb4680483e118361ab3, type: 3}
-  audio_2: {fileID: 8300000, guid: a15d282a307a1bb4680483e118361ab3, type: 3}
+  smile1: {fileID: 8300000, guid: 36a12ac8cfa951045b065bcc4cb031df, type: 3}
+  smile2: {fileID: 8300000, guid: 89cb8843612cbc34b82249c6efff485d, type: 3}
+  smile3: {fileID: 8300000, guid: debc4f2f84fbeeb4cabfa636e5b02931, type: 3}
+  BossBGM: {fileID: 8300000, guid: 09bd3ca466016c9489e9230f1e6017ce, type: 3}
+  shot: {fileID: 8300000, guid: b796ec0696bcc2e4788a0b27387265ba, type: 3}
 --- !u!4 &1196811190
 Transform:
   m_ObjectHideFlags: 0
