@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
 {
-    [SerializeField] GameObject enemy_Object;
+    [SerializeField] GameObject[] enemy_Object;
     [SerializeField] GameObject[] arithmetic_Object;
     [SerializeField] GameObject needle_Object;
 
@@ -33,11 +33,12 @@ public class SpawnManager : MonoBehaviour
     {
         while (true)
         {
-            float enemySpawnPosz = Random.Range(-2.5f, 2.5f);
+            float enemySpawnPosz = Random.Range(-0.7f, 0.7f);
+            int enemyRadom = Random.Range(0, 2);
+            Debug.Log(enemyRadom);
             enemySpawnDelay = Random.Range(enemySpawnMin, enemySpawnMax + 1);
-            GameObject Enemy = Instantiate(enemy_Object, new Vector3(-90, 1, enemySpawnPosz), Quaternion.identity);
+            GameObject Enemy = Instantiate(enemy_Object[enemyRadom], new Vector3(-60f, 0.5f, enemySpawnPosz), Quaternion.identity);
             yield return new WaitForSeconds(enemySpawnDelay);
-
         }
     }
     IEnumerator Arithmetic_Produce()
@@ -47,8 +48,8 @@ public class SpawnManager : MonoBehaviour
             int spawn1 = Random.Range(0, 8);
             int spawn2 = Random.Range(0, 8);
             arithmeticSpawnDelay = Random.Range(arithmeticSpawnMin, arithmeticSpawnMax + 1);
-            GameObject randomObject1 = Instantiate(arithmetic_Object[spawn1], new Vector3(-90, 1, -2.5f), Quaternion.identity);
-            GameObject randomObject2 = Instantiate(arithmetic_Object[spawn2], new Vector3(-90, 1, 2.5f), Quaternion.identity);
+            GameObject randomObject1 = Instantiate(arithmetic_Object[spawn1], new Vector3(-60f, 1, -0.7f), Quaternion.identity);
+            GameObject randomObject2 = Instantiate(arithmetic_Object[spawn2], new Vector3(-60f, 1, 0.7f), Quaternion.identity);
             yield return new WaitForSeconds(arithmeticSpawnDelay);
         }
     }
