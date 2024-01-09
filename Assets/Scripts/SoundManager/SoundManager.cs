@@ -10,17 +10,20 @@ public class SoundManager : SingletonMonoBase<SoundManager>
     private AudioSource BGM;
     private AudioSource audioSource;
 
-    // 사운드 리스트
+    // 사운드 리스트 - 컴포넌트 안 넣어도 실행은 됨
     [Header("보스 웃음소리")]
-    public AudioClip smile1;
-    public AudioClip smile2;
-    public AudioClip smile3;
+    AudioClip smile3;
+    AudioClip smile1;
+    AudioClip smile2;
 
     [Header("보스 BGM")]
-    public AudioClip BossBGM;
+    AudioClip BossBGM;
 
     [Header("총 소리")]
-    public AudioClip shot;
+    AudioClip shot;
+
+    [Header("UI 소리")]
+    AudioClip button;
 
     private void Start()
     {
@@ -33,14 +36,20 @@ public class SoundManager : SingletonMonoBase<SoundManager>
     }
     public void Initalize()
     {
-        // 사운드 리스트
+        // 보스 관련 사운드 리스트
         smile1 = Resources.Load<AudioClip>("Sounds/laugh 1");
         smile2 = Resources.Load<AudioClip>("Sounds/laugh 2");
         smile3 = Resources.Load<AudioClip>("Sounds/laugh 3");
 
+        // BGM 사운드 리스트
         BossBGM = Resources.Load<AudioClip>("Sounds/test_BGM");
 
+        // 플레이어 관련 사운드 리스트
         shot = Resources.Load<AudioClip>("Sounds/shot");
+
+        // UI 관련 사운드 리스트
+        button = Resources.Load<AudioClip>("Sounds/btn_click");
+
         // Scene을 이동 했을 때, AudioSource Component가 또 추가되는 것을 막기위한 처리.
         if (audioSource == null && BGM == null)
         {
@@ -81,6 +90,12 @@ public class SoundManager : SingletonMonoBase<SoundManager>
     {
         audioSource.volume = 0.1f;
         audioSource.PlayOneShot(shot);
+    }
+
+    public void BTN_Click()
+    {
+        audioSource.volume = 1f;
+        audioSource.PlayOneShot(button);
     }
 }
 

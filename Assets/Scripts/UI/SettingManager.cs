@@ -54,6 +54,7 @@ public class SettingManager : MonoBehaviour
 
     public void GoBoss()
     {
+        SoundManager.Instance.BTN_Click();
         SceneManager.LoadScene("MOB_BossScene");
     }
 }
