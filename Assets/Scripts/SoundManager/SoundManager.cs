@@ -15,6 +15,7 @@ public class SoundManager : SingletonMonoBase<SoundManager>
     AudioClip smile3;
     AudioClip smile1;
     AudioClip smile2;
+    AudioClip bomb;
 
     [Header("보스 BGM")]
     AudioClip BossBGM;
@@ -40,6 +41,7 @@ public class SoundManager : SingletonMonoBase<SoundManager>
         smile1 = Resources.Load<AudioClip>("Sounds/laugh 1");
         smile2 = Resources.Load<AudioClip>("Sounds/laugh 2");
         smile3 = Resources.Load<AudioClip>("Sounds/laugh 3");
+        bomb = Resources.Load<AudioClip>("Sounds/bomb");
 
         // BGM 사운드 리스트
         BossBGM = Resources.Load<AudioClip>("Sounds/test_BGM");
@@ -81,6 +83,7 @@ public class SoundManager : SingletonMonoBase<SoundManager>
 
     public void Boss_BGM() // BossCtrl - 33줄
     {
+        if (audioSource == null) return;
         BGM.clip = BossBGM;
         BGM.volume = 0.5f;
         BGM.Play();
@@ -88,7 +91,8 @@ public class SoundManager : SingletonMonoBase<SoundManager>
 
     public void Boss_PlayerShot()
     {
-        audioSource.volume = 0.1f;
+        if (audioSource == null) return;
+        audioSource.volume = 0.01f;
         audioSource.PlayOneShot(shot);
     }
 
@@ -96,6 +100,12 @@ public class SoundManager : SingletonMonoBase<SoundManager>
     {
         audioSource.volume = 1f;
         audioSource.PlayOneShot(button);
+    }
+
+    public void Boom()
+    {
+        audioSource.volume = 1f;
+        audioSource.PlayOneShot(bomb);
     }
 }
 
