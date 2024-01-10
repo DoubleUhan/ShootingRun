@@ -22,7 +22,7 @@ public class BossCtrl : Stats
     [SerializeField] float curBossHP; // 보스 체력 설정
 
     Animator animator;
-    bool isSkillActive;
+    public static bool isSkillActive;
     bool isDead; // 보스 죽었는지 안죽었는지 체크하는 변수
 
     [Range(0, 10)]
@@ -41,11 +41,13 @@ public class BossCtrl : Stats
         Debug.Log(Time.timeScale);
         if (isSkillActive == false)
         {
+            Vector3 dir = target.transform.position - transform.position;
+            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(dir), Time.deltaTime * 10);
+            
+            // 뭔지 이제 모름
             //transform.LookAt(target.transform);
             // var a = transform.rotation;
             //a = new Quaternion(0, transform.rotation.y, 0,0);
-            Vector3 dir = target.transform.position - transform.position;
-            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(dir), Time.deltaTime * 10);
             //Debug.Log("a "+ transform.rotation);
             //transform.localRotation = new Quaternion(0, transform.rotation.y, 0, 0);
             //Debug.Log(transform.rotation);
@@ -77,6 +79,7 @@ public class BossCtrl : Stats
                     break;
 
                 case 2: // 폭탄 던지기
+                    StartCoroutine(Bomb());
                     break;
             }
             yield return new WaitForSeconds(4f);
@@ -91,17 +94,16 @@ public class BossCtrl : Stats
 
         yield return new WaitForSeconds(1f);
 
+        animator.Play("ATK_pattern_1");
 
         if (warning.GetComponent<BossSkillRange>().isPlayerIn)
         {
             GameFail();
         }
         warning.SetActive(false);
-        animator.Play("ATK_pattern_1");
         SoundManager.Instance.Boss_Smile(); // 사운드매니저에서 불러옴
         Debug.Log("공격 소리 났다");
         yield return null;
-        // 애니메션 그리고 공격
     }
 
     IEnumerator SideAttack()
@@ -120,7 +122,11 @@ public class BossCtrl : Stats
         warning.SetActive(false);
         animator.Play("Attack2");
         yield return null;
-        // 애니메션 그리고 공격
+    }
+
+    IEnumerator Bomb()
+    {
+        yield return new WaitForSeconds(2f);
     }
 
     void asasd()
@@ -139,6 +145,7 @@ public class BossCtrl : Stats
             isDead = true;
             // 보스 죽는 애니메이션
             animator.Play("Death");
+            GameClear();
         }
 
         bossHP_bar.value = curBossHP / maxBossHP;
