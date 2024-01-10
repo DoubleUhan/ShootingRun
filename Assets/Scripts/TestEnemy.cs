@@ -34,7 +34,8 @@ public class TestEnemy : Stats
         if (HP <= 0)
         {
             Destroy(gameObject);
-            GameManager.Instance.enemyCount++;  
+            GameManager.Instance.enemyCount++;
+            GameManager.Instance.ClearStage();
         }
     }
 }

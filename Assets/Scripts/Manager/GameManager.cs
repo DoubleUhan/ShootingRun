@@ -2,48 +2,45 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
     public int enemyCount;
-    public const int goalEnemyCount = 100;
-    public GameObject basic_camera;
-    public GameObject Arithmetic_Camera;
+    public const int goalEnemyCount = 3;
+    public GameObject[] cameras; // 카메라 
 
-    bool isGhostCamera;
+
+    [Header("FadeOut 관련 변수")]
+    [SerializeField] GameObject fadeBG;
+    public bool isClear;
     void Awake()
     {
         Instance = this;
+        // image = GetComponent<Image>();
     }
 
-    void ClearStage()
+    public void ClearStage()
     {
-        if (enemyCount <= goalEnemyCount)
+        if (enemyCount >= goalEnemyCount)
         {
-            Debug.Log("다음 스테이지로 간다잇");
+            // 페이드 아웃, 캐릭터 앞으로 이동, 카메라 고정, 씬 넘어가기
+            isClear = true;
+            cameras[0].transform.SetParent(null);
+            cameras[1].transform.SetParent(null);
+            fadeBG.SetActive(true);
+            StartCoroutine(SceneMoveWait(2f));
+            Debug.Log("스테이지 클리어");
         }
+    }
 
-    }
-    void ChangeCamera()
+    IEnumerator SceneMoveWait(float time)
     {
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            Debug.Log("Arithmetic_Camera 실행");
-            basic_camera.SetActive(false);
-            Arithmetic_Camera.SetActive(true);
-        }
-        else if (Input.GetKeyDown(KeyCode.R))
-        {
-            Debug.Log("basic_camera 실행");
-            basic_camera.SetActive(true);
-            Arithmetic_Camera.SetActive(false);
-        }
-    }
-    void Update()
-    {
-        ChangeCamera();
+        yield return new WaitForSeconds(time);
+        SceneManager.LoadScene("StageMap");
     }
 }
