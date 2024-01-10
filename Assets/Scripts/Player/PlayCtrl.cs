@@ -38,6 +38,7 @@ public class PlayCtrl : Stats
     void Update()
     {
         Move();
+
         Goggle();
     }
 
@@ -45,9 +46,19 @@ public class PlayCtrl : Stats
 
     void Move()
     {
-        dir.z = Mathf.Clamp(dir.z + Input.GetAxisRaw("Horizontal") * Time.deltaTime * speed, -2.6f, 2.6f);
-        transform.position = dir;
 
+        if (!GameManager.Instance.isClear)
+        {
+            dir.z = Mathf.Clamp(dir.z + Input.GetAxisRaw("Horizontal") * Time.deltaTime * speed, -2.6f, 2.6f);
+            transform.position = dir;
+        }
+        else
+        {
+            // 현재 위치를 가져오고 x축으로 이동
+            Vector3 newPosition = transform.position + new Vector3(speed * -5 * Time.deltaTime, 0f, 0f);
+            // 새로운 위치로 이동
+            transform.position = newPosition;
+        }
     }
 
     #region 고글 시스템 
