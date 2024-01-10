@@ -26,7 +26,7 @@ public class BGCtrl : MonoBehaviour
         if (transforms.Count <= 0)
             return;
 
-        Debug.Log(Vector3.Distance(transforms.Peek().position, endPos.position));
+        //Debug.Log(Vector3.Distance(transforms.Peek().position, endPos.position));
 
         if (Vector3.Distance(transforms.Peek().position, endPos.position) <= 0.5f)
         {
