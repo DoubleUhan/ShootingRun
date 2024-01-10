@@ -108,11 +108,11 @@ public class BossCtrl : Stats
         yield return new WaitForSeconds(3f);
         while (!isDead)
         {
-            int num = 2; // UnityEngine.Random.Range(0, 3);
+            int num = UnityEngine.Random.Range(0, 3);
             switch (num)
             {
                 case 0: // ³»·Á Âï±â
-                    yield return StartCoroutine(PullDown());
+                    StartCoroutine(PullDown());
                     break;
 
                 case 1: // ÈÛ¾µ±â
