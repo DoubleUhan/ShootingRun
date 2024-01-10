@@ -44,7 +44,7 @@ public class SettingManager : MonoBehaviour
 
     public void Home()
     {
-        SceneManager.LoadScene("Home");
+        SceneManager.LoadScene("MOB_BossScene");
     }
 
     public void Revenge()

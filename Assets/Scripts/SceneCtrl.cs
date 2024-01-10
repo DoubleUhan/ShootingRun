@@ -5,13 +5,18 @@ using UnityEngine.SceneManagement;
 
 public class SceneCtrl : MonoBehaviour
 {
-    public void SampleScene()
+
+    void Start()
     {
-        SceneManager.LoadScene("Stage1"); // 원래 SampleScene이었던 씬 이름 바꾸면 
+        Screen.SetResolution(1080, 1920, true);
     }
-    public void Home()
+    public void SceneStageScene()
     {
-        SceneManager.LoadScene("StageMap");
+        SceneManager.LoadScene("StageMap"); // 원래 SampleScene이었던 씬 이름 바꾸면 
+    }
+    public void Stage1Scene()
+    {
+        SceneManager.LoadScene("Stage1");
     }
 
     public void OnClickStage1()
