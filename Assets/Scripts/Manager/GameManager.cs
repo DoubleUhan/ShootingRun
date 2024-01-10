@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
 
     public int enemyCount;
-    public const int goalEnemyCount = 3;
+    public const int goalEnemyCount = 100;
     public GameObject[] cameras; // Ä«¸Þ¶ó 
 
 

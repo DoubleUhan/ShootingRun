@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -17,13 +16,10 @@ public class StageManager : MonoBehaviour
     {
         instance = this;
     }
-
     public void ArriveStage(int stageNum)
     {
-        Debug.Log("ArriceStage");
         stagePopup.SetActive(true);
         stageNum_T.text = "Stage" + stageNum;
-
         stage_Btn[stageNum - 1].SetActive(true);
     }
 }
