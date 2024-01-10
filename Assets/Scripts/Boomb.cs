@@ -12,10 +12,23 @@ public class Boomb : MonoBehaviour
     MeshRenderer meshRenderer;
     GameObject[] players;
 
+    void Awake()
+    {
+        pieces = GetComponentsInChildren<Transform>();
+        foreach (Transform t in pieces)
+        {
+            if (t != transform)
+            {
+                t.gameObject.SetActive(false);
+            }
+                
+        }
+    }
+
     void Start()
     {
         
-        pieces = GetComponentsInChildren<Transform>();
+        
         players = GameObject.FindGameObjectsWithTag("Player");
         meshRenderer = GetComponent<MeshRenderer>();
         StartCoroutine(StartFuse());
