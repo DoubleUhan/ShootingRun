@@ -134,13 +134,12 @@ public class BossCtrl : Stats
 
     IEnumerator PullDown()
     {
-        warning.transform.position = new Vector3(target.transform.position.x, 0, target.transform.position.z);
+        warning.transform.position = target.transform.position;
         warning.SetActive(true);
-        isSkillActive = true;
 
         yield return new WaitForSeconds(1f);
         warning.SetActive(false);
-
+        isSkillActive = true;
         animator.Play("ATK_pattern_1");
 
         if (warning.GetComponent<BossSkillRange>().isPlayerIn)
@@ -154,12 +153,11 @@ public class BossCtrl : Stats
 
     IEnumerator SideAttack()
     {
-        warning.transform.position = new Vector3(target.transform.position.x, 0, target.transform.position.z);
+        warning.transform.position = target.transform.position;
         warning.SetActive(true);
-        isSkillActive = true;
 
         yield return new WaitForSeconds(1f);
-
+        isSkillActive = true;
 
         if (warning.GetComponent<BossSkillRange>().isPlayerIn)
         {
