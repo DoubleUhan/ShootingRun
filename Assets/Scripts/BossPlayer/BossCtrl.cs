@@ -145,6 +145,7 @@ public class BossCtrl : Stats
             isDead = true;
             // 보스 죽는 애니메이션
             animator.Play("Death");
+            GameClear();
         }
 
         bossHP_bar.value = curBossHP / maxBossHP;
