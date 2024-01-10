@@ -53,34 +53,26 @@ public class Shooter : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         string tag = other.gameObject.tag;
-        int value = 0;
-        switch (other.gameObject.tag)
+
+        if (other.CompareTag("ArithmeticTag"))
         {
-            case "Add3":
-            case "Add5":
-            case "Add10":
-                value = int.Parse(tag.Substring(3));
-                player.Add(value);
-                Destroy(other.gameObject);
-                break;
-
-            case "Sub3":
-            case "Sub5":
-            case "Sub10":
-                value = int.Parse(tag.Substring(3));
-                player.Sub(value);
-                Destroy(other.gameObject);
-                break;
-
-            case "Mult":
-                player.Mult();
-                Destroy(other.gameObject);
-                break;
-
-            case "Div":
-                player.Div();
-                Destroy(other.gameObject);
-                break;
+            var artic = other.GetComponent<Arithmetic>();
+            switch (artic.type)
+            {
+                case ArithmeticType.add:
+                    player.Add(artic.value);
+                    break;
+                case ArithmeticType.sub:
+                    player.Sub(artic.value);
+                    break;
+                case ArithmeticType.mult:
+                    player.Mult(artic.value);
+                    break;
+                case ArithmeticType.div:
+                    player.Div(artic.value);
+                    break;
+            }
+            Destroy(other.gameObject);
         }
     }
 }
