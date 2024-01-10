@@ -18,6 +18,7 @@ TagManager:
   - Boss
   - Stage1
   - Stage2
+  - head
   layers:
   - Default
   - TransparentFX
