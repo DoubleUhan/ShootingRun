@@ -17,9 +17,9 @@ public class Boomb : MonoBehaviour
         
         pieces = GetComponentsInChildren<Transform>();
         players = GameObject.FindGameObjectsWithTag("Player");
-        Debug.Log(pieces);
         meshRenderer = GetComponent<MeshRenderer>();
         StartCoroutine(StartFuse());
+
     }
 
     IEnumerator StartFuse()
@@ -30,12 +30,14 @@ public class Boomb : MonoBehaviour
 
     void Explode()
     {
+
         meshRenderer.enabled = false;
 
         foreach (var piece in pieces)
         {
             if (piece != transform)
             {
+                piece.gameObject.SetActive(true);
                 Rigidbody rb = piece.GetComponent<Rigidbody>();
 
                 piece.GetComponent<MeshRenderer>().enabled = true;

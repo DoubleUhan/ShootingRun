@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Burst.Intrinsics;
+using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Animations;
@@ -21,6 +22,8 @@ public class BossCtrl : Stats
     public GameObject failPopup; // 게임 실패 시 뜨는 팝업
     public GameObject clearPopup; // 게임 클리어 시 뜨는 팝업
 
+    public GameObject bomb; // 떨굴 폭탄
+
     public Slider bossHP_bar;
 
     [SerializeField] float maxBossHP;
@@ -37,7 +40,7 @@ public class BossCtrl : Stats
     public float attackArrange;
 
     MultiAimConstraint multiAimConstraint;
-    RigBuilder rigBuilder;
+    [SerializeField] GameObject[] bombSpawnPoint;
 
     void Start()
     {
@@ -47,7 +50,6 @@ public class BossCtrl : Stats
         StartCoroutine(BossAttack());
         delay = 3.0f;
         animator = GetComponent<Animator>();
-        rigBuilder = GetComponent<RigBuilder>();
     }
 
     void Update()
@@ -106,7 +108,7 @@ public class BossCtrl : Stats
         yield return new WaitForSeconds(3f);
         while (!isDead)
         {
-            int num = 0; // Random.Range(0, 3);
+            int num = 2; // UnityEngine.Random.Range(0, 3);
             switch (num)
             {
                 case 0: // 내려 찍기
@@ -140,13 +142,11 @@ public class BossCtrl : Stats
         if (warning.GetComponent<BossSkillRange>().isPlayerIn)
         {
             GameFail();
-
-
         }
         SoundManager.Instance.Boss_Smile(); // 보스 웃음 소리
 
-        Debug.Log("공격 소리 났다");
         yield return new WaitForSeconds(1.33f); // 애니메이션 실행 시간
+
         warningOn = false;
 
         yield return null;
@@ -166,13 +166,17 @@ public class BossCtrl : Stats
             GameFail();
         }
         warning.SetActive(false);
-        animator.Play("Attack2");
+
+        animator.Play("ATK_pattern_2");
+
         yield return null;
     }
-
-    IEnumerator Bomb()
+    IEnumerator Bomb() // 애니메, 사운드 없음ㄴ
     {
-        yield return new WaitForSeconds(2f);
+        int randNum = UnityEngine.Random.Range(0, 9);
+        Debug.Log("randNum: " + randNum);
+        GameObject spawnbomb = Instantiate(bomb, bombSpawnPoint[randNum].transform.position, Quaternion.identity);
+        yield return null;
     }
 
     void asasd()
