@@ -55,11 +55,9 @@ public class BossCtrl : Stats
     void Update()
     {
         Debug.Log(Time.timeScale);
-        if (warningOn == true)
+        if (isSkillActive)
         {
-            Vector3 warningTarget = warning.transform.position;
-            warningTarget.y = transform.position.y - 5;
-            Vector3 dir = warningTarget - transform.position;
+            
             if (multiAimConstraint.data.sourceObjects.GetWeight(0).Equals(1))
             {
                 var a = multiAimConstraint.data.sourceObjects;
@@ -68,9 +66,13 @@ public class BossCtrl : Stats
                 multiAimConstraint.data.sourceObjects = a;
             }
 
+            Vector3 warningTarget = warning.transform.position;
+            warningTarget.y = transform.position.y;
+            Vector3 dir = warningTarget - transform.position;
+
             transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(dir), Time.deltaTime * 5);
         }
-        else if (warningOn == false)
+        else
         {
             if (multiAimConstraint.data.sourceObjects.GetWeight(0).Equals(0))
             {
@@ -129,7 +131,6 @@ public class BossCtrl : Stats
 
     IEnumerator PullDown()
     {
-        warningOn = true;
         warning.transform.position = new Vector3(target.transform.position.x, 0, target.transform.position.z);
         warning.SetActive(true);
         isSkillActive = true;
@@ -145,10 +146,6 @@ public class BossCtrl : Stats
         }
         SoundManager.Instance.Boss_Smile(); // 보스 웃음 소리
 
-        yield return new WaitForSeconds(1.33f); // 애니메이션 실행 시간
-
-        warningOn = false;
-
         yield return null;
     }
 
@@ -158,7 +155,7 @@ public class BossCtrl : Stats
         warning.SetActive(true);
         isSkillActive = true;
 
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
 
 
         if (warning.GetComponent<BossSkillRange>().isPlayerIn)
@@ -167,7 +164,7 @@ public class BossCtrl : Stats
         }
         warning.SetActive(false);
 
-        animator.Play("ATK_pattern_2");
+        animator.Play("ATK_pattern_2");        
 
         yield return null;
     }
@@ -179,7 +176,7 @@ public class BossCtrl : Stats
         yield return null;
     }
 
-    void asasd()
+    void SkillEnded()
     {
         isSkillActive = false;
     }
