@@ -81,6 +81,9 @@ public class BossCtrl : Stats
                 a.SetWeight(1, 0);
                 multiAimConstraint.data.sourceObjects = a;
             }
+
+            Vector3 warningTarget = warning.transform.position;
+            warningTarget.x = transform.position.x;
             Vector3 dir = formatTarget.transform.position - transform.position;
             transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(dir), Time.deltaTime * 3);
         }

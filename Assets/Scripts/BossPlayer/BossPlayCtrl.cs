@@ -34,7 +34,7 @@ public class BossPlayCtrl : Stats
     float tempAngle = 0;
     [SerializeField]
     float angle; // 각도를 저장할 변수
-    float radius = 20.8f; // 원의 반지름
+    float radius = 30f; // 원의 반지름
 
     void Awake()
     {
@@ -88,7 +88,7 @@ public class BossPlayCtrl : Stats
         // 각도를 이용하여 원 위의 위치 계산
         float x = Mathf.Cos(angle) * radius;
         float z = Mathf.Sin(angle) * radius;
-        if (x < -4f || x > 22f || z < -20f || z > 20f)
+        if (x < 1f || x > 30f || z < -30f || z > 30f)
         {
             angle = tempAngle;
             // 움직이지 않도록 처리
