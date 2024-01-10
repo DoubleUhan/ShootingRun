@@ -30,6 +30,7 @@ public class PlayCtrl : Stats
 
     private void Start()
     {
+        dir = spawnTr.position;
         Shooter shooter = Instantiate(shooterPrefab, spawnTr.position, Quaternion.Euler(0f, -90f, 0f)).GetComponent<Shooter>();
         shooter.transform.SetParent(transform);
         shooter.player = this;
@@ -49,7 +50,8 @@ public class PlayCtrl : Stats
 
         if (!GameManager.Instance.isClear)
         {
-            dir.z = Mathf.Clamp(dir.z + Input.GetAxisRaw("Horizontal") * Time.deltaTime * speed, -2.6f, 2.6f);
+            Debug.Log(dir);
+            dir.z = Mathf.Clamp(dir.z + Input.GetAxisRaw("Horizontal") * Time.deltaTime * speed, -4.5f, 4.5f);
             transform.position = dir;
         }
         else
