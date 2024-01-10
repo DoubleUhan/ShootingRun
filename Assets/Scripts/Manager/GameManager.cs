@@ -20,7 +20,15 @@ public class GameManager : MonoBehaviour
     public bool isClear;
     void Awake()
     {
-        Instance = this;
+        if (Instance != null)
+            return;
+        else
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+
+        Screen.SetResolution(540, 960, false);
         // image = GetComponent<Image>();
     }
 
