@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.AI;
 
 public class StagePlayer : MonoBehaviour
@@ -12,6 +13,7 @@ public class StagePlayer : MonoBehaviour
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
+
     }
 
     void Update()
@@ -51,14 +53,10 @@ public class StagePlayer : MonoBehaviour
         switch (other.gameObject.tag)
         {
             case "Stage1":
-                Debug.Log("Æ®¸®°Å");
-                StageManager.instance.ArriveStage(1);
+                SceneManager.LoadScene("Stage1");
                 break;
             case "Stage2":
                 StageManager.instance.ArriveStage(2);
-                break;
-            case "Stage3":
-
                 break;
         }
     }

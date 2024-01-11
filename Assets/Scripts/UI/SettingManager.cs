@@ -16,41 +16,35 @@ public class SettingManager : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            if (isPaused)
-            {
-                CloseClick();
-            }
-            else
-            {
-                OnClickSetting();
-            }
-        }
     }
     public void OnClickSetting()
     {
         settingPopUp.SetActive(true);
-        isPaused = true;
         Time.timeScale = 0;
     }
 
     public void CloseClick()
     {
-        isPaused = false;
         settingPopUp.SetActive(false);
         Time.timeScale = 1;
     }
 
     public void Home()
     {
-        SceneManager.LoadScene("MOB_BossScene");
+        Debug.Log("찍힘");
+        SceneManager.LoadScene("StageMap");
         Time.timeScale = 1;
     }
 
+    public void RetryBoss()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene("MOB_BossScene");
+    }
     public void Revenge()
     {
-        SceneManager.LoadScene("SampleScene"); // 게임에서 죽었을 때 재도전하는 버튼 누르면
+        Time.timeScale = 1;
+        SceneManager.LoadScene("Stage1"); // 게임에서 죽었을 때 재도전하는 버튼 누르면
     }
 
     public void GoBoss()

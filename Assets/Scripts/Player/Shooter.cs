@@ -48,7 +48,7 @@ public class Shooter : MonoBehaviour
             {
                 GameObject playerEffectObj = Instantiate(playerEffect, player.transform.position + new Vector3(-0.5f, 0, 0), Quaternion.identity); // 총알 발사 직전 이펙트 적용
                 Destroy(playerEffectObj, 0.5f);
-                BulletCtrl bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity).GetComponent<BulletCtrl>();
+                BulletCtrl bullet = Instantiate(bulletPrefab, transform.position + new Vector3(-1f, 0, 0), Quaternion.identity).GetComponent<BulletCtrl>();
                 bullet.player = player;
                 yield return delay;
             }
@@ -83,6 +83,11 @@ public class Shooter : MonoBehaviour
         if (other.CompareTag("Enemy"))
         {
             player.Sub(1);
+            if (player.shooterList.Count <= 0)
+            {
+                Time.timeScale = 0;
+                GameManager.Instance.gameoverPopup.SetActive(true);
+            }
             Destroy(other.gameObject);
         }
     }
