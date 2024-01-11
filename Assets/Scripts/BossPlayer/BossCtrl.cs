@@ -160,23 +160,37 @@ public class BossCtrl : Stats
 
         yield return new WaitForSeconds(1f);
 
+<<<<<<< Updated upstream
+=======
+        warning.SetActive(false);
+        
+        isSkillActive = true;
+>>>>>>> Stashed changes
 
+        animator.Play("ATK_pattern_2");
+        
         if (warning.GetComponent<BossSkillRange>().isPlayerIn)
         {
             GameFail();
         }
-        warning.SetActive(false);
-
-        animator.Play("ATK_pattern_2");        
 
         yield return null;
     }
     IEnumerator Bomb() // 애니메, 사운드 없음ㄴ
     {
-        int randNum = UnityEngine.Random.Range(0, 9);
-        Debug.Log("randNum: " + randNum);
-        GameObject spawnbomb = Instantiate(bomb, bombSpawnPoint[randNum].transform.position, Quaternion.identity);
+        int bombs = UnityEngine.Random.Range(3, 6);
+
+        for (int bomb = 0; bomb < bombs; bomb++)
+        {
+            BombSpawn();
+        }
         yield return null;
+    }
+
+    void BombSpawn()
+    {
+        int randNum = UnityEngine.Random.Range(0, 9);
+        GameObject spawnbomb = Instantiate(bomb, bombSpawnPoint[randNum].transform.position, Quaternion.identity);
     }
 
     void SkillEnded()
@@ -201,7 +215,7 @@ public class BossCtrl : Stats
         bossHP_bar.value = curBossHP / maxBossHP;
     }
 
-    void GameFail()
+    public void GameFail()
     {
         Camera.main.transform.SetParent(null);
         target.GetComponent<Renderer>().enabled = false;

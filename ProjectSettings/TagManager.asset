@@ -19,6 +19,7 @@ TagManager:
   - Stage1
   - Stage2
   - head
+  - explode
   layers:
   - Default
   - TransparentFX
@@ -40,7 +41,7 @@ TagManager:
   - 
   - 
   - 
-  - 
+  - Rock_Camera
   - 
   - 
   - 
