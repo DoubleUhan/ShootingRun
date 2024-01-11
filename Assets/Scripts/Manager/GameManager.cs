@@ -10,13 +10,22 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
     public int enemyCount;
-    public const int goalEnemyCount = 3;
+    [SerializeField]
+    private int goalEnemyCount = 3;
     public GameObject[] cameras; // 카메라 
-
 
     [Header("FadeOut 관련 변수")]
     [SerializeField] GameObject fadeBG;
     public bool isClear;
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            StartCoroutine(SceneMoveWait(2));
+        }
+    }
+
     void Awake()
     {
         if (Instance != null)

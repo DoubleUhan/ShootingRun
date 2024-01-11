@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.AI;
 using UnityEngine.UIElements;
+using UnityEngine.Timeline;
 
 public class BossPlayCtrl : Stats
 {
@@ -13,6 +15,7 @@ public class BossPlayCtrl : Stats
     [SerializeField] float maxShotDelay;
     [SerializeField] float curShorDelay;
     [SerializeField] float shotPower;
+    [SerializeField] float playerHP;
 
 
     [SerializeField] GameObject[] copyPlayer_Pos;
@@ -22,11 +25,16 @@ public class BossPlayCtrl : Stats
     Rigidbody rb;
     bool looking = false;
 
+    public UnityEngine.UI.Slider playerHP_bar; // 저 뭐 플레이어 체력바
+
     public GameObject main_Camera;
 
     public GameObject prefabToSpawn; // 생성할 프리팹
 
     public GameObject[] target; // 바라볼 타겟
+
+    public float player_HP; // 플레이어 현재 체력
+    public float playerMax_HP; // 플레이어 최대 체력
 
     private float zRange = 20; // 맵 이동 범위
 
@@ -38,10 +46,13 @@ public class BossPlayCtrl : Stats
 
     void Awake()
     {
+        player_HP = PlayerPrefs.GetInt("PlayerCount");
+        Debug.Log($"player hp = {player_HP}");
         colliders = GetComponent<Collider>();
         agent = GetComponent<NavMeshAgent>();
         rb = GetComponent<Rigidbody>();
     }
+
     // Update is called once per frame
     void Update()
     {
@@ -148,6 +159,21 @@ public class BossPlayCtrl : Stats
             }
         }
     }
+
+    public void Hurt()
+    {
+        playerHP -= 2; // 일단 모든 패턴 데미지 동일하게..
+
+        if (playerHP <= 0)
+        {
+            // 보스컨트롤 함수 GameFail();
+        }
+
+        playerHP_bar.value = player_HP / playerMax_HP;
+    }
+
+    //플레이어 체력바
+    //playerHP_bar.value = player_HP / playerMax_HP;
 
     //void OnCollisionEnter(Collision collision)
     //{
