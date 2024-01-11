@@ -27,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 808436332841213094}
   m_LocalRotation: {x: 0.18152975, y: -0, z: -0, w: 0.98338544}
-  m_LocalPosition: {x: 0, y: 7.08, z: -12.02}
+  m_LocalPosition: {x: 0, y: 7.08, z: -7.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -172,7 +172,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1525440047531041172}
   m_LocalRotation: {x: 0.18152975, y: -0, z: -0, w: 0.98338544}
-  m_LocalPosition: {x: 0, y: 7.08, z: -12.02}
+  m_LocalPosition: {x: 0, y: 7.08, z: -7.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -210,7 +210,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 7287
+    m_Bits: 15479
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -352,6 +352,7 @@ MonoBehaviour:
   fill_Speed: 0.05
   main_Camera: {fileID: 1525440047531041172}
   arithmetic_Camera: {fileID: 808436332841213094}
+  arithmetic_BG: {fileID: 0}
   shiftCooldownDuration: 1.5
 --- !u!1 &4584491144150589375
 GameObject:
@@ -429,7 +430,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd048c800f527344ba27d5c7fad8e624, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0
+  speed: 1
   player: {fileID: 6980876924864240401}
   bulletPrefab: {fileID: 0}
   shootInterval: 100000000
@@ -457,7 +458,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5600414844369584423}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.5, y: 1.33, z: 0}
+  m_LocalPosition: {x: 0, y: 0.25, z: -3.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

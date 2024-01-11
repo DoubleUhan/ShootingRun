@@ -11,6 +11,8 @@ public class Shooter : MonoBehaviour
     public PlayCtrl player;
     //총알 프리팹
     public GameObject bulletPrefab;
+
+    public GameObject playerEffect;
     //발사 간격
     public float shootInterval;
 
@@ -44,6 +46,8 @@ public class Shooter : MonoBehaviour
             WaitForSeconds delay = new WaitForSeconds(shootInterval);
             while (true)
             {
+                GameObject playerEffectObj = Instantiate(playerEffect, player.transform.position + new Vector3(-0.5f, 0, 0), Quaternion.identity); // 총알 발사 직전 이펙트 적용
+                Destroy(playerEffectObj, 0.5f);
                 BulletCtrl bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity).GetComponent<BulletCtrl>();
                 bullet.player = player;
                 yield return delay;

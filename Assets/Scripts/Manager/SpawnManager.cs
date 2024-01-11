@@ -56,41 +56,43 @@ public class SpawnManager : MonoBehaviour
             {
                 case ArithmeticType.add:
                     randomObject.value = Random.Range(3, 11);
-                    randomObject.value_T.text = "+" + randomObject.value;
+                    randomObject.sigh_T.text = "+";
                     break;
                 case ArithmeticType.sub:
                     randomObject.value = Random.Range(3, 11);
-                    randomObject.value_T.text = "-" + randomObject.value;
+                    randomObject.sigh_T.text = "-";
                     break;
                 case ArithmeticType.mult:
+                    randomObject.sigh_T.text = "X";
                     randomObject.value = Random.Range(2, 4);
-                    randomObject.value_T.text = "X" + randomObject.value;
                     break;
                 case ArithmeticType.div:
+                    randomObject.sigh_T.text = "¡À";
                     randomObject.value = Random.Range(2, 4);
-                    randomObject.value_T.text = "¡À" + randomObject.value;
                     break;
             }
+            randomObject.value_T.text =/* randomObject.sigh_T.text + */randomObject.value.ToString();
             var randomObject2 = Instantiate(arithmetic_Object, new Vector3(-60f, 1, -4f), Quaternion.identity).GetComponent<Arithmetic>();
             switch (randomObject2.type)
             {
                 case ArithmeticType.add:
                     randomObject2.value = Random.Range(3, 11);
-                    randomObject2.value_T.text = "+" + randomObject2.value;
+                    randomObject2.sigh_T.text = "+";
                     break;
                 case ArithmeticType.sub:
                     randomObject2.value = Random.Range(3, 11);
-                    randomObject2.value_T.text = "-" + randomObject2.value;
+                    randomObject2.sigh_T.text = "-";
                     break;
                 case ArithmeticType.mult:
                     randomObject2.value = Random.Range(2, 4);
-                    randomObject2.value_T.text = "X" + randomObject2.value;
+                    randomObject2.sigh_T.text = "X";
                     break;
                 case ArithmeticType.div:
                     randomObject2.value = Random.Range(2, 4);
-                    randomObject2.value_T.text = "¡À" + randomObject2.value;
+                    randomObject2.sigh_T.text = "¡À";
                     break;
             }
+            randomObject2.value_T.text = /*randomObject2.sigh_T.text +*/ randomObject2.value.ToString();
             yield return new WaitForSeconds(arithmeticSpawnDelay);
         }
     }

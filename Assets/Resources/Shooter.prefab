@@ -54,7 +54,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   player: {fileID: 0}
-  bulletPrefab: {fileID: 2407855297332404219, guid: f479b17497c0f32428f09312c125b651, type: 3}
+  bulletPrefab: {fileID: 1238843893459588, guid: f28a900373870dd46b5aa1352c03c233, type: 3}
+  playerEffect: {fileID: 1879272669879180, guid: ee4c3620db196c643bc7b29721204dcc, type: 3}
   shootInterval: 2
 --- !u!54 &6144596807897329129
 Rigidbody:

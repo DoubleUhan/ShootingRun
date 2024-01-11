@@ -5818,9 +5818,6 @@ Transform:
   - {fileID: 5548532933432026638}
   m_Father: {fileID: 4136712603423978457}
   m_RootOrder: 0
-<<<<<<< Updated upstream
-  m_LocalEulerAnglesHint: {x: 22.438002, y: -0.3651473, z: -0.8482932}
-=======
   m_LocalEulerAnglesHint: {x: 42.44686, y: -0.9910246, z: 1.2551641}
 --- !u!199 &4752543194050782003
 ParticleSystemRenderer:
@@ -5909,7 +5906,6 @@ Transform:
   m_Father: {fileID: 5150427446580224796}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
->>>>>>> Stashed changes
 --- !u!4 &4844891331616108200
 Transform:
   m_ObjectHideFlags: 0
@@ -11040,11 +11036,7 @@ Transform:
   - {fileID: 8672525261169370928}
   m_Father: {fileID: 3317938416096094298}
   m_RootOrder: 2
-<<<<<<< Updated upstream
-  m_LocalEulerAnglesHint: {x: 73.94342, y: -86.221405, z: -175.21413}
-=======
   m_LocalEulerAnglesHint: {x: 72.858925, y: -137.10861, z: 162.89418}
---- !u!198 &5279195303265686797
 ParticleSystem:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -15821,7 +15813,6 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
->>>>>>> Stashed changes
 --- !u!4 &5337408013597185679
 Transform:
   m_ObjectHideFlags: 0
@@ -16319,9 +16310,6 @@ Transform:
   - {fileID: 7430269518633367279}
   m_Father: {fileID: 6973171706816429898}
   m_RootOrder: 1
-<<<<<<< Updated upstream
-  m_LocalEulerAnglesHint: {x: -12.48102, y: 9.193377, z: -176.29207}
-=======
   m_LocalEulerAnglesHint: {x: 19.23662, y: 35.02476, z: -159.6397}
 --- !u!108 &6583498927904951975
 Light:
@@ -16385,7 +16373,6 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
->>>>>>> Stashed changes
 --- !u!4 &6783921035536624843
 Transform:
   m_ObjectHideFlags: 0
@@ -21625,9 +21612,6 @@ Transform:
   - {fileID: 4977195622292494824}
   m_Father: {fileID: 1797185472560316478}
   m_RootOrder: 0
-<<<<<<< Updated upstream
-  m_LocalEulerAnglesHint: {x: 9.786054, y: 0.022013783, z: 0.2572345}
-=======
   m_LocalEulerAnglesHint: {x: 62.099743, y: 5.5587096, z: 5.308544}
 --- !u!1 &7926555530192814431
 GameObject:
@@ -21647,7 +21631,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
->>>>>>> Stashed changes
 --- !u!1 &8051902707403432809
 GameObject:
   m_ObjectHideFlags: 0

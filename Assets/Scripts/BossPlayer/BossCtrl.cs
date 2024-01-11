@@ -128,7 +128,7 @@ public class BossCtrl : Stats
                     StartCoroutine(Bomb());
                     break;
             }
-            yield return new WaitForSeconds(4f);
+            yield return new WaitForSeconds(3f);
         }
     }
 
@@ -138,14 +138,12 @@ public class BossCtrl : Stats
         warning.SetActive(true);
 
         yield return new WaitForSeconds(1f);
-        warning.SetActive(false);
         isSkillActive = true;
+        
         animator.Play("ATK_pattern_1");
+        yield return new WaitForSeconds(0.3f); // 공격 시작 0.1초 뒤에 경고 삭제
+        warning.SetActive(false);
 
-        if (warning.GetComponent<BossSkillRange>().isPlayerIn)
-        {
-            GameFail();
-        }
         SoundManager.Instance.Boss_Smile(); // 보스 웃음 소리
 
         yield return null;
@@ -156,16 +154,12 @@ public class BossCtrl : Stats
         warning.transform.position = target.transform.position;
         warning.SetActive(true);
 
-        yield return new WaitForSeconds(1f);
-        warning.SetActive(false);
+        yield return new WaitForSeconds(1f); // 경고가 뜨고 1초 뒤에 공격 시작
         isSkillActive = true;
 
         animator.Play("ATK_pattern_2");
-        
-        if (warning.GetComponent<BossSkillRange>().isPlayerIn)
-        {
-            GameFail();
-        }
+        yield return new WaitForSeconds(0.3f); // 공격 시작 0.1초 뒤에 경고 삭제
+        warning.SetActive(false);
 
         yield return null;
     }
@@ -182,13 +176,26 @@ public class BossCtrl : Stats
 
     void BombSpawn()
     {
+        //int randNum = UnityEngine.Random.Range(0, 9);
+        //GameObject spawnbomb = Instantiate(bomb, bombSpawnPoint[randNum].transform.position, Quaternion.identity);
+
         int randNum = UnityEngine.Random.Range(0, 9);
-        GameObject spawnbomb = Instantiate(bomb, bombSpawnPoint[randNum].transform.position, Quaternion.identity);
+        GameObject spawnbomb = Instantiate(bomb, bombSpawnPoint[randNum].transform.position, Quaternion.Euler(-90f, 0f, 0f));
+
     }
+
 
     void SkillEnded()
     {
         isSkillActive = false;
+    }
+
+    void PlayHurt() // 애니메이션 이벤트에 넣어서 플레이어 공격 맞나 체크하는 함수
+    {
+        if (warning.GetComponent<BossSkillRange>().isPlayerIn)
+        {
+            GameFail();
+        }
     }
     public void OnDamaged(float Damage)
     {

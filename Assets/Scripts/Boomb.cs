@@ -7,7 +7,7 @@ public class Boomb : MonoBehaviour
 {
     public float explosionRadius;
     public float explosionForce = 1000f;
-    public float fuseTime = 3f; // 폭탄이 터지기까지의 대기 시간
+    public float fuseTime; // 폭탄이 터지기까지의 대기 시간
 
     // public GameObject effect;
 
@@ -60,26 +60,10 @@ public class Boomb : MonoBehaviour
                 piece.GetComponent<MeshRenderer>().enabled = true;
                 rb.isKinematic = false;
                 rb.AddExplosionForce(explosionForce, transform.position, explosionRadius);
-
-                // effect.SetActive(true);
             }
         }
 
-        Collider[] colliders = Physics.OverlapSphere(transform.position, explosionRadius);
-        foreach (Collider nearbyObject in colliders)
-        {
-            if (nearbyObject.gameObject.CompareTag("Player"))
-            {
-                if (IsWithinExplosionRange(nearbyObject.transform.position))
-                {
-                    boss.GetComponent<BossCtrl>().GameFail();
-                }
-            }
-            // 폭발 범위 내에 있는 오브젝트에만 폭발 효과 적용
-        }
-
-
-
+        StartCoroutine(Explotion());
         StartCoroutine(DeleteObject());
     }
 
@@ -99,5 +83,22 @@ public class Boomb : MonoBehaviour
     {
         yield return new WaitForSeconds(2f);
         Destroy(gameObject);
+    }
+
+    IEnumerator Explotion()
+    {
+        yield return new WaitForSeconds(0.05f);
+
+        Collider[] colliders = Physics.OverlapSphere(transform.position, explosionRadius);
+        foreach (Collider nearbyObject in colliders)
+        {
+            if (nearbyObject.gameObject.CompareTag("Player"))
+            {
+                if (IsWithinExplosionRange(nearbyObject.transform.position))
+                {
+                    boss.GetComponent<BossCtrl>().GameFail();
+                }
+            }
+        }
     }
 }

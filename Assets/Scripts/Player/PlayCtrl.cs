@@ -22,11 +22,11 @@ public class PlayCtrl : Stats
     public float fill_Speed;
     public GameObject main_Camera; // 사칙연산, 장애물 안보이는 카메라
     public GameObject arithmetic_Camera; // 사칙연산, 장애물 보이는 카메라
+    public GameObject arithmetic_BG; // 고글 착용했을 때 보이게 하는 배경
     public float shiftCooldownDuration = 1.5f;
     private bool shiftCooldown = false;
     private float shiftCooldownTimer = 0f;
     private Vector3 dir;
-
 
     private void Start()
     {
@@ -68,6 +68,7 @@ public class PlayCtrl : Stats
         // 쿨다운 중이 아니라면 왼쪽 시프트 키 입력 확인
         if (!shiftCooldown && Input.GetKey(KeyCode.LeftShift))
         {
+            arithmetic_BG.SetActive(true);
             arithmetic_Camera.SetActive(true);
             main_Camera.SetActive(false);
 
@@ -82,6 +83,7 @@ public class PlayCtrl : Stats
         else
         {
             // 쿨다운 중이 아니면 goggle_Stamina의 fillAmount 값을 증가시킴
+            arithmetic_BG.SetActive(false);
             arithmetic_Camera.SetActive(false);
             main_Camera.SetActive(true);
             goggle_Stamina.fillAmount += fill_Speed * Time.deltaTime;
@@ -164,12 +166,8 @@ public class PlayCtrl : Stats
         if (shooterList.Count <= 1)
             return;
 
-        for (int i = 0; i < Mathf.Round(shooterList.Count / num); i++)
-        {
-            GameObject delShooter = shooterList[i].gameObject;
-            shooterList.Remove(shooterList[i]);
-            Destroy(delShooter.gameObject);
-        }
+        Sub((int)Mathf.Round(shooterList.Count / num));
+
         Debug.Log("나누기" + shooterList.Count);
     }
 
