@@ -7,7 +7,7 @@ using UnityEngine.AI;
 public class PlayCtrl : Stats
 {
     public Transform spawnTr;
-    public GameObject shooterPrefab;
+    public GameObject[] shooterPrefab;
     public List<Shooter> shooterList = new List<Shooter>();
     [SerializeField] float speed;
 
@@ -27,11 +27,14 @@ public class PlayCtrl : Stats
     private bool shiftCooldown = false;
     private float shiftCooldownTimer = 0f;
     private Vector3 dir;
+    int randomNum;
 
     private void Start()
     {
+        randomNum = Random.Range(0, 3);
+        PlayerPrefs.SetInt("PlayerCount", 1);
         dir = spawnTr.position;
-        Shooter shooter = Instantiate(shooterPrefab, spawnTr.position, Quaternion.Euler(0f, -90f, 0f)).GetComponent<Shooter>();
+        Shooter shooter = Instantiate(shooterPrefab[randomNum], spawnTr.position, Quaternion.Euler(0f, -90f, 0f)).GetComponent<Shooter>();
         shooter.transform.SetParent(transform);
         shooter.player = this;
     }
@@ -108,24 +111,19 @@ public class PlayCtrl : Stats
     }
 
     #endregion
-
-    [ContextMenu("테스트")]
-    public void Test()
-    {
-        Add(1);
-    }
     #region 사칙연산 
     public void Add(int num)
     {
         for (int i = 0; i < num; i++)
         {
+            randomNum = Random.Range(0, 3);
             Vector3 randomPos = new Vector3(Random.Range(-0.1f, 0.1f), 0, Random.Range(-0.1f, 0.1f));
-            Shooter clone = Instantiate(shooterPrefab, spawnTr.position + randomPos, Quaternion.Euler(0f, -90f, 0f)).GetComponent<Shooter>();
+            Shooter clone = Instantiate(shooterPrefab[randomNum], spawnTr.position + randomPos, Quaternion.Euler(0f, -90f, 0f)).GetComponent<Shooter>();
             clone.player = this;
             clone.transform.SetParent(clone.player.transform);
             shooterList.Add(clone);
         }
-        Debug.Log("더하기" + shooterList.Count);
+        PlayerPrefs.SetInt("PlayerCount", shooterList.Count);
     }
     public void Sub(int num)
     {
@@ -141,8 +139,9 @@ public class PlayCtrl : Stats
                 shooterList.RemoveAt(shooterList.Count - 1);
                 Destroy(shooterToRemove.gameObject);
             }
+
         }
-        Debug.Log("빼기" + shooterList.Count);
+        PlayerPrefs.SetInt("PlayerCount", shooterList.Count);
     }
 
     public void Mult(int num)
@@ -153,13 +152,14 @@ public class PlayCtrl : Stats
         Debug.Log(currentShooterCount);
         for (int i = 0; i < totalShooterCount - currentShooterCount; i++)
         {
+            randomNum = Random.Range(0, 3);
             Vector3 randomPos = new Vector3(Random.Range(-0.1f, 0.1f), 0, Random.Range(-0.1f, 0.1f));
-            Shooter clone = Instantiate(shooterPrefab, spawnTr.position + randomPos, Quaternion.Euler(0f, -90f, 0f)).GetComponent<Shooter>();
+            Shooter clone = Instantiate(shooterPrefab[randomNum], spawnTr.position + randomPos, Quaternion.Euler(0f, -90f, 0f)).GetComponent<Shooter>();
             clone.player = this;
             clone.transform.SetParent(clone.player.transform);
             shooterList.Add(clone);
         }
-        Debug.Log("곱하기" + shooterList.Count);
+        PlayerPrefs.SetInt("PlayerCount", shooterList.Count);
     }
     public void Div(int num)
     {
@@ -168,7 +168,7 @@ public class PlayCtrl : Stats
 
         Sub((int)Mathf.Round(shooterList.Count / num));
 
-        Debug.Log("나누기" + shooterList.Count);
+        PlayerPrefs.SetInt("PlayerCount", shooterList.Count);
     }
 
     #endregion

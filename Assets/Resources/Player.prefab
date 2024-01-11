@@ -104,7 +104,10 @@ MonoBehaviour:
   HP: 0
   ATK: 10
   spawnTr: {fileID: 0}
-  shooterPrefab: {fileID: 0}
+  shooterPrefab:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   shooterList: []
   speed: 10
   maxShotDelay: 1.5
@@ -114,6 +117,7 @@ MonoBehaviour:
   fill_Speed: 0
   main_Camera: {fileID: 3431361002536650248}
   arithmetic_Camera: {fileID: 0}
+  arithmetic_BG: {fileID: 0}
   shiftCooldownDuration: 1.5
 --- !u!54 &4797603202684863080
 Rigidbody:
