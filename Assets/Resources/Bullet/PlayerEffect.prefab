@@ -33376,7 +33376,7 @@ GameObject:
   - component: {fileID: 198472063183687506}
   - component: {fileID: 114355610240550960}
   m_Layer: 0
-  m_Name: Bullet_VenomGreen_Small_Impact
+  m_Name: PlayerEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
