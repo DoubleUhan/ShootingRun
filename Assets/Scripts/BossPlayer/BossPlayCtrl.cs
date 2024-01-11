@@ -103,7 +103,7 @@ public class BossPlayCtrl : Stats
         // 각도를 이용하여 원 위의 위치 계산
         float x = Mathf.Cos(angle) * radius;
         float z = Mathf.Sin(angle) * radius;
-        if (x < 1f || x > 30f || z < -30f || z > 30f)
+        if (x < 11f || x > 30f || z < -30f || z > 30f)
         {
             angle = tempAngle;
             // 움직이지 않도록 처리

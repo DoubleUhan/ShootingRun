@@ -104,7 +104,7 @@ public class SpawnManager : MonoBehaviour
             Debug.Log("니들 생성");
             float randomValue = (Random.Range(0, 2) * 5) - 2.5f;
             needleSpawnDelay = Random.Range(needleSpawnMin, needleSpawnMax + 1);
-            GameObject needle = Instantiate(needle_Object, new Vector3(-90, 1, randomValue), Quaternion.identity);
+            GameObject needle = Instantiate(needle_Object, new Vector3(-90, 2.3f, randomValue), Quaternion.identity);
             yield return new WaitForSeconds(needleSpawnDelay);
 
         }

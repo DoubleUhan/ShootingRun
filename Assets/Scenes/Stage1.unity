@@ -1468,7 +1468,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyCount: 0
-  goalEnemyCount: 100
+  goalEnemyCount: 10
   cameras:
   - {fileID: 6053650055669364426}
   - {fileID: 6053650055669364428}
@@ -2005,8 +2005,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemy_Object:
-  - {fileID: 2046675314354558351, guid: fbe6fc42d28e4e84b85bebf2f1e0a913, type: 3}
-  - {fileID: 4896559839360409955, guid: ab2a105e8d73e3b43a0627659bdcfe5b, type: 3}
+  - {fileID: 1941697024322730688, guid: db4cc50d954a21c4cb8501bbadb7bc9c, type: 3}
+  - {fileID: 7053859821706944000, guid: de21eb1e7b7ecb74ba7e5a3fd0cc860e, type: 3}
   arithmetic_Object: {fileID: 7700896367637054886, guid: bbad9bb8a9ee73548acbd6d04f8a0104, type: 3}
   needle_Object: {fileID: 2340316391242920772, guid: 35229962d01ddc945a241b197583bc89, type: 3}
   enemySpawnMin: 1
