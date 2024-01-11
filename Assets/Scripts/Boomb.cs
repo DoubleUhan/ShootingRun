@@ -5,15 +5,19 @@ using UnityEngine;
 
 public class Boomb : MonoBehaviour
 {
-    public float explosionRadius = 5f;
+    public float explosionRadius;
     public float explosionForce = 1000f;
     public float fuseTime = 3f; // 폭탄이 터지기까지의 대기 시간
+
+    // public GameObject effect;
+
     Transform[] pieces;
     MeshRenderer meshRenderer;
-    GameObject[] players;
+    GameObject boss;
 
     void Awake()
     {
+
         pieces = GetComponentsInChildren<Transform>();
         foreach (Transform t in pieces)
         {
@@ -21,15 +25,15 @@ public class Boomb : MonoBehaviour
             {
                 t.gameObject.SetActive(false);
             }
-                
+
         }
     }
 
     void Start()
     {
-        
-        
-        players = GameObject.FindGameObjectsWithTag("Player");
+        Debug.Log(explosionRadius);
+
+        boss = GameObject.FindGameObjectWithTag("Boss");
         meshRenderer = GetComponent<MeshRenderer>();
         StartCoroutine(StartFuse());
 
@@ -56,21 +60,33 @@ public class Boomb : MonoBehaviour
                 piece.GetComponent<MeshRenderer>().enabled = true;
                 rb.isKinematic = false;
                 rb.AddExplosionForce(explosionForce, transform.position, explosionRadius);
+
+                // effect.SetActive(true);
             }
         }
 
-        foreach (var p in players)
+        Collider[] colliders = Physics.OverlapSphere(transform.position, explosionRadius);
+        foreach (Collider nearbyObject in colliders)
         {
-            if(Vector3.Distance(p.transform.position, transform.position) < explosionRadius)
+            if (nearbyObject.gameObject.CompareTag("Player"))
             {
-                if (p != null)
+                if (IsWithinExplosionRange(nearbyObject.transform.position))
                 {
-                    Destroy(p.gameObject);
+                    boss.GetComponent<BossCtrl>().GameFail();
                 }
             }
+            // 폭발 범위 내에 있는 오브젝트에만 폭발 효과 적용
         }
 
+
+
         StartCoroutine(DeleteObject());
+    }
+
+    bool IsWithinExplosionRange(Vector3 position)
+    {
+        float distance = Vector3.Distance(transform.position, position);
+        return distance <= explosionRadius;
     }
 
     private void OnDrawGizmos()

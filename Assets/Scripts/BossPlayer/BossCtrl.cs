@@ -11,30 +11,30 @@ using UnityEngine.UI;
 
 public class BossCtrl : Stats
 {
-    [Header("º¸½º °ø°İ µô·¹ÀÌ")]
+    [Header("ë³´ìŠ¤ ê³µê²© ë”œë ˆì´")]
     public float delay;
 
-    public GameObject target; // ¹Ù¶óº¼ Å¸°ÙÀÌ¶û °ãÄ¡´À¤Ìµí
-    public GameObject formatTarget; // ´Ù½Ã °¡¿îµ¥ º¸°ÔÇÏ´Â Å¸°Ù
+    public GameObject target; // ë°”ë¼ë³¼ íƒ€ê²Ÿì´ë‘ ê²¹ì¹˜ëŠã…œë“¯
+    public GameObject formatTarget; // ë‹¤ì‹œ ê°€ìš´ë° ë³´ê²Œí•˜ëŠ” íƒ€ê²Ÿ
 
-    public GameObject warning; // »¡°£ ¿¹°í ¹üÀ§
+    public GameObject warning; // ë¹¨ê°„ ì˜ˆê³  ë²”ìœ„
 
-    public GameObject failPopup; // °ÔÀÓ ½ÇÆĞ ½Ã ¶ß´Â ÆË¾÷
-    public GameObject clearPopup; // °ÔÀÓ Å¬¸®¾î ½Ã ¶ß´Â ÆË¾÷
+    public GameObject failPopup; // ê²Œì„ ì‹¤íŒ¨ ì‹œ ëœ¨ëŠ” íŒì—…
+    public GameObject clearPopup; // ê²Œì„ í´ë¦¬ì–´ ì‹œ ëœ¨ëŠ” íŒì—…
 
-    public GameObject bomb; // ¶³±¼ ÆøÅº
+    public GameObject bomb; // ë–¨êµ´ í­íƒ„
 
     public Slider bossHP_bar;
 
     [SerializeField] float maxBossHP;
-    [SerializeField] float curBossHP; // º¸½º Ã¼·Â ¼³Á¤
+    [SerializeField] float curBossHP; // ë³´ìŠ¤ ì²´ë ¥ ì„¤ì •
 
     public GameObject trackingTarget;
 
     Animator animator;
     public static bool isSkillActive;
     public static bool warningOn = false;
-    bool isDead; // º¸½º Á×¾ú´ÂÁö ¾ÈÁ×¾ú´ÂÁö Ã¼Å©ÇÏ´Â º¯¼ö
+    bool isDead; // ë³´ìŠ¤ ì£½ì—ˆëŠ”ì§€ ì•ˆì£½ì—ˆëŠ”ì§€ ì²´í¬í•˜ëŠ” ë³€ìˆ˜
 
     [Range(0, 10)]
     public float attackArrange;
@@ -93,7 +93,7 @@ public class BossCtrl : Stats
         //    Vector3 dir = target.transform.position - transform.position;
         //    transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(dir), Time.deltaTime * 10);
 
-        //    // ¹ºÁö ÀÌÁ¦ ¸ğ¸§
+        //    // ë­”ì§€ ì´ì œ ëª¨ë¦„
         //    //transform.LookAt(target.transform);
         //    // var a = transform.rotation;
         //    //a = new Quaternion(0, transform.rotation.y, 0,0);
@@ -116,15 +116,15 @@ public class BossCtrl : Stats
             int num = UnityEngine.Random.Range(0, 3);
             switch (num)
             {
-                case 0: // ³»·Á Âï±â
+                case 0: // ë‚´ë ¤ ì°ê¸°
                     StartCoroutine(PullDown());
                     break;
 
-                case 1: // ÈÛ¾µ±â
+                case 1: // íœ©ì“¸ê¸°
                     StartCoroutine(SideAttack());
                     break;
 
-                case 2: // ÆøÅº ´øÁö±â
+                case 2: // í­íƒ„ ë˜ì§€ê¸°
                     StartCoroutine(Bomb());
                     break;
             }
@@ -146,7 +146,7 @@ public class BossCtrl : Stats
         {
             GameFail();
         }
-        SoundManager.Instance.Boss_Smile(); // º¸½º ¿ôÀ½ ¼Ò¸®
+        SoundManager.Instance.Boss_Smile(); // ë³´ìŠ¤ ì›ƒìŒ ì†Œë¦¬
 
         yield return null;
     }
@@ -157,24 +157,33 @@ public class BossCtrl : Stats
         warning.SetActive(true);
 
         yield return new WaitForSeconds(1f);
+        warning.SetActive(false);
         isSkillActive = true;
 
+        animator.Play("ATK_pattern_2");
+        
         if (warning.GetComponent<BossSkillRange>().isPlayerIn)
         {
             GameFail();
         }
-        warning.SetActive(false);
-
-        animator.Play("ATK_pattern_2");        
 
         yield return null;
     }
-    IEnumerator Bomb() // ¾Ö´Ï¸Ş, »ç¿îµå ¾øÀ½¤¤
+    IEnumerator Bomb() // ì• ë‹ˆë©”, ì‚¬ìš´ë“œ ì—†ìŒã„´
+    {
+        int bombs = UnityEngine.Random.Range(3, 6);
+
+        for (int bomb = 0; bomb < bombs; bomb++)
+        {
+            BombSpawn();
+        }
+        yield return null;
+    }
+
+    void BombSpawn()
     {
         int randNum = UnityEngine.Random.Range(0, 9);
-        Debug.Log("randNum: " + randNum);
         GameObject spawnbomb = Instantiate(bomb, bombSpawnPoint[randNum].transform.position, Quaternion.identity);
-        yield return null;
     }
 
     void SkillEnded()
@@ -191,7 +200,7 @@ public class BossCtrl : Stats
         if (curBossHP <= 0)
         {
             isDead = true;
-            // º¸½º Á×´Â ¾Ö´Ï¸ŞÀÌ¼Ç
+            // ë³´ìŠ¤ ì£½ëŠ” ì• ë‹ˆë©”ì´ì…˜
             animator.Play("Death");
             GameClear();
         }
@@ -199,7 +208,7 @@ public class BossCtrl : Stats
         bossHP_bar.value = curBossHP / maxBossHP;
     }
 
-    void GameFail()
+    public void GameFail()
     {
         Camera.main.transform.SetParent(null);
         target.GetComponent<Renderer>().enabled = false;
@@ -209,7 +218,7 @@ public class BossCtrl : Stats
 
     void GameClear()
     {
-        // °ÔÀÓ Å¬¸®¾î ÇÑ °ÅÀÓ -> Å¬¸®¾î ¸Ş¼¼Áö ¶Ç´Â È­¸é Ãâ·Â
+        // ê²Œì„ í´ë¦¬ì–´ í•œ ê±°ì„ -> í´ë¦¬ì–´ ë©”ì„¸ì§€ ë˜ëŠ” í™”ë©´ ì¶œë ¥
         clearPopup.SetActive(true);
         Time.timeScale = 0;
     }
