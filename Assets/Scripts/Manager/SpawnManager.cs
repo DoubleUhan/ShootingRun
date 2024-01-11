@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SpawnManager : MonoBehaviour
 {
     [SerializeField] GameObject[] enemy_Object;
-    [SerializeField] GameObject[] arithmetic_Object;
+    [SerializeField] GameObject arithmetic_Object;
     [SerializeField] GameObject needle_Object;
 
     [Header("Enemy 생성 주기를 위한 변수")]
@@ -45,11 +46,51 @@ public class SpawnManager : MonoBehaviour
     {
         while (true)
         {
-            int spawn1 = Random.Range(0, 8);
-            int spawn2 = Random.Range(0, 8);
+            int spawn = Random.Range(0, 4); // +,-,*,/가 랜덤으로 생성
+
             arithmeticSpawnDelay = Random.Range(arithmeticSpawnMin, arithmeticSpawnMax + 1);
-            GameObject randomObject1 = Instantiate(arithmetic_Object[spawn1], new Vector3(-60f, 1, -0.7f), Quaternion.identity);
-            GameObject randomObject2 = Instantiate(arithmetic_Object[spawn2], new Vector3(-60f, 1, 0.7f), Quaternion.identity);
+            var randomObject = Instantiate(arithmetic_Object, new Vector3(-60f, 1, 4f), Quaternion.identity).GetComponent<Arithmetic>();
+            randomObject.type = (ArithmeticType)spawn;
+
+            switch (randomObject.type)
+            {
+                case ArithmeticType.add:
+                    randomObject.value = Random.Range(3, 11);
+                    randomObject.value_T.text = "+" + randomObject.value;
+                    break;
+                case ArithmeticType.sub:
+                    randomObject.value = Random.Range(3, 11);
+                    randomObject.value_T.text = "-" + randomObject.value;
+                    break;
+                case ArithmeticType.mult:
+                    randomObject.value = Random.Range(2, 4);
+                    randomObject.value_T.text = "X" + randomObject.value;
+                    break;
+                case ArithmeticType.div:
+                    randomObject.value = Random.Range(2, 4);
+                    randomObject.value_T.text = "÷" + randomObject.value;
+                    break;
+            }
+            var randomObject2 = Instantiate(arithmetic_Object, new Vector3(-60f, 1, -4f), Quaternion.identity).GetComponent<Arithmetic>();
+            switch (randomObject2.type)
+            {
+                case ArithmeticType.add:
+                    randomObject2.value = Random.Range(3, 11);
+                    randomObject2.value_T.text = "+" + randomObject2.value;
+                    break;
+                case ArithmeticType.sub:
+                    randomObject2.value = Random.Range(3, 11);
+                    randomObject2.value_T.text = "-" + randomObject2.value;
+                    break;
+                case ArithmeticType.mult:
+                    randomObject2.value = Random.Range(2, 4);
+                    randomObject2.value_T.text = "X" + randomObject2.value;
+                    break;
+                case ArithmeticType.div:
+                    randomObject2.value = Random.Range(2, 4);
+                    randomObject2.value_T.text = "÷" + randomObject2.value;
+                    break;
+            }
             yield return new WaitForSeconds(arithmeticSpawnDelay);
         }
     }

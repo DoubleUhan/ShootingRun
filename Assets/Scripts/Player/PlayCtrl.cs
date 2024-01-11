@@ -50,7 +50,6 @@ public class PlayCtrl : Stats
 
         if (!GameManager.Instance.isClear)
         {
-            Debug.Log(dir);
             dir.z = Mathf.Clamp(dir.z + Input.GetAxisRaw("Horizontal") * Time.deltaTime * speed, -4.5f, 4.5f);
             transform.position = dir;
         }
@@ -144,10 +143,10 @@ public class PlayCtrl : Stats
         Debug.Log("빼기" + shooterList.Count);
     }
 
-    public void Mult()
+    public void Mult(int num)
     {
         int currentShooterCount = shooterList.Count;
-        int totalShooterCount = currentShooterCount * 2; // 현재의 복제된 수의 2배
+        int totalShooterCount = currentShooterCount * num; // 현재의 복제된 수의 2배
 
         Debug.Log(currentShooterCount);
         for (int i = 0; i < totalShooterCount - currentShooterCount; i++)
@@ -160,12 +159,12 @@ public class PlayCtrl : Stats
         }
         Debug.Log("곱하기" + shooterList.Count);
     }
-    public void Div()
+    public void Div(int num)
     {
         if (shooterList.Count <= 1)
             return;
 
-        for (int i = 0; i < Mathf.Round(shooterList.Count / 2); i++)
+        for (int i = 0; i < Mathf.Round(shooterList.Count / num); i++)
         {
             GameObject delShooter = shooterList[i].gameObject;
             shooterList.Remove(shooterList[i]);

@@ -19,6 +19,7 @@ TagManager:
   - Stage1
   - Stage2
   - head
+  - ArithmeticTag
   layers:
   - Default
   - TransparentFX
