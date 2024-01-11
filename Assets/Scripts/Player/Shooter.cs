@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
@@ -72,6 +73,12 @@ public class Shooter : MonoBehaviour
                     player.Div(artic.value);
                     break;
             }
+            Destroy(other.gameObject);
+        }
+
+        if (other.CompareTag("Enemy"))
+        {
+            player.Sub(1);
             Destroy(other.gameObject);
         }
     }
