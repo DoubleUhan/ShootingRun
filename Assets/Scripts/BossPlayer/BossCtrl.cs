@@ -31,6 +31,8 @@ public class BossCtrl : Stats
 
     public GameObject trackingTarget;
 
+    public BossPlayCtrl playhit;
+
     Animator animator;
     public static bool isSkillActive;
     public static bool warningOn = false;
@@ -194,7 +196,7 @@ public class BossCtrl : Stats
     {
         if (warning.GetComponent<BossSkillRange>().isPlayerIn)
         {
-            GameFail();
+            playhit.Hurt();
         }
     }
     public void OnDamaged(float Damage)

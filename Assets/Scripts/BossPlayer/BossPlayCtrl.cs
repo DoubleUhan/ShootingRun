@@ -33,6 +33,8 @@ public class BossPlayCtrl : Stats
 
     public GameObject[] target; // 바라볼 타겟
 
+    public BossCtrl gameend;
+
     public float player_HP; // 플레이어 현재 체력
     public float playerMax_HP; // 플레이어 최대 체력
 
@@ -51,6 +53,8 @@ public class BossPlayCtrl : Stats
         colliders = GetComponent<Collider>();
         agent = GetComponent<NavMeshAgent>();
         rb = GetComponent<Rigidbody>();
+
+        playerMax_HP = player_HP;
     }
 
     // Update is called once per frame
@@ -162,11 +166,13 @@ public class BossPlayCtrl : Stats
 
     public void Hurt()
     {
-        playerHP -= 2; // 일단 모든 패턴 데미지 동일하게..
+        player_HP -= 0.5f; // 일단 모든 패턴 데미지 동일하게..
+        Debug.Log(player_HP);
 
-        if (playerHP <= 0)
+        if (player_HP <= 0)
         {
             // 보스컨트롤 함수 GameFail();
+            gameend.GameFail();
         }
 
         playerHP_bar.value = player_HP / playerMax_HP;
