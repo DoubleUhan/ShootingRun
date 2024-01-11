@@ -12,9 +12,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Stage1.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 1
-    path: Assets/Scenes/Test_SoundManager.unity
-    guid: 37554516d0a64284da38650e0d2b9426
-  - enabled: 1
     path: Assets/Scenes/BossScene.unity
     guid: 814fb14b5992ea647b1e732bf395da4f
   - enabled: 1
