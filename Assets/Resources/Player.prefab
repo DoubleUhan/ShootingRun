@@ -19,7 +19,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2772417272811492231
 Transform:
   m_ObjectHideFlags: 0
@@ -103,10 +103,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HP: 0
   ATK: 10
+  spawnTr: {fileID: 0}
   shooterPrefab: {fileID: 0}
   shooterList: []
   speed: 10
-  bullet1: {fileID: 2407855297332404219, guid: f479b17497c0f32428f09312c125b651, type: 3}
   maxShotDelay: 1.5
   curShorDelay: 0
   goggle_Stamina: {fileID: 0}
@@ -115,7 +115,6 @@ MonoBehaviour:
   main_Camera: {fileID: 3431361002536650248}
   arithmetic_Camera: {fileID: 0}
   shiftCooldownDuration: 1.5
-  prefabToSpawn: {fileID: 2772417272811492227}
 --- !u!54 &4797603202684863080
 Rigidbody:
   m_ObjectHideFlags: 0

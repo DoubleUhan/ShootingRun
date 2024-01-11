@@ -17,10 +17,5 @@ public class Arithmetic : MonoBehaviour
     public ArithmeticType type;
     public int value;
     public TMP_Text value_T;
-
-    void Start()
-    {
-        // value = Ra
-    }
-
+    public TMP_Text sigh_T;
 }
