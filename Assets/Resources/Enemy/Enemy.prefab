@@ -150,6 +150,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c24aca2243312124ca3ae56c58f10e73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HP: 30
+  HP: 100
   ATK: 0
   player: {fileID: 3982165000576164678, guid: 401fa80d167e75f4f86e748205d85ab2, type: 3}
