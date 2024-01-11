@@ -9,9 +9,8 @@ using System;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
-
     public int enemyCount;
-    public const int goalEnemyCount = 100;
+    public const int goalEnemyCount = 3;
     public GameObject[] cameras; // 카메라 
 
 
@@ -41,6 +40,7 @@ public class GameManager : MonoBehaviour
             cameras[0].transform.SetParent(null);
             cameras[1].transform.SetParent(null);
             fadeBG.SetActive(true);
+
             StartCoroutine(SceneMoveWait(2f));
             Debug.Log("스테이지 클리어");
         }
@@ -49,6 +49,6 @@ public class GameManager : MonoBehaviour
     IEnumerator SceneMoveWait(float time)
     {
         yield return new WaitForSeconds(time);
-        SceneManager.LoadScene("StageMap");
+        SceneManager.LoadScene("MOB_BossScene");
     }
 }
