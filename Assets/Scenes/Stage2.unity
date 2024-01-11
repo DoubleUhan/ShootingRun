@@ -17,7 +17,7 @@ RenderSettings:
   m_Fog: 1
   m_FogColor: {r: 0.35950443, g: 0.3083393, b: 0.38679248, a: 1}
   m_FogMode: 3
-  m_FogDensity: 0.05
+  m_FogDensity: 0.01
   m_LinearFogStart: 50
   m_LinearFogEnd: 300
   m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
@@ -1090,6 +1090,14 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 808436332841213094, guid: 401fa80d167e75f4f86e748205d85ab2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1525440047531041172, guid: 401fa80d167e75f4f86e748205d85ab2, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3982165000576164678, guid: 401fa80d167e75f4f86e748205d85ab2, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -1146,6 +1154,18 @@ PrefabInstance:
       propertyPath: goggle_Stamina
       value: 
       objectReference: {fileID: 1528105435}
+    - target: {fileID: 6980876924864240401, guid: 401fa80d167e75f4f86e748205d85ab2, type: 3}
+      propertyPath: shooterPrefab.Array.data[0]
+      value: 
+      objectReference: {fileID: 1939551693906426739, guid: 0218adc63bafdd84bad64a16b9f02bb3, type: 3}
+    - target: {fileID: 6980876924864240401, guid: 401fa80d167e75f4f86e748205d85ab2, type: 3}
+      propertyPath: shooterPrefab.Array.data[1]
+      value: 
+      objectReference: {fileID: 8779213907210613286, guid: e29c9e17bbbf2774e92267f507391f09, type: 3}
+    - target: {fileID: 6980876924864240401, guid: 401fa80d167e75f4f86e748205d85ab2, type: 3}
+      propertyPath: shooterPrefab.Array.data[2]
+      value: 
+      objectReference: {fileID: 6218828943016181569, guid: f4d882921e84ac54e95ab6a6b3c3a80a, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 401fa80d167e75f4f86e748205d85ab2, type: 3}
 --- !u!1 &1118363902

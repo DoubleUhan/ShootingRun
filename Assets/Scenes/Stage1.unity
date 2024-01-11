@@ -2737,6 +2737,18 @@ PrefabInstance:
       propertyPath: goggle_Stamina
       value: 
       objectReference: {fileID: 406878229}
+    - target: {fileID: 6980876924864240401, guid: 401fa80d167e75f4f86e748205d85ab2, type: 3}
+      propertyPath: shooterPrefab.Array.data[0]
+      value: 
+      objectReference: {fileID: 1939551693906426739, guid: 0218adc63bafdd84bad64a16b9f02bb3, type: 3}
+    - target: {fileID: 6980876924864240401, guid: 401fa80d167e75f4f86e748205d85ab2, type: 3}
+      propertyPath: shooterPrefab.Array.data[1]
+      value: 
+      objectReference: {fileID: 8779213907210613286, guid: e29c9e17bbbf2774e92267f507391f09, type: 3}
+    - target: {fileID: 6980876924864240401, guid: 401fa80d167e75f4f86e748205d85ab2, type: 3}
+      propertyPath: shooterPrefab.Array.data[2]
+      value: 
+      objectReference: {fileID: 6218828943016181569, guid: f4d882921e84ac54e95ab6a6b3c3a80a, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 401fa80d167e75f4f86e748205d85ab2, type: 3}
 --- !u!1 &6053650055669364426 stripped
