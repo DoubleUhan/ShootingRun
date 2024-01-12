@@ -59,13 +59,13 @@ public class BossCtrl : Stats
         if (isSkillActive)
         {
             
-            if (multiAimConstraint.data.sourceObjects.GetWeight(0).Equals(1))
-            {
-                var a = multiAimConstraint.data.sourceObjects;
-                a.SetWeight(0, 0);
-                a.SetWeight(1, 1);
-                multiAimConstraint.data.sourceObjects = a;
-            }
+            //if (multiAimConstraint.data.sourceObjects.GetWeight(0).Equals(1))
+            //{
+            //    var a = multiAimConstraint.data.sourceObjects;
+            //    a.SetWeight(0, 0);
+            //    a.SetWeight(1, 1);
+            //    multiAimConstraint.data.sourceObjects = a;
+            //}
 
             Vector3 warningTarget = warning.transform.position;
             warningTarget.y = transform.position.y;
@@ -75,13 +75,13 @@ public class BossCtrl : Stats
         }
         else
         {
-            if (multiAimConstraint.data.sourceObjects.GetWeight(0).Equals(0))
-            {
-                var a = multiAimConstraint.data.sourceObjects;
-                a.SetWeight(0, 1);
-                a.SetWeight(1, 0);
-                multiAimConstraint.data.sourceObjects = a;
-            }
+            //if (multiAimConstraint.data.sourceObjects.GetWeight(0).Equals(0))
+            //{
+            //    var a = multiAimConstraint.data.sourceObjects;
+            //    a.SetWeight(0, 1);
+            //    a.SetWeight(1, 0);
+            //    multiAimConstraint.data.sourceObjects = a;
+            //}
 
             Vector3 warningTarget = warning.transform.position;
             warningTarget.x = transform.position.x;
@@ -115,7 +115,7 @@ public class BossCtrl : Stats
 
         while (!isDead)
         {
-            int num = 2; // UnityEngine.Random.Range(0, 3);
+            int num = UnityEngine.Random.Range(0, 3);
             switch (num)
             {
                 case 0: // 내려 찍기
@@ -142,9 +142,10 @@ public class BossCtrl : Stats
         yield return new WaitForSeconds(1f);
         isSkillActive = true;
         
-        animator.Play("ATK_pattern_1");
+        animator.SetTrigger("Attack1");
         yield return new WaitForSeconds(0.3f); // 공격 시작 0.1초 뒤에 경고 삭제
         warning.SetActive(false);
+        animator.SetTrigger("Idle");
 
         SoundManager.Instance.Boss_Smile(); // 보스 웃음 소리
 
@@ -159,9 +160,10 @@ public class BossCtrl : Stats
         yield return new WaitForSeconds(1f); // 경고가 뜨고 1초 뒤에 공격 시작
         isSkillActive = true;
 
-        animator.Play("ATK_pattern_2");
+        animator.SetTrigger("Attack2");
         yield return new WaitForSeconds(0.3f); // 공격 시작 0.1초 뒤에 경고 삭제
         warning.SetActive(false);
+        animator.SetTrigger("Idle");
 
         yield return null;
     }
