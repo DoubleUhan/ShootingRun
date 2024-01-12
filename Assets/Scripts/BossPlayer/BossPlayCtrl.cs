@@ -34,6 +34,8 @@ public class BossPlayCtrl : Stats
 
     public BossCtrl gameend;
 
+    public Text playerHp_T;
+
     public float playerMax_HP; // 플레이어 최대 체력
 
     private float zRange = 20; // 맵 이동 범위
@@ -44,15 +46,18 @@ public class BossPlayCtrl : Stats
     float angle; // 각도를 저장할 변수
     float radius = 17f; // 원의 반지름
 
-    void Awake()
+    void Start()
     {
         HP = PlayerPrefs.GetInt("PlayerCount");
         Debug.Log($"player Max hp = {HP}");
+        HP *= 100;
         playerMax_HP = HP;
         colliders = GetComponent<Collider>();
         agent = GetComponent<NavMeshAgent>();
         rb = GetComponent<Rigidbody>();
 
+
+        playerHp_T.text = HP.ToString() + "/" + playerMax_HP.ToString();
     }
 
     // Update is called once per frame
@@ -148,13 +153,15 @@ public class BossPlayCtrl : Stats
     {
         HP -= damege;
     }
-    public void Hurt()
+    public void Hurt(int damage)
     {
         Debug.Log("데미지 받기 전" + HP);
-        HP -= 0.5f;
+        HP -= damage; // 보스 공격 데미지 다 똑같은듯
         Debug.Log("데미지 받고 후" + HP);
 
         playerHP_bar.value = HP / playerMax_HP;
+
+        playerHp_T.text = HP.ToString() + "  /  " + playerMax_HP.ToString();
 
         if (HP <= 0)
         {
@@ -162,4 +169,6 @@ public class BossPlayCtrl : Stats
             gameend.GameFail();
         }
     }
+
+
 }

@@ -11,47 +11,47 @@ using UnityEngine.UI;
 
 public class BossCtrl : Stats
 {
-    [Header("보스 공격 딜레이")]
-    public float delay;
+    GameObject target; // 플레이어
+    [SerializeField] GameObject formatTarget; // 스킬 사용후 바라볼 위치 (가운대)
 
-    GameObject target; // 바라볼 타겟이랑 겹치느ㅜ듯
-    public GameObject formatTarget; // 다시 가운데 보게하는 타겟
+    [SerializeField] GameObject warning; // 공격 예고 오브젝트
 
-    public GameObject warning; // 빨간 예고 범위
+    [Header("팝업 설정")]
+    [SerializeField] GameObject failPopup; // 게임 실패 시 뜨는 팝업
+    [SerializeField] GameObject clearPopup; // 게임 클리어 시 뜨는 팝업
 
-    public GameObject failPopup; // 게임 실패 시 뜨는 팝업
-    public GameObject clearPopup; // 게임 클리어 시 뜨는 팝업
+    [Header("보스 설정")]
+    [SerializeField] GameObject bomb; // 떨굴 폭탄
+    [SerializeField] GameObject[] bombSpawnPoint;
 
-    public GameObject bomb; // 떨굴 폭탄
-
-    public Slider bossHP_bar;
-
+    [SerializeField] Slider bossHP_bar;
     [SerializeField] float maxBossHP;
-    [SerializeField] float curBossHP; // 보스 체력 설정
 
-    public GameObject trackingTarget;
-
-    public BossPlayCtrl playhit;
+    [Header("머리따라가는 에니메이션")]
+    [SerializeField] GameObject trackingTarget;
 
     Animator animator;
-    public static bool isSkillActive;
-    public static bool warningOn = false;
-    bool isDead; // 보스 죽었는지 안죽었는지 체크하는 변수
+    [HideInInspector] public bool isSkillActive; // 보스 스킬 실행 여부
+    [HideInInspector] public bool warningOn = false;
 
     [Range(0, 10)]
     public float attackArrange;
 
     MultiAimConstraint multiAimConstraint;
-    [SerializeField] GameObject[] bombSpawnPoint;
+    float curBossHP; // 보스 체력 설정
+    bool isDead; // 보스 죽었는지 안죽었는지 체크하는 변수
+    float delay; // 보스 공격 딜레이
 
     void Start()
     {
-        multiAimConstraint = trackingTarget.GetComponent<MultiAimConstraint>();
         SoundManager.Instance.Boss_BGM();
+
         target = GameObject.FindGameObjectWithTag("Player");
         StartCoroutine(BossAttack());
-        delay = 3.0f;
         animator = GetComponent<Animator>();
+        multiAimConstraint = trackingTarget.GetComponent<MultiAimConstraint>();
+        delay = 3f;
+        curBossHP = maxBossHP;
     }
 
     void Update()
@@ -112,6 +112,7 @@ public class BossCtrl : Stats
     IEnumerator BossAttack()
     {
         yield return new WaitForSeconds(3f);
+
         while (!isDead)
         {
             int num = UnityEngine.Random.Range(0, 3);
@@ -129,7 +130,7 @@ public class BossCtrl : Stats
                     StartCoroutine(Bomb());
                     break;
             }
-            yield return new WaitForSeconds(3f);
+            yield return new WaitForSeconds(delay);
         }
     }
 
@@ -195,7 +196,7 @@ public class BossCtrl : Stats
     {
         if (warning.GetComponent<BossSkillRange>().isPlayerIn)
         {
-            playhit.Hurt();
+            target.GetComponent<BossPlayCtrl>().Hurt(40);
         }
     }
     public void OnDamaged(float Damage)
