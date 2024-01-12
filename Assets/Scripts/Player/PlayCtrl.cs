@@ -25,7 +25,7 @@ public class PlayCtrl : Stats
     public GameObject arithmetic_BG; // 고글 착용했을 때 보이게 하는 배경
     public float shiftCooldownDuration = 1.5f;
     private bool shiftCooldown = false;
-    private float shiftCooldownTimer = 0f;
+
     private Vector3 dir;
     int randomNum;
 
@@ -51,7 +51,7 @@ public class PlayCtrl : Stats
     void Move()
     {
 
-        if (!GameManager.Instance.isClear)
+        if (!GameManager.Instance.stage1_Clear)
         {
             dir.z = Mathf.Clamp(dir.z + Input.GetAxisRaw("Horizontal") * Time.deltaTime * speed, -4.5f, 4.5f);
             transform.position = dir;

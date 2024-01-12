@@ -16,8 +16,9 @@ public class GameManager : MonoBehaviour
 
     [Header("FadeOut 관련 변수")]
     [SerializeField] GameObject fadeBG;
-    public bool isClear;
+    [HideInInspector] public bool stage1_Clear;
 
+    public GameObject gameoverPopup;
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.M))
@@ -45,7 +46,7 @@ public class GameManager : MonoBehaviour
         if (enemyCount >= goalEnemyCount)
         {
             // 페이드 아웃, 캐릭터 앞으로 이동, 카메라 고정, 씬 넘어가기
-            isClear = true;
+            stage1_Clear = true;
             cameras[0].transform.SetParent(null);
             cameras[1].transform.SetParent(null);
             fadeBG.SetActive(true);
