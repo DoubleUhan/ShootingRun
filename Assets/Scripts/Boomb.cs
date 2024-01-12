@@ -96,7 +96,7 @@ public class Boomb : MonoBehaviour
             {
                 if (IsWithinExplosionRange(nearbyObject.transform.position))
                 {
-                    nearbyObject.gameObject.GetComponent<BossPlayCtrl>().Hurt();
+                    nearbyObject.gameObject.GetComponent<BossPlayCtrl>().Hurt(30);
                 }
             }
         }
