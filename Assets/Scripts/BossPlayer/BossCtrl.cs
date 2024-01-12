@@ -115,7 +115,7 @@ public class BossCtrl : Stats
 
         while (!isDead)
         {
-            int num = UnityEngine.Random.Range(0, 3);
+            int num = 2; // UnityEngine.Random.Range(0, 3);
             switch (num)
             {
                 case 0: // 내려 찍기
@@ -169,10 +169,17 @@ public class BossCtrl : Stats
     {
         int bombs = UnityEngine.Random.Range(3, 6);
 
+
         for (int bomb = 0; bomb < bombs; bomb++)
         {
             BombSpawn();
         }
+
+        // 
+        //yield return new WaitForSeconds(6.5f);
+        //animator.Play("ATK_pattern_3");
+        
+
         yield return null;
     }
 
