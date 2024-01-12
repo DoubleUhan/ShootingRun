@@ -33,6 +33,9 @@ public class PlayCtrl : Stats
     {
         randomNum = Random.Range(0, 3);
         PlayerPrefs.SetInt("PlayerCount", 1);
+        GameManager.Instance.player_Count = 1;
+        GameManager.Instance.player_Count_T.text = GameManager.Instance.player_Count.ToString();
+
         dir = spawnTr.position;
         Shooter shooter = Instantiate(shooterPrefab[randomNum], spawnTr.position, Quaternion.Euler(0f, -90f, 0f)).GetComponent<Shooter>();
         shooter.transform.SetParent(transform);
@@ -42,11 +45,8 @@ public class PlayCtrl : Stats
     void Update()
     {
         Move();
-
         Goggle();
     }
-
-
 
     void Move()
     {
@@ -123,6 +123,8 @@ public class PlayCtrl : Stats
             clone.transform.SetParent(clone.player.transform);
             shooterList.Add(clone);
         }
+        GameManager.Instance.player_Count = shooterList.Count;
+        GameManager.Instance.player_Count_T.text = GameManager.Instance.player_Count.ToString();
         PlayerPrefs.SetInt("PlayerCount", shooterList.Count);
     }
     public void Sub(int num)
@@ -141,6 +143,8 @@ public class PlayCtrl : Stats
             }
 
         }
+        GameManager.Instance.player_Count = shooterList.Count;
+        GameManager.Instance.player_Count_T.text = GameManager.Instance.player_Count.ToString();
         PlayerPrefs.SetInt("PlayerCount", shooterList.Count);
     }
 
@@ -159,6 +163,9 @@ public class PlayCtrl : Stats
             clone.transform.SetParent(clone.player.transform);
             shooterList.Add(clone);
         }
+        GameManager.Instance.player_Count = shooterList.Count;
+        GameManager.Instance.player_Count_T.text = GameManager.Instance.player_Count.ToString();
+
         PlayerPrefs.SetInt("PlayerCount", shooterList.Count);
     }
     public void Div(int num)
@@ -168,6 +175,8 @@ public class PlayCtrl : Stats
 
         Sub((int)Mathf.Round(shooterList.Count / num));
 
+        GameManager.Instance.player_Count = shooterList.Count;
+        GameManager.Instance.player_Count_T.text = GameManager.Instance.player_Count.ToString();
         PlayerPrefs.SetInt("PlayerCount", shooterList.Count);
     }
 
