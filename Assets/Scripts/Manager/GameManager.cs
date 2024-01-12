@@ -19,12 +19,18 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public bool stage1_Clear;
 
     public GameObject gameoverPopup;
+
+    [Header("플레이어 수 표기 변수")]
+    public Text player_Count_T;
+    public int player_Count;
+        
+
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.M))
-        {
-            StartCoroutine(SceneMoveWait(2));
-        }
+        //if (Input.GetKeyDown(KeyCode.M))
+        //{
+        //    StartCoroutine(SceneMoveWait(2));
+        //}
     }
 
     void Awake()
