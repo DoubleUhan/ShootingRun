@@ -14,7 +14,7 @@ public class BossCtrl : Stats
     [Header("보스 공격 딜레이")]
     public float delay;
 
-    public GameObject target; // 바라볼 타겟이랑 겹치느ㅜ듯
+    GameObject target; // 바라볼 타겟이랑 겹치느ㅜ듯
     public GameObject formatTarget; // 다시 가운데 보게하는 타겟
 
     public GameObject warning; // 빨간 예고 범위
@@ -56,7 +56,6 @@ public class BossCtrl : Stats
 
     void Update()
     {
-        Debug.Log(Time.timeScale);
         if (isSkillActive)
         {
             
@@ -220,7 +219,8 @@ public class BossCtrl : Stats
     public void GameFail()
     {
         Camera.main.transform.SetParent(null);
-        target.GetComponent<Renderer>().enabled = false;
+        //target.GetComponent<Renderer>().enabled = false;
+        target.SetActive(false);
         failPopup.SetActive(true);
         Time.timeScale = 0;
     }

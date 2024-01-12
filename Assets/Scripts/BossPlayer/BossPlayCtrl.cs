@@ -15,7 +15,6 @@ public class BossPlayCtrl : Stats
     [SerializeField] float maxShotDelay;
     [SerializeField] float curShorDelay;
     [SerializeField] float shotPower;
-    [SerializeField] float playerHP;
 
 
     [SerializeField] GameObject[] copyPlayer_Pos;
@@ -35,7 +34,6 @@ public class BossPlayCtrl : Stats
 
     public BossCtrl gameend;
 
-    public float player_HP; // 플레이어 현재 체력
     public float playerMax_HP; // 플레이어 최대 체력
 
     private float zRange = 20; // 맵 이동 범위
@@ -44,17 +42,17 @@ public class BossPlayCtrl : Stats
     float tempAngle = 0;
     [SerializeField]
     float angle; // 각도를 저장할 변수
-    float radius = 30f; // 원의 반지름
+    float radius = 17f; // 원의 반지름
 
     void Awake()
     {
-        player_HP = PlayerPrefs.GetInt("PlayerCount");
-        Debug.Log($"player hp = {player_HP}");
+        HP = PlayerPrefs.GetInt("PlayerCount");
+        Debug.Log($"player Max hp = {HP}");
+        playerMax_HP = HP;
         colliders = GetComponent<Collider>();
         agent = GetComponent<NavMeshAgent>();
         rb = GetComponent<Rigidbody>();
 
-        playerMax_HP = player_HP;
     }
 
     // Update is called once per frame
@@ -64,6 +62,8 @@ public class BossPlayCtrl : Stats
         Reload();
         Move();
         TargetLook();
+
+        Debug.Log("Update: " + HP);
     }
 
     void TargetLook()
@@ -148,45 +148,18 @@ public class BossPlayCtrl : Stats
     {
         HP -= damege;
     }
-
-    void Add(int num)
-    {
-        for (int i = 0; i < num; i++)
-        {
-            GameObject clone = Instantiate(prefabToSpawn, copyPlayer_Pos[i].transform.position, Quaternion.identity);
-
-            if (clone.TryGetComponent<BossPlayCtrl>(out var playCtrl))
-            {
-                playCtrl.main_Camera.transform.SetParent(null);
-                Destroy(playCtrl.colliders);
-
-            }
-        }
-    }
-
     public void Hurt()
     {
-        player_HP -= 0.5f; // 일단 모든 패턴 데미지 동일하게..
-        Debug.Log(player_HP);
+        Debug.Log("데미지 받기 전" + HP);
+        HP -= 0.5f;
+        Debug.Log("데미지 받고 후" + HP);
 
-        if (player_HP <= 0)
+        playerHP_bar.value = HP / playerMax_HP;
+
+        if (HP <= 0)
         {
             // 보스컨트롤 함수 GameFail();
             gameend.GameFail();
         }
-
-        playerHP_bar.value = player_HP / playerMax_HP;
     }
-
-    //플레이어 체력바
-    //playerHP_bar.value = player_HP / playerMax_HP;
-
-    //void OnCollisionEnter(Collision collision)
-    //{
-    //    if (collision.gameObject.CompareTag("explode"))
-    //    {
-    //        Destroy(gameObject);
-    //        BossCtrl.GameFail();
-    //    }
-    //}
 }
