@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
     public int enemyCount;
     [SerializeField]
-    private int goalEnemyCount = 3;
+    private int goalEnemyCount = 30;
     public GameObject[] cameras; // 카메라 
 
     [Header("FadeOut 관련 변수")]
@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour
     [Header("플레이어 수 표기 변수")]
     public Text player_Count_T;
     public int player_Count;
-        
+
 
     private void Update()
     {
