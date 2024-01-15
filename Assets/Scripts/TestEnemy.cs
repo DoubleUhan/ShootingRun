@@ -38,7 +38,9 @@ public class TestEnemy : Stats
             deathParticle.transform.parent = null;
             deathParticle.Play();
             Destroy(gameObject);
-            
+
+            if (GameManager.Instance.enemyCount >= GameManager.Instance.goalEnemyCount)
+                GameManager.Instance.ClearStage();
         }
     }
 }
