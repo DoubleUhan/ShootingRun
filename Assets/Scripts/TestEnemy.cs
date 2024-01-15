@@ -22,7 +22,7 @@ public class TestEnemy : Stats
     void Walk()
     {
         agent.destination = player.position;
-        // ±æÃ£±â ½ÃÀÛ
+        // Â±Ã¦ÃƒÂ£Â±Ã¢ Â½ÃƒÃ€Ã›
         agent.isStopped = false;
     }
    /* private void OnDestroy()
@@ -38,7 +38,7 @@ public class TestEnemy : Stats
             deathParticle.transform.parent = null;
             deathParticle.Play();
             Destroy(gameObject);
-
+            GameManager.Instance.enemyCount++;
             if (GameManager.Instance.enemyCount >= GameManager.Instance.goalEnemyCount)
                 GameManager.Instance.ClearStage();
         }

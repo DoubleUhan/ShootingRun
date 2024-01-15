@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class SpawnManager : MonoBehaviour
 {
+    public static SpawnManager instance;
+
     [SerializeField] GameObject[] enemy_Object;
     [SerializeField] GameObject arithmetic_Object;
     [SerializeField] GameObject needle_Object;
@@ -24,6 +26,16 @@ public class SpawnManager : MonoBehaviour
     [SerializeField] float needleSpawnMax;
     float needleSpawnDelay;
 
+    void Awake()
+    {
+        if (instance != null)
+            return;
+        else
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+    }
     void Start()
     {
         StartCoroutine(Enemy_Produce());
@@ -36,7 +48,6 @@ public class SpawnManager : MonoBehaviour
         {
             float enemySpawnPosz = Random.Range(-0.7f, 0.7f);
             int enemyRadom = Random.Range(0, 2);
-            Debug.Log(enemyRadom);
             enemySpawnDelay = Random.Range(enemySpawnMin, enemySpawnMax + 1);
             GameObject Enemy = Instantiate(enemy_Object[enemyRadom], new Vector3(-60f, 0.5f, enemySpawnPosz), Quaternion.identity);
             yield return new WaitForSeconds(enemySpawnDelay);
@@ -49,7 +60,8 @@ public class SpawnManager : MonoBehaviour
             int spawn = Random.Range(0, 4); // +,-,*,/가 랜덤으로 생성
 
             arithmeticSpawnDelay = Random.Range(arithmeticSpawnMin, arithmeticSpawnMax + 1);
-            var randomObject = Instantiate(arithmetic_Object, new Vector3(-60f, 1, 4f), Quaternion.identity).GetComponent<Arithmetic>();
+            var randomObject = Instantiate(arithmetic_Object, new Vector3(-60f, 0.5f, 3f), Quaternion.Euler(0, 90f, 0)).GetComponent<Arithmetic>();
+
             randomObject.type = (ArithmeticType)spawn;
 
             switch (randomObject.type)
@@ -71,8 +83,9 @@ public class SpawnManager : MonoBehaviour
                     randomObject.value = Random.Range(2, 4);
                     break;
             }
-            randomObject.value_T.text =/* randomObject.sigh_T.text + */randomObject.value.ToString();
-            var randomObject2 = Instantiate(arithmetic_Object, new Vector3(-60f, 1, -4f), Quaternion.identity).GetComponent<Arithmetic>();
+            randomObject.value_T.text = randomObject.value.ToString();
+
+            var randomObject2 = Instantiate(arithmetic_Object, new Vector3(-60f, 0.5f, -3f), Quaternion.Euler(0, 90f, 0)).GetComponent<Arithmetic>();
             switch (randomObject2.type)
             {
                 case ArithmeticType.add:
@@ -93,6 +106,10 @@ public class SpawnManager : MonoBehaviour
                     break;
             }
             randomObject2.value_T.text = /*randomObject2.sigh_T.text +*/ randomObject2.value.ToString();
+
+            randomObject.Pair = randomObject2;
+            randomObject2.Pair = randomObject;
+
             yield return new WaitForSeconds(arithmeticSpawnDelay);
         }
     }
@@ -101,7 +118,6 @@ public class SpawnManager : MonoBehaviour
     {
         while (true)
         {
-            Debug.Log("니들 생성");
             float randomValue = (Random.Range(0, 2) * 5) - 2.5f;
             needleSpawnDelay = Random.Range(needleSpawnMin, needleSpawnMax + 1);
             GameObject needle = Instantiate(needle_Object, new Vector3(-90, 2.3f, randomValue), Quaternion.identity);
