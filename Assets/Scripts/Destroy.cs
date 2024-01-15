@@ -13,6 +13,7 @@ public class Destroy : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        // 호박한테 맞으면 플레이어 사라지는 코드 -> 보스한테도 적용
         if (other.gameObject.CompareTag("Player"))
         {
             Shooter oterShooter = other.GetComponent<Shooter>();

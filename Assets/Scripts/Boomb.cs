@@ -31,7 +31,7 @@ public class Boomb : MonoBehaviour
 
     void Start()
     {
-        Debug.Log(explosionRadius);
+        //Debug.Log(explosionRadius);
 
         boss = GameObject.FindGameObjectWithTag("Boss");
         meshRenderer = GetComponent<MeshRenderer>();
