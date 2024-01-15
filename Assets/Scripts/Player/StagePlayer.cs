@@ -14,6 +14,18 @@ public class StagePlayer : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
 
+        if (StageManager.instance.isClear_Stage1)
+        {
+            StageManager.instance.stage1_col.SetActive(false);
+            transform.position = new Vector3(-31, 0, 72);
+        }
+        else if (StageManager.instance.isClear_Stage2)
+        {
+            StageManager.instance.stage2_col.SetActive(false);
+            transform.position = new Vector3(-29, 0, 41);
+        }
+
+
     }
 
     void Update()
@@ -31,7 +43,7 @@ public class StagePlayer : MonoBehaviour
             {
                 Debug.Log("¿ìÅ¬¸¯");
 
-                if (hit.collider.CompareTag("Stage1") || hit.collider.CompareTag("Stage2"))
+                if (hit.collider.CompareTag("Stage1") || hit.collider.CompareTag("Stage2")|| hit.collider.CompareTag("BossStage"))
                 {
                     MoveToTarget(hit.point);
                 }
@@ -56,7 +68,10 @@ public class StagePlayer : MonoBehaviour
                 SceneManager.LoadScene("Stage1");
                 break;
             case "Stage2":
-                StageManager.instance.ArriveStage(2);
+                SceneManager.LoadScene("Stage2");
+                break;
+            case "Boss":
+                SceneManager.LoadScene("MOB_BossScene");
                 break;
         }
     }

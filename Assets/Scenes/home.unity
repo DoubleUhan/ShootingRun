@@ -714,6 +714,8 @@ MonoBehaviour:
   fadeBG: {fileID: 0}
   stage1_Clear: 0
   gameoverPopup: {fileID: 0}
+  player_Count_T: {fileID: 0}
+  player_Count: 0
 --- !u!4 &1581493828
 Transform:
   m_ObjectHideFlags: 0
