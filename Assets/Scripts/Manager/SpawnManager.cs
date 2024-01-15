@@ -47,7 +47,7 @@ public class SpawnManager : MonoBehaviour
         while (true)
         {
             float enemySpawnPosz = Random.Range(-0.7f, 0.7f);
-            int enemyRadom = Random.Range(0, 2);
+            int enemyRadom = Random.Range(0, enemy_Object.Length);
             enemySpawnDelay = Random.Range(enemySpawnMin, enemySpawnMax + 1);
             GameObject Enemy = Instantiate(enemy_Object[enemyRadom], new Vector3(-60f, 0.5f, enemySpawnPosz), Quaternion.identity);
             yield return new WaitForSeconds(enemySpawnDelay);
