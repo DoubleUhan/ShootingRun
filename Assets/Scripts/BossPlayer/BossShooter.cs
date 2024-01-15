@@ -9,7 +9,6 @@ public class BossShooter : MonoBehaviour
 
     //총알 프리팹
     public GameObject bulletPrefab;
-    public GameObject playerEffect;
     public BossPlayCtrl player; // 메인 플레이어
     public GameObject target; // 따라볼 타겟
 
@@ -29,12 +28,12 @@ public class BossShooter : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         player = GameObject.FindWithTag("Player").GetComponent<BossPlayCtrl>();
         target = GameObject.FindWithTag("target");
-
         StartCoroutine(ShootingCor());
     }
 
     void Update()
     {
+        // 복사본이 움직임
         if (Vector3.Distance(transform.position, player.transform.position) > 0.1f)
         {
             Vector3 dir = (player.transform.position - transform.position).normalized;
@@ -51,9 +50,8 @@ public class BossShooter : MonoBehaviour
             WaitForSeconds delay = new WaitForSeconds(shootInterval);
             while (true)
             {
-                GameObject playerEffectObj = Instantiate(playerEffect, player.transform.position + new Vector3(-0.5f, 0, 0), Quaternion.identity); // 총알 발사 직전 이펙트 적용
-                Destroy(playerEffectObj, 0.5f);
-                BulletCtrl bullet = Instantiate(bulletPrefab, transform.position + new Vector3(-1f, 0, 0), Quaternion.identity).GetComponent<BulletCtrl>();
+                BossBulletCtrl bullet = Instantiate(bulletPrefab, transform.position + new Vector3(-1f, 0, 0),Quaternion.identity).GetComponent<BossBulletCtrl>();
+                bullet.GetTarget(target);
                 yield return delay;
             }
         }

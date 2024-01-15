@@ -1740,7 +1740,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
-  bulletPrefab: {fileID: 1238843893459588, guid: f28a900373870dd46b5aa1352c03c233, type: 3}
+  bulletPrefab: {fileID: 1238843893459588, guid: 70405d49c8abfe843bc10a4fa5198fef, type: 3}
   playerEffect: {fileID: 1879272669879180, guid: ee4c3620db196c643bc7b29721204dcc, type: 3}
   player: {fileID: 0}
   target: {fileID: 0}
