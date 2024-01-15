@@ -25,7 +25,9 @@ public class PlayCtrl : Stats
     public GameObject arithmetic_BG; // 고글 착용했을 때 보이게 하는 배경
     public float shiftCooldownDuration = 1.5f;
     private bool shiftCooldown = false;
+    public bool isGoggle;
 
+    public Transform[] arithmeticPos; // 0 -> 1번 1-> 2번
     private Vector3 dir;
     int randomNum;
 
@@ -71,6 +73,7 @@ public class PlayCtrl : Stats
         // 쿨다운 중이 아니라면 왼쪽 시프트 키 입력 확인
         if (!shiftCooldown && Input.GetKey(KeyCode.LeftShift))
         {
+            isGoggle = true;
             arithmetic_BG.SetActive(true);
             arithmetic_Camera.SetActive(true);
             main_Camera.SetActive(false);
@@ -85,6 +88,7 @@ public class PlayCtrl : Stats
         }
         else
         {
+            isGoggle = false;
             // 쿨다운 중이 아니면 goggle_Stamina의 fillAmount 값을 증가시킴
             arithmetic_BG.SetActive(false);
             arithmetic_Camera.SetActive(false);
@@ -146,6 +150,7 @@ public class PlayCtrl : Stats
         GameManager.Instance.player_Count = shooterList.Count;
         GameManager.Instance.player_Count_T.text = GameManager.Instance.player_Count.ToString();
         PlayerPrefs.SetInt("PlayerCount", shooterList.Count);
+        Debug.Log("Sub");
     }
 
     public void Mult(int num)
@@ -167,6 +172,7 @@ public class PlayCtrl : Stats
         GameManager.Instance.player_Count_T.text = GameManager.Instance.player_Count.ToString();
 
         PlayerPrefs.SetInt("PlayerCount", shooterList.Count);
+        Debug.Log("Mult");
     }
     public void Div(int num)
     {
@@ -178,6 +184,7 @@ public class PlayCtrl : Stats
         GameManager.Instance.player_Count = shooterList.Count;
         GameManager.Instance.player_Count_T.text = GameManager.Instance.player_Count.ToString();
         PlayerPrefs.SetInt("PlayerCount", shooterList.Count);
+        Debug.Log("Div");
     }
 
     #endregion

@@ -41,8 +41,8 @@ TagManager:
   - CharacterCollider
   - Obstacle
   - SignText
-  - 
-  - 
+  - arithmetic_obj1
+  - arithmetic_obj2
   - 
   - Rock_Camera
   - 
