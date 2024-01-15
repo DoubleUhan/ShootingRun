@@ -14,6 +14,9 @@ public enum ArithmeticType
 }
 public class Arithmetic : MonoBehaviour
 {
+    [HideInInspector] public Arithmetic Pair;
+    [HideInInspector] public bool IsEatable = true;
+
     public ArithmeticType type;
     public int value;
     public TMP_Text value_T;

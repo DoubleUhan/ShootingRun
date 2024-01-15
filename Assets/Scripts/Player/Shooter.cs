@@ -46,10 +46,14 @@ public class Shooter : MonoBehaviour
             WaitForSeconds delay = new WaitForSeconds(shootInterval);
             while (true)
             {
-                GameObject playerEffectObj = Instantiate(playerEffect, player.transform.position + new Vector3(-0.5f, 0, 0), Quaternion.identity); // 총알 발사 직전 이펙트 적용
-                Destroy(playerEffectObj, 0.5f);
-                BulletCtrl bullet = Instantiate(bulletPrefab, transform.position + new Vector3(-1f, 0, 0), Quaternion.identity).GetComponent<BulletCtrl>();
-                bullet.player = player;
+                if (!player.isGoggle) // Check if isGoggle is false
+                {
+                    GameObject playerEffectObj = Instantiate(playerEffect, player.transform.position + new Vector3(-0.5f, 0, 0), Quaternion.identity);
+                    Destroy(playerEffectObj, 0.5f);
+                    BulletCtrl bullet = Instantiate(bulletPrefab, transform.position + new Vector3(-1f, 0, 0), Quaternion.identity).GetComponent<BulletCtrl>();
+                    bullet.player = player;
+                }
+
                 yield return delay;
             }
         }
@@ -62,6 +66,18 @@ public class Shooter : MonoBehaviour
         if (other.CompareTag("ArithmeticTag"))
         {
             var artic = other.GetComponent<Arithmetic>();
+            var pair = artic.Pair;
+
+            if (!artic.IsEatable) return; //  연산자 못먹는 상태 
+
+            if(Vector3.Distance(pair.transform.position, transform.position) <
+                Vector3.Distance(artic.transform.position, transform.position))
+            {
+                return;
+            }
+
+            if(pair != null) pair.IsEatable = false;
+
             switch (artic.type)
             {
                 case ArithmeticType.add:
@@ -79,6 +95,7 @@ public class Shooter : MonoBehaviour
             }
             Destroy(other.gameObject);
         }
+        
 
         if (other.CompareTag("Enemy"))
         {

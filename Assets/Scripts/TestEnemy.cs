@@ -35,7 +35,9 @@ public class TestEnemy : Stats
         {
             Destroy(gameObject);
             GameManager.Instance.enemyCount++;
-            GameManager.Instance.ClearStage();
+
+            if (GameManager.Instance.enemyCount >= GameManager.Instance.goalEnemyCount)
+                GameManager.Instance.ClearStage();
         }
     }
 }

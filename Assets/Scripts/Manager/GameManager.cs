@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
     public int enemyCount;
     [SerializeField]
-    private int goalEnemyCount = 30;
+    public int goalEnemyCount;
     public GameObject[] cameras; // 카메라 
 
     [Header("FadeOut 관련 변수")]
@@ -27,10 +27,6 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        //if (Input.GetKeyDown(KeyCode.M))
-        //{
-        //    StartCoroutine(SceneMoveWait(2));
-        //}
     }
 
     void Awake()
@@ -49,8 +45,6 @@ public class GameManager : MonoBehaviour
 
     public void ClearStage()
     {
-        if (enemyCount >= goalEnemyCount)
-        {
             // 페이드 아웃, 캐릭터 앞으로 이동, 카메라 고정, 씬 넘어가기
             stage1_Clear = true;
             cameras[0].transform.SetParent(null);
@@ -59,7 +53,6 @@ public class GameManager : MonoBehaviour
 
             StartCoroutine(SceneMoveWait(2f));
             Debug.Log("스테이지 클리어");
-        }
     }
 
     IEnumerator SceneMoveWait(float time)
