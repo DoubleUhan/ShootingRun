@@ -20,6 +20,9 @@ TagManager:
   - Stage2
   - head
   - ArithmeticTag
+  - FX
+  - explode
+  - target
   layers:
   - Default
   - TransparentFX

@@ -1974,7 +1974,7 @@ GameObject:
   - component: {fileID: 1247222895}
   m_Layer: 0
   m_Name: PlayerTarget
-  m_TagString: Untagged
+  m_TagString: target
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5952,7 +5952,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 112
+  m_Constraints: 116
   m_CollisionDetection: 0
 --- !u!33 &2538346570554098718
 MeshFilter:
@@ -6462,7 +6462,7 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2724526463754101600}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 0.1
   m_Height: 0.64
@@ -21956,6 +21956,10 @@ MonoBehaviour:
   gameend: {fileID: 3212751486313734114}
   playerHp_T: {fileID: 982702945}
   playerMax_HP: 0
+  shooter:
+  - {fileID: 1939551693906426739, guid: ec9f30788853f5343b561430e45e0555, type: 3}
+  - {fileID: 8779213907210613286, guid: 4176db00cd645de4a98829410fbe4c4e, type: 3}
+  - {fileID: 6218828943016181569, guid: f98a48286758fab4e8a5b4a7dec7040a, type: 3}
   angle: 0
 --- !u!1 &9130754021178581933
 GameObject:

@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.AI;
 using UnityEngine.UIElements;
 using UnityEngine.Timeline;
+using Unity.VisualScripting;
 
 public class BossPlayCtrl : Stats
 {
@@ -40,14 +41,21 @@ public class BossPlayCtrl : Stats
 
     private float zRange = 20; // 맵 이동 범위
 
+    public GameObject[] shooter; // 슈터 클론 생성할 오브젝트
+
     // 원으로 이동 관련
     float tempAngle = 0;
     [SerializeField]
     float angle; // 각도를 저장할 변수
-    float radius = 17f; // 원의 반지름
+    float radius = 15f; // 원의 반지름
+
+    float num;
 
     void Start()
     {
+        //shooter.GetComponent<BossShooter>().Spawn();
+        ShooterSpawn();
+
         HP = PlayerPrefs.GetInt("PlayerCount");
         Debug.Log($"player Max hp = {HP}");
         HP *= 100;
@@ -68,7 +76,19 @@ public class BossPlayCtrl : Stats
         Move();
         TargetLook();
 
-        Debug.Log("Update: " + HP);
+        //Debug.Log("Update: " + HP);
+    }
+
+    void ShooterSpawn()
+    {
+        //클론 생성
+        int random = Random.Range(0, 2);
+        num = 3; // PlayerPrefs.GetInt("PlayerCount");
+        for (int i = 0; i < num; i++)
+        {
+            Vector3 shooterSpawn = transform.position + new Vector3(Random.Range(-1f, 1f), 0f, Random.Range(-1f, 1f));
+            Instantiate(shooter[random], shooterSpawn, Quaternion.Euler(0f, -90f, 0f));
+        }
     }
 
     void TargetLook()
@@ -108,16 +128,14 @@ public class BossPlayCtrl : Stats
         // 각도를 이용하여 원 위의 위치 계산
         float x = Mathf.Cos(angle) * radius;
         float z = Mathf.Sin(angle) * radius;
-        if (x < 11f || x > 30f || z < -30f || z > 30f)
+
+        if (x < 6f || x > 20f || z < -16f || z > 15f)
         {
             angle = tempAngle;
             // 움직이지 않도록 처리
             return;
         }
         tempAngle = angle;
-
-        // x 좌표를 -4에서 20 사이로, z 좌표를 -20에서 20 사이로 제한
-
 
         // 캐릭터의 위치를 업데이트
         transform.position = new Vector3(x, transform.position.y, z);
