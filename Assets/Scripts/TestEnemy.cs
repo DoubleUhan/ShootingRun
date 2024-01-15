@@ -40,7 +40,7 @@ public class TestEnemy : Stats
             Destroy(gameObject);
             GameManager.Instance.enemyCount++;
             if (GameManager.Instance.enemyCount >= GameManager.Instance.goalEnemyCount)
-                GameManager.Instance.ClearStage();
+                GameManager.Instance.ClearStage1();
         }
     }
 }

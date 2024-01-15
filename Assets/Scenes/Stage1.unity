@@ -2169,7 +2169,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyCount: 0
-  goalEnemyCount: 100
+  goalEnemyCount: 3
   cameras:
   - {fileID: 6053650055669364426}
   - {fileID: 6053650055669364428}
@@ -2354,6 +2354,54 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1520113251
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1520113253}
+  - component: {fileID: 1520113252}
+  m_Layer: 0
+  m_Name: StageManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1520113252
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1520113251}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08b385c0fb24123429dd124ce0e3b112, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isClear_Stage1: 0
+  isClear_Stage2: 0
+  stage1_col: {fileID: 0}
+  stage2_col: {fileID: 0}
+--- !u!4 &1520113253
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1520113251}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1522860227
 GameObject:
@@ -2957,6 +3005,7 @@ MonoBehaviour:
   enemy_Object:
   - {fileID: 1941697024322730688, guid: db4cc50d954a21c4cb8501bbadb7bc9c, type: 3}
   - {fileID: 7053859821706944000, guid: de21eb1e7b7ecb74ba7e5a3fd0cc860e, type: 3}
+  - {fileID: 8989330807040737359, guid: 1ea3b46df76c6204088adb58b65a3cd5, type: 3}
   arithmetic_Object: {fileID: 554577839963898272, guid: 6953b99c427984d40acd87af2999acb7, type: 3}
   needle_Object: {fileID: 2340316391242920772, guid: 35229962d01ddc945a241b197583bc89, type: 3}
   enemySpawnMin: 0.1

@@ -43,21 +43,22 @@ public class GameManager : MonoBehaviour
         // image = GetComponent<Image>();
     }
 
-    public void ClearStage()
+    public void ClearStage1()
     {
-            // 페이드 아웃, 캐릭터 앞으로 이동, 카메라 고정, 씬 넘어가기
-            stage1_Clear = true;
-            cameras[0].transform.SetParent(null);
-            cameras[1].transform.SetParent(null);
-            fadeBG.SetActive(true);
+        // 페이드 아웃, 캐릭터 앞으로 이동, 카메라 고정, 씬 넘어가기
+        stage1_Clear = true;
+        cameras[0].transform.SetParent(null);
+        cameras[1].transform.SetParent(null);
+        fadeBG.SetActive(true);
 
-            StartCoroutine(SceneMoveWait(2f));
-            Debug.Log("스테이지 클리어");
+        StageManager.instance.isClear_Stage1 = true;
+        StartCoroutine(SceneMoveWait(2f, "StageMap"));
+        Debug.Log("스테이지 클리어");
     }
 
-    IEnumerator SceneMoveWait(float time)
+    IEnumerator SceneMoveWait(float time, string sceneName)
     {
         yield return new WaitForSeconds(time);
-        SceneManager.LoadScene("MOB_BossScene");
+        SceneManager.LoadScene(sceneName);
     }
 }

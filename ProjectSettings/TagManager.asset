@@ -23,6 +23,8 @@ TagManager:
   - FX
   - explode
   - target
+  - FxTemporaire
+  - BossStage
   layers:
   - Default
   - TransparentFX

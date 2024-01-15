@@ -7,19 +7,23 @@ public class StageManager : MonoBehaviour
 {
     public static StageManager instance;
 
-    [SerializeField] Text stageNum_T;
-    [SerializeField] GameObject[] stage_Btn;
+    [HideInInspector] public bool isClear_Stage1;
+    [HideInInspector] public bool isClear_Stage2;
 
-    public GameObject stagePopup;
+
+    public GameObject stage1_col;
+    public GameObject stage2_col;
 
     private void Awake()
     {
-        instance = this;
+        if (instance != null)
+            return;
+        else
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
     }
-    public void ArriveStage(int stageNum)
-    {
-        stagePopup.SetActive(true);
-        stageNum_T.text = "Stage" + stageNum;
-        stage_Btn[stageNum - 1].SetActive(true);
-    }
+
+
 }
