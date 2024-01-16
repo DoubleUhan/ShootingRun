@@ -34,10 +34,12 @@ public class BossCtrl : Stats
     [HideInInspector] public bool isSkillActive; // 보스 스킬 실행 여부
     [HideInInspector] public bool warningOn = false;
 
+    [Header ("카메라 흔들림")]
+    public CameraShake cameraShake;
+
     [Range(0, 10)]
     public float attackArrange;
 
-    MultiAimConstraint multiAimConstraint;
     float curBossHP; // 보스 체력 설정
     bool isDead; // 보스 죽었는지 안죽었는지 체크하는 변수
     float delay; // 보스 공격 딜레이
@@ -49,7 +51,6 @@ public class BossCtrl : Stats
         target = GameObject.FindGameObjectWithTag("Player");
         StartCoroutine(BossAttack());
         animator = GetComponent<Animator>();
-        multiAimConstraint = trackingTarget.GetComponent<MultiAimConstraint>();
         delay = 3f;
         curBossHP = maxBossHP;
     }
@@ -58,15 +59,6 @@ public class BossCtrl : Stats
     {
         if (isSkillActive)
         {
-            
-            //if (multiAimConstraint.data.sourceObjects.GetWeight(0).Equals(1))
-            //{
-            //    var a = multiAimConstraint.data.sourceObjects;
-            //    a.SetWeight(0, 0);
-            //    a.SetWeight(1, 1);
-            //    multiAimConstraint.data.sourceObjects = a;
-            //}
-
             Vector3 warningTarget = warning.transform.position;
             warningTarget.y = transform.position.y;
             Vector3 dir = warningTarget - transform.position;
@@ -75,36 +67,11 @@ public class BossCtrl : Stats
         }
         else
         {
-            //if (multiAimConstraint.data.sourceObjects.GetWeight(0).Equals(0))
-            //{
-            //    var a = multiAimConstraint.data.sourceObjects;
-            //    a.SetWeight(0, 1);
-            //    a.SetWeight(1, 0);
-            //    multiAimConstraint.data.sourceObjects = a;
-            //}
-
             Vector3 warningTarget = warning.transform.position;
             warningTarget.x = transform.position.x;
             Vector3 dir = formatTarget.transform.position - transform.position;
             transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(dir), Time.deltaTime * 3);
         }
-
-        //if (isSkillActive == false)
-        //{
-        //    Vector3 dir = target.transform.position - transform.position;
-        //    transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(dir), Time.deltaTime * 10);
-
-        //    // 뭔지 이제 모름
-        //    //transform.LookAt(target.transform);
-        //    // var a = transform.rotation;
-        //    //a = new Quaternion(0, transform.rotation.y, 0,0);
-        //    //Debug.Log("a "+ transform.rotation);
-        //    //transform.localRotation = new Quaternion(0, transform.rotation.y, 0, 0);
-        //    //Debug.Log(transform.rotation);
-        //}
-        //else
-        //{
-        //}
     }
 
 
@@ -143,6 +110,7 @@ public class BossCtrl : Stats
         isSkillActive = true;
         
         animator.SetTrigger("Attack1");
+        StartCoroutine(cameraShake.Shake(0.15f,0.4f));
         yield return new WaitForSeconds(0.3f); // 공격 시작 0.1초 뒤에 경고 삭제
         warning.SetActive(false);
         animator.SetTrigger("Idle");
@@ -161,6 +129,7 @@ public class BossCtrl : Stats
         isSkillActive = true;
 
         animator.SetTrigger("Attack2");
+        StartCoroutine(cameraShake.Shake(0.3f, 0.4f));
         yield return new WaitForSeconds(0.3f); // 공격 시작 0.1초 뒤에 경고 삭제
         warning.SetActive(false);
         animator.SetTrigger("Idle");
@@ -176,23 +145,13 @@ public class BossCtrl : Stats
         {
             BombSpawn();
         }
-
-        // 
-        //yield return new WaitForSeconds(6.5f);
-        //animator.Play("ATK_pattern_3");
-        
-
         yield return null;
     }
 
     void BombSpawn()
     {
-        //int randNum = UnityEngine.Random.Range(0, 9);
-        //GameObject spawnbomb = Instantiate(bomb, bombSpawnPoint[randNum].transform.position, Quaternion.identity);
-
         int randNum = UnityEngine.Random.Range(0, 9);
         GameObject spawnbomb = Instantiate(bomb, bombSpawnPoint[randNum].transform.position, Quaternion.Euler(-90f, 0f, 0f));
-
     }
 
 
