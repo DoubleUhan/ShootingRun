@@ -110,7 +110,6 @@ public class BossCtrl : Stats
         isSkillActive = true;
         
         animator.SetTrigger("Attack1");
-        StartCoroutine(cameraShake.Shake(0.15f,0.4f));
         yield return new WaitForSeconds(0.3f); // 공격 시작 0.1초 뒤에 경고 삭제
         warning.SetActive(false);
         animator.SetTrigger("Idle");
@@ -129,12 +128,17 @@ public class BossCtrl : Stats
         isSkillActive = true;
 
         animator.SetTrigger("Attack2");
-        StartCoroutine(cameraShake.Shake(0.3f, 0.4f));
+       
         yield return new WaitForSeconds(0.3f); // 공격 시작 0.1초 뒤에 경고 삭제
         warning.SetActive(false);
         animator.SetTrigger("Idle");
 
         yield return null;
+    }
+
+    public void ShakeCamera() // 카메라 흔들리기
+    {
+        StartCoroutine(cameraShake.Shake(0.3f, 0.4f));
     }
     IEnumerator Bomb() // 애니메, 사운드 없음ㄴ
     {
