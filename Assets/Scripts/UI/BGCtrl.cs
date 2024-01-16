@@ -28,17 +28,18 @@ public class BGCtrl : MonoBehaviour
 
         //Debug.Log(Vector3.Distance(transforms.Peek().position, endPos.position));
 
-        if (Vector3.Distance(transforms.Peek().position, endPos.position) <= 0.5f)
+        if (transforms.Peek().position.x >= endPos.position.x)
         {
-            MoveBack(transforms.Dequeue());
+            Transform target = transforms.Dequeue();
+            MoveBack(target, Mathf.Abs(target.position.x - endPos.position.x));
         }
 
     }
 
-    void MoveBack(Transform target)
+    void MoveBack(Transform target, float addDis)
     {
         // ¿Ãµø
-        target.position = startPos.position;
+        target.position = new Vector3 (startPos.position.x + addDis, target.position.y, target.position.z);
 
         transforms.Enqueue(target);
     }
