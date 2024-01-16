@@ -41,19 +41,19 @@ public class ECExplodingProjectile : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        /*     if(Input.GetButtonUp("Fire2"))
-             {
-                 Explode();
-             }*/
-        timer += Time.deltaTime;
-        if (timer >= explosionTimer && explodeOnTimer == true)
-        {
-            Explode();
-        }
+    //void Update()
+    //{
+    //    /*     if(Input.GetButtonUp("Fire2"))
+    //         {
+    //             Explode();
+    //         }*/
+    //    timer += Time.deltaTime;
+    //    if (timer >= explosionTimer && explodeOnTimer == true)
+    //    {
+    //        Explode();
+    //    }
 
-    }
+    //}
 
     void FixedUpdate()
     {
@@ -135,7 +135,7 @@ public class ECExplodingProjectile : MonoBehaviour
 
     void Explode()
     {
-        Instantiate(explosionPrefab, gameObject.transform.position, Quaternion.Euler(0, 0, 0));
+        Instantiate(explosionPrefab, gameObject.transform.position, Quaternion.Euler(0, -90f, 0));
         Destroy(gameObject);
     }
 

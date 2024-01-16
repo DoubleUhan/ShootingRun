@@ -68,15 +68,12 @@ public class BossPlayCtrl : Stats
         playerHp_T.text = HP.ToString() + "/" + playerMax_HP.ToString();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        Shot();
+        //  Shot();
         Reload();
         Move();
         TargetLook();
-
-        //Debug.Log("Update: " + HP);
     }
 
     void ShooterSpawn()
