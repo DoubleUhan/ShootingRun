@@ -43,6 +43,8 @@ public class BossPlayCtrl : Stats
 
     public GameObject[] shooter; // 슈터 클론 생성할 오브젝트
 
+    public Quaternion playerRotation;
+
     // 원으로 이동 관련
     float tempAngle = 0;
     [SerializeField]
@@ -74,6 +76,8 @@ public class BossPlayCtrl : Stats
         Reload();
         Move();
         TargetLook();
+
+        playerRotation = transform.rotation;
     }
 
     void ShooterSpawn()

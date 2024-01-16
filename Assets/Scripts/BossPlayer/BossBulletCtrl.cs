@@ -7,17 +7,23 @@ public class BossBulletCtrl : MonoBehaviour
     public BossPlayCtrl player;
     public GameObject target; // µû¶óº¼ Å¸°Ù
 
+    private GameObject playerController;
+
     public void GetTarget(GameObject gameObject)
     {
         target = gameObject;
+        transform.LookAt(target.transform.position);
     }
+
+    private void Start()
+    {
+        playerController = GameObject.FindWithTag("Player");
+    }
+
     private void Update()
     {
-        if (target != null)
-        {
-            Vector3 direction = (target.transform.position - transform.position).normalized;
-            transform.Translate(direction * 10f * Time.deltaTime);
-        }
+        transform.position += transform.forward * (10f * Time.deltaTime);
+        
     }
     void OnTriggerEnter(Collider other)
     {
