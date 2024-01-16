@@ -79,8 +79,8 @@ public class BossPlayCtrl : Stats
     void ShooterSpawn()
     {
         //適経 持失
-        int random = Random.Range(0, 2);
-        num = 3; // PlayerPrefs.GetInt("PlayerCount");
+        int random = Random.Range(0, shooter.Length);
+        num = 3; //PlayerPrefs.GetInt("PlayerCount");
         for (int i = 0; i < num; i++)
         {
             Vector3 shooterSpawn = transform.position + new Vector3(Random.Range(-1f, 1f), 0f, Random.Range(-1f, 1f));

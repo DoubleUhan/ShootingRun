@@ -3151,7 +3151,8 @@ GameObject:
   - component: {fileID: 2045858207}
   - component: {fileID: 2045858209}
   - component: {fileID: 2045858208}
-  - component: {fileID: 2045858210}
+  - component: {fileID: 2045858211}
+  - component: {fileID: 2045858212}
   m_Layer: 0
   m_Name: Test_camera
   m_TagString: MainCamera
@@ -3225,7 +3226,27 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!114 &2045858210
+--- !u!95 &2045858211
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2045858206}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 62a60a01702c22d4d9197a0bfa47d530, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &2045858212
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3234,7 +3255,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2045858206}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 38061d19389c73a458e7ee2e7d532266, type: 3}
+  m_Script: {fileID: 11500000, guid: be150ad68846d7d4dbd5ea95afa7483c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &2075346349
@@ -6788,6 +6809,7 @@ MonoBehaviour:
   trackingTarget: {fileID: 524751612}
   isSkillActive: 0
   warningOn: 0
+  cameraShake: {fileID: 2045858212}
   attackArrange: 3.77
 --- !u!136 &3212751486313734115
 CapsuleCollider:
@@ -21956,6 +21978,7 @@ MonoBehaviour:
   gameend: {fileID: 3212751486313734114}
   playerHp_T: {fileID: 982702945}
   playerMax_HP: 0
+  shooter: []
   angle: 0
 --- !u!1 &9130754021178581933
 GameObject:
