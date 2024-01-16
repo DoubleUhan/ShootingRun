@@ -82,7 +82,7 @@ public class BossCtrl : Stats
 
         while (!isDead)
         {
-            int num = UnityEngine.Random.Range(0, 3);
+            int num = UnityEngine.Random.Range(0, 2); // 폭탄 잠깐 끔
             switch (num)
             {
                 case 0: // 내려 찍기
@@ -166,10 +166,7 @@ public class BossCtrl : Stats
 
     void PlayHurt() // 애니메이션 이벤트에 넣어서 플레이어 공격 맞나 체크하는 함수
     {
-        if (warning.GetComponent<BossSkillRange>().isPlayerIn)
-        {
-            target.GetComponent<BossPlayCtrl>().Hurt(40);
-        }
+
     }
     public void OnDamaged(float Damage)
     {

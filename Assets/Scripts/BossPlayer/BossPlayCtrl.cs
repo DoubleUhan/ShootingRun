@@ -83,10 +83,10 @@ public class BossPlayCtrl : Stats
     void ShooterSpawn()
     {
         //適経 持失
-        int random = Random.Range(0, shooter.Length);
-        num = 3; //PlayerPrefs.GetInt("PlayerCount");
+        num = 15; //PlayerPrefs.GetInt("PlayerCount");
         for (int i = 0; i < num; i++)
         {
+            int random = Random.Range(0, shooter.Length);
             Vector3 shooterSpawn = transform.position + new Vector3(Random.Range(-1f, 1f), 0f, Random.Range(-1f, 1f));
             Instantiate(shooter[random], shooterSpawn, Quaternion.Euler(0f, -90f, 0f));
         }
