@@ -40,20 +40,20 @@ public class ECExplodingProjectile : MonoBehaviour
         previousPosition = transform.position;
     }
 
-    // Update is called once per frame
-    //void Update()
-    //{
-    //    /*     if(Input.GetButtonUp("Fire2"))
-    //         {
-    //             Explode();
-    //         }*/
-    //    timer += Time.deltaTime;
-    //    if (timer >= explosionTimer && explodeOnTimer == true)
-    //    {
-    //        Explode();
-    //    }
+    //Update is called once per frame
+    void Update()
+    {
+        if (Input.GetButtonUp("Fire2"))
+        {
+            Explode();
+        }
+        timer += Time.deltaTime;
+        if (timer >= explosionTimer && explodeOnTimer == true)
+        {
+            Explode();
+        }
 
-    //}
+    }
 
     void FixedUpdate()
     {

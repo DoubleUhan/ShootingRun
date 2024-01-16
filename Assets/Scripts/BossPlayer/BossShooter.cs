@@ -50,7 +50,7 @@ public class BossShooter : MonoBehaviour
             WaitForSeconds delay = new WaitForSeconds(shootInterval);
             while (true)
             {
-                BossBulletCtrl bullet = Instantiate(bulletPrefab, transform.position + new Vector3(-1f, 0, 0),Quaternion.identity).GetComponent<BossBulletCtrl>();
+                BossBulletCtrl bullet = Instantiate(bulletPrefab, transform.position + new Vector3(-1f, 0, 0), Quaternion.identity).GetComponent<BossBulletCtrl>();
                 bullet.GetTarget(target);
                 yield return delay;
             }
