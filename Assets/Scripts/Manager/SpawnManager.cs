@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class SpawnManager : MonoBehaviour
 {
-    public static SpawnManager instance;
+    //public static SpawnManager instance;
 
     [SerializeField] GameObject[] enemy_Object;
     [SerializeField] GameObject arithmetic_Object;
@@ -28,16 +28,17 @@ public class SpawnManager : MonoBehaviour
 
     void Awake()
     {
-        if (instance != null)
-            return;
-        else
-        {
-            instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
+        //if (instance != null)
+        //    return;
+        //else
+        //{
+        //    instance = this;
+        //    DontDestroyOnLoad(gameObject);
+        //}
     }
     void Start()
     {
+        
         StartCoroutine(Enemy_Produce());
         StartCoroutine(Arithmetic_Produce());
         StartCoroutine(Needle_Produce());
