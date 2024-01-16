@@ -51,7 +51,7 @@ public class GameManager : MonoBehaviour
         cameras[1].transform.SetParent(null);
         fadeBG.SetActive(true);
 
-        StageManager.instance.isClear_Stage1 = true;
+        StageManager.Instance.isClear_Stage1 = true;
         StartCoroutine(SceneMoveWait(2f, "StageMap"));
         Debug.Log("스테이지 클리어");
     }

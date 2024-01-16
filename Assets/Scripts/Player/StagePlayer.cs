@@ -13,16 +13,15 @@ public class StagePlayer : MonoBehaviour
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-
-        if (StageManager.instance.isClear_Stage1)
+        if (StageManager.Instance.isClear_Stage1)
         {
-            StageManager.instance.stage1_col.SetActive(false);
             transform.position = new Vector3(-31, 0, 72);
+            StageManager.Instance.stage1_col.SetActive(false);
         }
-        else if (StageManager.instance.isClear_Stage2)
+        else if (StageManager.Instance.isClear_Stage2)
         {
-            StageManager.instance.stage2_col.SetActive(false);
             transform.position = new Vector3(-29, 0, 41);
+            StageManager.Instance.stage2_col.SetActive(false);
         }
 
 
