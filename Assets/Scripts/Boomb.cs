@@ -9,6 +9,9 @@ public class Boomb : MonoBehaviour
     public float explosionForce = 1000f;
     public float fuseTime; // 폭탄이 터지기까지의 대기 시간
 
+    public BossPlayCtrl player; // 메인 플레이어
+    public BossCtrl gameend; // BossCtrl 참조?
+
     // public GameObject effect;
 
     Transform[] pieces;
@@ -96,7 +99,24 @@ public class Boomb : MonoBehaviour
             {
                 if (IsWithinExplosionRange(nearbyObject.transform.position))
                 {
-                    nearbyObject.gameObject.GetComponent<BossPlayCtrl>().Hurt(30);
+                    if(nearbyObject.tag == "Player")
+                    {
+                        yield return null;
+                    }
+                    else
+                    {
+                        Destroy(nearbyObject.gameObject);
+
+                        player.PlayerCount -= 1;
+                        Debug.Log(player.PlayerCount);
+
+                        // 애들 다 죽으면 게임 종료
+                        if (player.PlayerCount <= 0)
+                        {
+                            Camera.main.transform.SetParent(null);
+                            gameend.GameFail();
+                        }
+                    }
                 }
             }
         }

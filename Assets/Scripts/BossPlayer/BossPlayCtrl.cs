@@ -45,29 +45,29 @@ public class BossPlayCtrl : Stats
 
     public Quaternion playerRotation;
 
+    float num;
+    public float PlayerCount; // 일반 스테이지에서 넘어온 슈터 숫자;
+
     // 원으로 이동 관련
     float tempAngle = 0;
     [SerializeField]
     float angle; // 각도를 저장할 변수
     float radius = 15f; // 원의 반지름
 
-    float num;
 
     void Start()
     {
         //shooter.GetComponent<BossShooter>().Spawn();
         ShooterSpawn();
 
-        HP = PlayerPrefs.GetInt("PlayerCount");
-        Debug.Log($"player Max hp = {HP}");
-        HP *= 100;
-        playerMax_HP = HP;
+        //HP = PlayerPrefs.GetInt("PlayerCount");
+        //Debug.Log($"player Max hp = {HP}");
+        //HP *= 100;
+        //playerMax_HP = HP;
         colliders = GetComponent<Collider>();
         agent = GetComponent<NavMeshAgent>();
         rb = GetComponent<Rigidbody>();
 
-
-        playerHp_T.text = HP.ToString() + "/" + playerMax_HP.ToString();
     }
 
     void Update()
@@ -78,12 +78,22 @@ public class BossPlayCtrl : Stats
         TargetLook();
 
         playerRotation = transform.rotation;
+
+        // 애들 다 죽으면 게임 종료
+        if (PlayerCount <= 0)
+        {
+            Camera.main.transform.SetParent(null);
+            gameend.GameFail();
+        }
     }
 
     void ShooterSpawn()
     {
         //클론 생성
         num = 15; //PlayerPrefs.GetInt("PlayerCount");
+        PlayerCount = num; //PlayerPrefs.GetInt("PlayerCount");
+        Debug.Log(PlayerCount);
+
         for (int i = 0; i < num; i++)
         {
             int random = Random.Range(0, shooter.Length);
@@ -172,22 +182,33 @@ public class BossPlayCtrl : Stats
     {
         HP -= damege;
     }
-    public void Hurt(int damage)
-    {
-        Debug.Log("데미지 받기 전" + HP);
-        HP -= damage; // 보스 공격 데미지 다 똑같은듯
-        Debug.Log("데미지 받고 후" + HP);
+    //public void Hurt(int damage)
+    //{
+    //    Debug.Log("데미지 받기 전" + HP);
+    //    HP -= damage; // 보스 공격 데미지 다 똑같은듯
+    //    Debug.Log("데미지 받고 후" + HP);
 
-        playerHP_bar.value = HP / playerMax_HP;
+    //    playerHP_bar.value = HP / playerMax_HP;
 
-        playerHp_T.text = HP.ToString() + "  /  " + playerMax_HP.ToString();
+    //    playerHp_T.text = HP.ToString() + "  /  " + playerMax_HP.ToString();
 
-        if (HP <= 0)
-        {
-            // 보스컨트롤 함수 GameFail();
-            gameend.GameFail();
-        }
-    }
+    //    if (HP <= 0)
+    //    {
+    //        // 보스컨트롤 함수 GameFail();
+    //        gameend.GameFail();
+    //    }
+    //}
 
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    //Debug.Log(other.gameObject.name);
+    //    if (other.gameObject.CompareTag("BossPunch"))
+    //    {
+    //        //플레이어까지 없애면 게임 터짐 오류오류오류오류오
+    //        //Destroy(gameObject);
+    //        //PlayerCount -= 1;
+    //        Debug.Log("남은 아이들은 : " + PlayerCount);
+    //    }
+    //}
 
 }
