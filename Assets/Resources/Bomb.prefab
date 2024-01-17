@@ -2517,6 +2517,8 @@ MonoBehaviour:
   explosionRadius: 5
   explosionForce: 250
   fuseTime: 3
+  player: {fileID: 0}
+  gameend: {fileID: 0}
 --- !u!54 &2604491939059448862
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2525,7 +2527,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8737876172079810959}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 50
   m_Drag: 0
   m_AngularDrag: 0
   m_UseGravity: 1

@@ -26,6 +26,7 @@ TagManager:
   - FxTemporaire
   - BossStage
   - BossPunch
+  - Shooter
   layers:
   - Default
   - TransparentFX
