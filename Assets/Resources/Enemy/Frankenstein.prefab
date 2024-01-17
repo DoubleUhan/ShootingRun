@@ -2417,7 +2417,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: CFXR Firework 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 532869621473145356, guid: 38b99d63cdad9994b89d14c10a8783ce, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 38b99d63cdad9994b89d14c10a8783ce, type: 3}
 --- !u!4 &9082085876172082996 stripped
 Transform:

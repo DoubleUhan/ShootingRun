@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class TestEnemy : Stats
+public class EnemyCtrl : Stats
 {
     ParticleSystem deathParticle;
     NavMeshAgent agent;
@@ -38,6 +38,7 @@ public class TestEnemy : Stats
             deathParticle.transform.parent = null;
             deathParticle.Play();
             Destroy(gameObject);
+            Destroy(deathParticle,0.5f);
             GameManager.Instance.enemyCount++;
             if (GameManager.Instance.enemyCount >= GameManager.Instance.goalEnemyCount)
                 GameManager.Instance.ClearStage1();
