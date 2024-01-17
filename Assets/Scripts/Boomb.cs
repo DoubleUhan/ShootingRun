@@ -34,6 +34,8 @@ public class Boomb : MonoBehaviour
 
     void Start()
     {
+        player = GameObject.FindWithTag("Player").GetComponent<BossPlayCtrl>();
+
         //Debug.Log(explosionRadius);
 
         boss = GameObject.FindGameObjectWithTag("Boss");
@@ -95,28 +97,14 @@ public class Boomb : MonoBehaviour
         Collider[] colliders = Physics.OverlapSphere(transform.position, explosionRadius);
         foreach (Collider nearbyObject in colliders)
         {
-            if (nearbyObject.gameObject.CompareTag("Player"))
+            if (nearbyObject.gameObject.CompareTag("Shooter"))
             {
                 if (IsWithinExplosionRange(nearbyObject.transform.position))
                 {
-                    if(nearbyObject.tag == "Player")
-                    {
-                        yield return null;
-                    }
-                    else
-                    {
-                        Destroy(nearbyObject.gameObject);
+                    Destroy(nearbyObject.gameObject);
+                    //nearbyObject.gameObject.SetActive(false);
 
-                        player.PlayerCount -= 1;
-                        Debug.Log(player.PlayerCount);
-
-                        // 애들 다 죽으면 게임 종료
-                        if (player.PlayerCount <= 0)
-                        {
-                            Camera.main.transform.SetParent(null);
-                            gameend.GameFail();
-                        }
-                    }
+                    player.PlayerCount -= 1;
                 }
             }
         }
