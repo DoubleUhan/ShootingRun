@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour
 
     [Header("FadeOut 관련 변수")]
     [SerializeField] GameObject fadeBG;
-    [HideInInspector] public bool stage1_Clear;
+    [HideInInspector] public bool stage_Clear;
 
     public GameObject gameoverPopup;
 
@@ -36,22 +36,21 @@ public class GameManager : MonoBehaviour
         else
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
         }
 
         Screen.SetResolution(540, 960, false);
         // image = GetComponent<Image>();
     }
 
-    public void ClearStage1()
+    public void ClearStage()
     {
         // 페이드 아웃, 캐릭터 앞으로 이동, 카메라 고정, 씬 넘어가기
-        stage1_Clear = true;
         cameras[0].transform.SetParent(null);
         cameras[1].transform.SetParent(null);
         fadeBG.SetActive(true);
-
-        StageManager.Instance.isClear_Stage1 = true;
+        StageManager.Instance.clearStageMax = PlayerPrefs.GetInt("Stage");
+        StageManager.Instance.isClear_Stage[PlayerPrefs.GetInt("Stage") - 1] = true;
+        PlayerPrefs.SetInt("IsClear", 1);
         StartCoroutine(SceneMoveWait(2f, "StageMap"));
         Debug.Log("스테이지 클리어");
     }

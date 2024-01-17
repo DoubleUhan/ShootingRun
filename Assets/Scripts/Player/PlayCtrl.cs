@@ -34,6 +34,7 @@ public class PlayCtrl : Stats
     private void Start()
     {
         randomNum = Random.Range(0, 3);
+        PlayerPrefs.SetInt("IsClear", 0);
         PlayerPrefs.SetInt("PlayerCount", 1);
         GameManager.Instance.player_Count = 1;
         GameManager.Instance.player_Count_T.text = GameManager.Instance.player_Count.ToString();
@@ -42,6 +43,7 @@ public class PlayCtrl : Stats
         Shooter shooter = Instantiate(shooterPrefab[randomNum], spawnTr.position, Quaternion.Euler(0f, -90f, 0f)).GetComponent<Shooter>();
         shooter.transform.SetParent(transform);
         shooter.player = this;
+        shooterList.Add(shooter);
     }
     // Update is called once per frame
     void Update()
@@ -52,8 +54,7 @@ public class PlayCtrl : Stats
 
     void Move()
     {
-
-        if (!GameManager.Instance.stage1_Clear)
+        if (PlayerPrefs.GetInt("IsClear") == 0) // IsClear = false
         {
             dir.z = Mathf.Clamp(dir.z + Input.GetAxisRaw("Horizontal") * Time.deltaTime * speed, -4.5f, 4.5f);
             transform.position = dir;
