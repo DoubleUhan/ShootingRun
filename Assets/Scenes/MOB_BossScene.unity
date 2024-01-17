@@ -15,7 +15,7 @@ RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 9
   m_Fog: 1
-  m_FogColor: {r: 0.5471698, g: 0.31229973, b: 0.44831604, a: 1}
+  m_FogColor: {r: 0.58431375, g: 0.5176471, b: 0.59607846, a: 1}
   m_FogMode: 3
   m_FogDensity: 0.01
   m_LinearFogStart: 0
@@ -6688,7 +6688,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: b3145eaaa799f7e49b0de06128ad6470, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -6717,7 +6717,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1230583398}
-  m_Mesh: {fileID: 6519003460824902247, guid: a464c520f916e4f468a69c30374a62e7, type: 3}
+  m_Mesh: {fileID: 4300000, guid: d2146b4b1c0b0e34596024b00f7c25d7, type: 2}
 --- !u!4 &1230583401
 Transform:
   m_ObjectHideFlags: 0
@@ -12061,6 +12061,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1545110278}
   - component: {fileID: 1545110277}
+  - component: {fileID: 1545110279}
   m_Layer: 0
   m_Name: Directional Light
   m_TagString: Untagged
@@ -12145,6 +12146,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!114 &1545110279
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1545110276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 1
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_LightLayerMask: 1
+  m_CustomShadowLayers: 0
+  m_ShadowLayerMask: 1
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
 --- !u!1 &1570394830
 GameObject:
   m_ObjectHideFlags: 0
@@ -12642,6 +12663,7 @@ GameObject:
   - component: {fileID: 2045858209}
   - component: {fileID: 2045858208}
   - component: {fileID: 2045858210}
+  - component: {fileID: 2045858211}
   m_Layer: 0
   m_Name: Test_camera
   m_TagString: MainCamera
@@ -12727,6 +12749,39 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be150ad68846d7d4dbd5ea95afa7483c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2045858211
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2045858206}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_VolumeFrameworkUpdateModeOption: 2
+  m_RenderPostProcessing: 1
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_AllowXRRendering: 1
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_Version: 2
 --- !u!1 &2075346349
 GameObject:
   m_ObjectHideFlags: 0
@@ -16263,7 +16318,7 @@ MonoBehaviour:
   toBoss: {fileID: 1247222894}
   failPopup: {fileID: 691847921}
   clearPopup: {fileID: 1751896554}
-  bomb: {fileID: 8737876172079810959, guid: 9c658760f9a257c49bcad8c1805d0702, type: 3}
+  bomb: {fileID: 8737876172079810959, guid: ba8b3c9d262b4a743b127da342318ce1, type: 3}
   bombSpawnPoint:
   - {fileID: 1323417904}
   - {fileID: 1258406747}
