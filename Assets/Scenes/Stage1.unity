@@ -1877,7 +1877,7 @@ MonoBehaviour:
   - {fileID: 6053650055669364426}
   - {fileID: 6053650055669364428}
   fadeBG: {fileID: 701504334}
-  stage1_Clear: 0
+  stage_Clear: 0
   gameoverPopup: {fileID: 209329409}
   player_Count_T: {fileID: 1010881437}
   player_Count: 1000
@@ -3989,6 +3989,10 @@ PrefabInstance:
       propertyPath: goggle_Stamina
       value: 
       objectReference: {fileID: 406878229}
+    - target: {fileID: 6980876924864240401, guid: 401fa80d167e75f4f86e748205d85ab2, type: 3}
+      propertyPath: shooterList.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6980876924864240401, guid: 401fa80d167e75f4f86e748205d85ab2, type: 3}
       propertyPath: shooterPrefab.Array.data[0]
       value: 

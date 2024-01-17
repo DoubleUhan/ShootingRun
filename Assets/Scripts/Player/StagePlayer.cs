@@ -13,18 +13,9 @@ public class StagePlayer : MonoBehaviour
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-        if (StageManager.Instance.isClear_Stage1)
-        {
-            transform.position = new Vector3(-31, 0, 72);
-            StageManager.Instance.stage1_col.SetActive(false);
-        }
-        else if (StageManager.Instance.isClear_Stage2)
-        {
-            transform.position = new Vector3(-29, 0, 41);
-            StageManager.Instance.stage2_col.SetActive(false);
-        }
 
-
+        transform.position = StageManager.Instance.GetStartPos();
+        StageManager.Instance.SetNextStagePos();
     }
 
     void Update()
@@ -61,17 +52,33 @@ public class StagePlayer : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        switch (other.gameObject.tag)
+        switch(StageManager.Instance.clearStageMax)
         {
-            case "Stage1":
+            case 0:
                 SceneManager.LoadScene("Stage1");
+                PlayerPrefs.SetInt("Stage", 1);
                 break;
-            case "Stage2":
+            case 1:
                 SceneManager.LoadScene("Stage2");
+                PlayerPrefs.SetInt("Stage", 2);
                 break;
-            case "Boss":
+            case 2:
                 SceneManager.LoadScene("MOB_BossScene");
                 break;
         }
+        //switch (other.gameObject.tag)
+        //{
+        //    case "Stage1":
+        //        SceneManager.LoadScene("Stage1");
+        //        PlayerPrefs.SetInt("Stage", 1);
+        //        break;
+        //    case "Stage2":
+        //        SceneManager.LoadScene("Stage2");
+        //        PlayerPrefs.SetInt("Stage", 2);
+        //        break;
+        //    case "Boss":
+        //        SceneManager.LoadScene("MOB_BossScene");
+        //        break;
+        //}
     }
 }
