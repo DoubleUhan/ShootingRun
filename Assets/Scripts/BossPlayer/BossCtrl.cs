@@ -14,7 +14,9 @@ public class BossCtrl : Stats
     GameObject target; // 플레이어
     [SerializeField] GameObject formatTarget; // 스킬 사용후 바라볼 위치 (가운대)
 
-    [SerializeField] GameObject warning; // 공격 예고 오브젝트
+    [SerializeField] GameObject warning1; // 패턴 1 공격 예고 오브젝트
+    [SerializeField] GameObject warning2; // 패턴 2 공격 예고 오브젝트
+    [SerializeField] GameObject toBoss; // 패턴 2 공격 예고 각도(방향) 맞추는 용도
 
     [Header("팝업 설정")]
     [SerializeField] GameObject failPopup; // 게임 실패 시 뜨는 팝업
@@ -59,7 +61,7 @@ public class BossCtrl : Stats
     {
         if (isSkillActive)
         {
-            Vector3 warningTarget = warning.transform.position;
+            Vector3 warningTarget = warning1.transform.position;
             warningTarget.y = transform.position.y;
             Vector3 dir = warningTarget - transform.position;
 
@@ -67,7 +69,7 @@ public class BossCtrl : Stats
         }
         else
         {
-            Vector3 warningTarget = warning.transform.position;
+            Vector3 warningTarget = warning1.transform.position;
             warningTarget.x = transform.position.x;
             Vector3 dir = formatTarget.transform.position - transform.position;
             transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(dir), Time.deltaTime * 3);
@@ -82,7 +84,7 @@ public class BossCtrl : Stats
 
         while (!isDead)
         {
-            int num = UnityEngine.Random.Range(0, 2); // 폭탄 잠깐 끔
+            int num = UnityEngine.Random.Range(0, 3);
             switch (num)
             {
                 case 0: // 내려 찍기
@@ -103,15 +105,15 @@ public class BossCtrl : Stats
 
     IEnumerator PullDown()
     {
-        warning.transform.position = target.transform.position;
-        warning.SetActive(true);
+        warning1.transform.position = target.transform.position;
+        warning1.SetActive(true);
 
         yield return new WaitForSeconds(1f);
         isSkillActive = true;
         
         animator.SetTrigger("Attack1");
         yield return new WaitForSeconds(0.3f); // 공격 시작 0.1초 뒤에 경고 삭제
-        warning.SetActive(false);
+        warning1.SetActive(false);
         animator.SetTrigger("Idle");
 
         SoundManager.Instance.Boss_Smile(); // 보스 웃음 소리
@@ -121,8 +123,10 @@ public class BossCtrl : Stats
 
     IEnumerator SideAttack()
     {
-        warning.transform.position = target.transform.position;
-        warning.SetActive(true);
+        warning2.transform.position = target.transform.position;
+        warning2.transform.LookAt(toBoss.transform.position); // 각도 맞추기
+        //warning2.transform.rotation = target.transform.rotation;
+        warning2.SetActive(true);
 
         yield return new WaitForSeconds(1f); // 경고가 뜨고 1초 뒤에 공격 시작
         isSkillActive = true;
@@ -130,7 +134,7 @@ public class BossCtrl : Stats
         animator.SetTrigger("Attack2");
        
         yield return new WaitForSeconds(0.3f); // 공격 시작 0.1초 뒤에 경고 삭제
-        warning.SetActive(false);
+        warning2.SetActive(false);
         animator.SetTrigger("Idle");
 
         yield return null;
@@ -164,10 +168,10 @@ public class BossCtrl : Stats
         isSkillActive = false;
     }
 
-    void PlayHurt() // 애니메이션 이벤트에 넣어서 플레이어 공격 맞나 체크하는 함수
-    {
+    //void PlayHurt() // 애니메이션 이벤트에 넣어서 플레이어 공격 맞나 체크하는 함수
+    //{
 
-    }
+    //}
     public void OnDamaged(float Damage)
     {
         if (isDead)
@@ -188,7 +192,6 @@ public class BossCtrl : Stats
 
     public void GameFail()
     {
-        Camera.main.transform.SetParent(null);
         //target.GetComponent<Renderer>().enabled = false;
         target.SetActive(false);
         failPopup.SetActive(true);

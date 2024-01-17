@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class BossShooter : MonoBehaviour
 {
@@ -10,7 +11,10 @@ public class BossShooter : MonoBehaviour
     //총알 프리팹
     public GameObject bulletPrefab;
     public BossPlayCtrl player; // 메인 플레이어
+    public BossCtrl gameend; // BossCtrl 참조?
+
     public GameObject target; // 따라볼 타겟
+
 
     Rigidbody rb;
 
@@ -47,7 +51,8 @@ public class BossShooter : MonoBehaviour
     {
         if (bulletPrefab != null)
         {
-            WaitForSeconds delay = new WaitForSeconds(shootInterval);
+            float shotDelay = Random.Range(0.3f, 0.6f);
+            WaitForSeconds delay = new WaitForSeconds(shotDelay);
             while (true)
             {
                 BossBulletCtrl bullet = Instantiate(bulletPrefab, transform.position + new Vector3(-1f, 0, 0), Quaternion.identity).GetComponent<BossBulletCtrl>();
@@ -57,6 +62,24 @@ public class BossShooter : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        //Debug.Log(other.gameObject.name);
+        if (other.gameObject.CompareTag("BossPunch"))
+        {
+            Debug.Log("슈터 맞음");
+            Destroy(gameObject);
+            player.PlayerCount -= 1;
+            Debug.Log("남은 아이들은 : " + player.PlayerCount);
+
+            //// 애들 다 죽으면 게임 종료
+            //if (player.PlayerCount <= 0)
+            //{
+            //    Camera.main.transform.SetParent(null);
+            //    gameend.GameFail();
+        }
+    } 
+}
 
 
     //public void Spawn()
@@ -71,4 +94,4 @@ public class BossShooter : MonoBehaviour
     //        GameObject spawnShooter = Instantiate(shooter[random].gameObject, shooterSpawn, Quaternion.Euler(0f, -90f, 0f));
     //    }
     //}
-}
+
