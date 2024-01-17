@@ -26,7 +26,7 @@ public class BossCtrl : Stats
     [SerializeField] GameObject bomb; // 떨굴 폭탄
     [SerializeField] GameObject[] bombSpawnPoint;
 
-    [SerializeField] Slider bossHP_bar;
+    [SerializeField] Image bossHP_bar;
     [SerializeField] float maxBossHP;
 
     [Header("머리따라가는 에니메이션")]
@@ -187,7 +187,7 @@ public class BossCtrl : Stats
             GameClear();
         }
 
-        bossHP_bar.value = curBossHP / maxBossHP;
+        bossHP_bar.fillAmount = curBossHP / maxBossHP;
     }
 
     public void GameFail()
