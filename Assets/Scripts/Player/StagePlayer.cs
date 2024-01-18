@@ -12,6 +12,7 @@ public class StagePlayer : MonoBehaviour
     bool isArrive;
     void Start()
     {
+        Time.timeScale = 1;
         agent = GetComponent<NavMeshAgent>();
 
         transform.position = StageManager.Instance.GetStartPos();
@@ -66,19 +67,5 @@ public class StagePlayer : MonoBehaviour
                 SceneManager.LoadScene("MOB_BossScene");
                 break;
         }
-        //switch (other.gameObject.tag)
-        //{
-        //    case "Stage1":
-        //        SceneManager.LoadScene("Stage1");
-        //        PlayerPrefs.SetInt("Stage", 1);
-        //        break;
-        //    case "Stage2":
-        //        SceneManager.LoadScene("Stage2");
-        //        PlayerPrefs.SetInt("Stage", 2);
-        //        break;
-        //    case "Boss":
-        //        SceneManager.LoadScene("MOB_BossScene");
-        //        break;
-        //}
     }
 }
