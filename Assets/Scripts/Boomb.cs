@@ -40,7 +40,7 @@ public class Boomb : MonoBehaviour
 
         boss = GameObject.FindGameObjectWithTag("Boss");
         meshRenderer = GetComponent<MeshRenderer>();
-        StartCoroutine(StartFuse());
+        //StartCoroutine(StartFuse());
 
     }
 
@@ -50,9 +50,8 @@ public class Boomb : MonoBehaviour
         Explode();
     }
 
-    void Explode()
+    public void Explode()
     {
-
         meshRenderer.enabled = false;
 
         foreach (var piece in pieces)
@@ -86,7 +85,7 @@ public class Boomb : MonoBehaviour
 
     IEnumerator DeleteObject()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(0.5f);
         Destroy(gameObject);
     }
 

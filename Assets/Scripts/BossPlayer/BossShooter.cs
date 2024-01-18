@@ -51,7 +51,7 @@ public class BossShooter : MonoBehaviour
     {
         if (bulletPrefab != null)
         {
-            float shotDelay = Random.Range(0.3f, 0.6f);
+            float shotDelay = Random.Range(3f, 6f);
             WaitForSeconds delay = new WaitForSeconds(shotDelay);
             while (true)
             {
