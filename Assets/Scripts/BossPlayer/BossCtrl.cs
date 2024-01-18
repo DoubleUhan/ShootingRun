@@ -36,8 +36,12 @@ public class BossCtrl : Stats
     [HideInInspector] public bool isSkillActive; // 보스 스킬 실행 여부
     [HideInInspector] public bool warningOn = false;
 
-    [Header ("카메라 흔들림")]
+    [Header("카메라 흔들림")]
     public CameraShake cameraShake;
+
+    [Header("폭탄 터짐")]
+    public List<Boomb> bombs = new List<Boomb>();
+
 
     [Range(0, 10)]
     public float attackArrange;
@@ -48,6 +52,8 @@ public class BossCtrl : Stats
 
     void Start()
     {
+        Time.timeScale = 1;
+
         SoundManager.Instance.Boss_BGM();
 
         target = GameObject.FindGameObjectWithTag("Player");
@@ -84,7 +90,7 @@ public class BossCtrl : Stats
 
         while (!isDead)
         {
-            int num = UnityEngine.Random.Range(0, 3);
+            int num = UnityEngine.Random.Range(0, 4);
             switch (num)
             {
                 case 0: // 내려 찍기
@@ -98,6 +104,10 @@ public class BossCtrl : Stats
                 case 2: // 폭탄 던지기
                     StartCoroutine(Bomb());
                     break;
+
+                case 3:
+                    StartCoroutine(Boom());
+                    break;
             }
             yield return new WaitForSeconds(delay);
         }
@@ -110,7 +120,7 @@ public class BossCtrl : Stats
 
         yield return new WaitForSeconds(1f);
         isSkillActive = true;
-        
+
         animator.SetTrigger("Attack1");
         yield return new WaitForSeconds(0.3f); // 공격 시작 0.1초 뒤에 경고 삭제
         warning1.SetActive(false);
@@ -132,7 +142,7 @@ public class BossCtrl : Stats
         isSkillActive = true;
 
         animator.SetTrigger("Attack2");
-       
+
         yield return new WaitForSeconds(0.3f); // 공격 시작 0.1초 뒤에 경고 삭제
         warning2.SetActive(false);
         animator.SetTrigger("Idle");
@@ -146,10 +156,9 @@ public class BossCtrl : Stats
     }
     IEnumerator Bomb() // 애니메, 사운드 없음ㄴ
     {
-        int bombs = UnityEngine.Random.Range(3, 6);
+        int random = UnityEngine.Random.Range(3, 6);
 
-
-        for (int bomb = 0; bomb < bombs; bomb++)
+        for (int i = 0; i < random; i++)
         {
             BombSpawn();
         }
@@ -159,7 +168,28 @@ public class BossCtrl : Stats
     void BombSpawn()
     {
         int randNum = UnityEngine.Random.Range(0, 9);
-        GameObject spawnbomb = Instantiate(bomb, bombSpawnPoint[randNum].transform.position, Quaternion.Euler(-90f, 0f, 0f));
+        Boomb spawnbomb = Instantiate(bomb, bombSpawnPoint[randNum].transform.position, Quaternion.Euler(-90f, 0f, 0f)).GetComponent<Boomb>();
+        bombs.Add(spawnbomb);
+    }
+
+    IEnumerator Boom() // 폭탄 터치는 함수 패턴 4
+    {
+        animator.SetTrigger("Attack3");
+
+        yield return new WaitForSeconds(1f);
+
+        animator.SetTrigger("Idle");
+
+        yield return null;
+    }
+
+    public void BoomBoom()
+    {
+        foreach (Boomb bomb in bombs)
+        {
+            bomb.Explode();
+        }
+        bombs.Clear();
     }
 
 

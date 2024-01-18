@@ -2505,7 +2505,7 @@ MonoBehaviour:
   player: {fileID: 0}
   gameend: {fileID: 0}
   target: {fileID: 0}
-  shootInterval: 0.1
+  shootInterval: 0.5
   angle: 0
 --- !u!1 &8818006659845190495
 GameObject:
