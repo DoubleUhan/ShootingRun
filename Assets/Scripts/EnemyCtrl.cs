@@ -25,11 +25,11 @@ public class EnemyCtrl : Stats
         // ±æÃ£±â ½ÃÀÛ
         agent.isStopped = false;
     }
-   /* private void OnDestroy()
-    {
-        
-        Destroy(this);
-    }*/
+    /* private void OnDestroy()
+     {
+
+         Destroy(this);
+     }*/
     public void OnDamaged(float Damage)
     {
         HP -= Damage;
@@ -38,10 +38,17 @@ public class EnemyCtrl : Stats
             deathParticle.transform.parent = null;
             deathParticle.Play();
             Destroy(gameObject);
-            Destroy(deathParticle,0.5f);
+            Destroy(deathParticle, 0.5f);
             GameManager.Instance.enemyCount++;
-            if (GameManager.Instance.enemyCount >= GameManager.Instance.goalEnemyCount)
+            if (GameManager.Instance.enemyCount >= GameManager.Instance.goalEnemyCount && GameManager.Instance.stage_num == 1)
+            {
                 GameManager.Instance.ClearStage();
+            }
+            else if (GameManager.Instance.enemyCount >= GameManager.Instance.goalEnemyCount && GameManager.Instance.stage_num == 2)
+
+            {
+                GameManager.Instance.ClearStage2();
+            }
         }
     }
 }

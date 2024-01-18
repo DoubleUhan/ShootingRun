@@ -21,5 +21,13 @@ public class FadeOut : MonoBehaviour
             color.a += Time.deltaTime;
         }
         image.color = color;
+
+
+        //if (image.color.a >= 255 && GameManager.Instance.stage_num == 1)
+        //{
+        //    Debug.Log("123123");
+        //    GameManager.Instance.gameClearPopup.SetActive(true);
+        //    Time.timeScale = 0;
+        //}
     }
 }
