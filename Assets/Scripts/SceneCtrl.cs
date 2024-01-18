@@ -5,6 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class SceneCtrl : MonoBehaviour
 {
+    private void Awake()
+    {
+        Screen.SetResolution(540, 960, false);
+    }
     public void SceneStageScene()
     {
         SceneManager.LoadScene("StageMap"); // 원래 SampleScene이었던 씬 이름 바꾸면 

@@ -69,7 +69,7 @@ public class GameManager : MonoBehaviour
         fadeBG.gameObject.SetActive(true);
         StartCoroutine(GameEndPopup(gameoverPopup));
     }
- 
+
     private IEnumerator GameEndPopup(GameObject popup)
     {
         while (!fadeBG.isEnd)
@@ -78,6 +78,7 @@ public class GameManager : MonoBehaviour
         }
         fadeBG.gameObject.SetActive(false);
         popup.SetActive(true);
+        Time.timeScale = 0;
     }
 
     public void ClickBtn(string sceneName)
