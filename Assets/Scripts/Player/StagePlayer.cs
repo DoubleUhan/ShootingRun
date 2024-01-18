@@ -33,7 +33,7 @@ public class StagePlayer : MonoBehaviour
             {
                 Debug.Log("¿ìÅ¬¸¯");
 
-                if (hit.collider.CompareTag("Stage1") || hit.collider.CompareTag("Stage2")|| hit.collider.CompareTag("BossStage"))
+                if (hit.collider.CompareTag("Stage1") || hit.collider.CompareTag("Stage2") || hit.collider.CompareTag("BossStage"))
                 {
                     MoveToTarget(hit.point);
                 }
@@ -52,7 +52,7 @@ public class StagePlayer : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        switch(StageManager.Instance.clearStageMax)
+        switch (StageManager.Instance.clearStageMax)
         {
             case 0:
                 SceneManager.LoadScene("Stage1");

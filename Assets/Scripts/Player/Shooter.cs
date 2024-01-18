@@ -84,7 +84,7 @@ public class Shooter : MonoBehaviour
                     player.Add(artic.value);
                     break;
                 case ArithmeticType.sub:
-                    player.Sub(artic.value);
+                    player.Sub(artic.value,false);
                     break;
                 case ArithmeticType.mult:
                     player.Mult(artic.value);
@@ -99,7 +99,7 @@ public class Shooter : MonoBehaviour
 
         if (other.CompareTag("Enemy"))
         {
-            player.Sub(1);
+            player.Sub(1,true);
             if (player.shooterList.Count <= 0)
             {
                 Time.timeScale = 0;

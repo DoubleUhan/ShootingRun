@@ -132,9 +132,9 @@ public class PlayCtrl : Stats
         GameManager.Instance.player_Count_T.text = GameManager.Instance.player_Count.ToString();
         PlayerPrefs.SetInt("PlayerCount", shooterList.Count);
     }
-    public void Sub(int num)
+    public void Sub(int num, bool isEnemy)
     {
-        if (shooterList.Count <= 1)
+        if (shooterList.Count <= 1 && !isEnemy)
             return;
 
         for (int i = 0; i < num; i++)
@@ -180,7 +180,7 @@ public class PlayCtrl : Stats
         if (shooterList.Count <= 1)
             return;
 
-        Sub((int)Mathf.Round(shooterList.Count / num));
+        Sub((int)Mathf.Round(shooterList.Count / num), false);
 
         GameManager.Instance.player_Count = shooterList.Count;
         GameManager.Instance.player_Count_T.text = GameManager.Instance.player_Count.ToString();
