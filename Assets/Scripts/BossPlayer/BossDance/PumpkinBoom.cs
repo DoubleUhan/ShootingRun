@@ -8,11 +8,12 @@ public class PumpkinBoom : MonoBehaviour
     public float explosionRadius;
     public float explosionForce = 1000f;
 
-    Transform[] pieces;
+    public float spin;
+
+    [SerializeField] Transform[] pieces;
     MeshRenderer meshRenderer;
 
     private float trans;
-
 
     private void Awake()
     {
@@ -28,10 +29,19 @@ public class PumpkinBoom : MonoBehaviour
 
         }
     }
+    private void Start()
+    {
+        //particle.gameObject.SetActive(false);
+    }
 
     // Update is called once per frame
     void Update()
     {
+        if (trans > -5)
+        {
+            transform.Rotate(Vector3.up * Time.deltaTime * spin);
+        }
+
         trans = transform.position.y;
 
         if (trans <= -8)
@@ -40,9 +50,9 @@ public class PumpkinBoom : MonoBehaviour
         }
     }
 
+
     void Explode()
     {
-
         meshRenderer.enabled = false;
 
         foreach (var piece in pieces)
@@ -52,17 +62,13 @@ public class PumpkinBoom : MonoBehaviour
                 piece.gameObject.SetActive(true);
                 Rigidbody rb = piece.GetComponent<Rigidbody>();
 
+                piece.transform.parent = null;
+                gameObject.SetActive(false);
                 piece.GetComponent<MeshRenderer>().enabled = true;
                 rb.isKinematic = false;
                 rb.AddExplosionForce(explosionForce, transform.position, explosionRadius);
             }
         }
-        StartCoroutine(DeleteObject());
-    }
 
-    IEnumerator DeleteObject()
-    {
-        yield return new WaitForSeconds(3f);
-        Destroy(gameObject);
     }
 }

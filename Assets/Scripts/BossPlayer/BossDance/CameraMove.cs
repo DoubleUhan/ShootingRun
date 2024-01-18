@@ -5,46 +5,30 @@ using UnityEngine;
 
 public class CameraMove : MonoBehaviour
 {
-    Vector3 targetRotation;
-
-    float duration = 2f;
-
-    private float elapsedTime = 0f;
+    public float shake;
 
     private void Start()
     {
-        targetRotation = new Vector3(20, -90, 0);
-
-        StartCoroutine(InterpolateTransform());
+        StartCoroutine(CamShake(0.5f, 1f));
     }
-
-    IEnumerator InterpolateTransform()
+    public IEnumerator CamShake(float duration, float magnitude) // duration: 흔들림 지속 시간  magnitude: 흔들림의 강도
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(shake);
+        Vector3 originalPos = transform.localPosition;
 
-        Vector3 initialRotation = transform.eulerAngles;
+        float elapsed = 0.0f;
 
-        while (elapsedTime < duration)
+        while (elapsed < duration) //  elapsed: 흔들기 시작한 이후 경과한 시간
         {
-            // 경과 시간 업데이트
-            elapsedTime += Time.deltaTime;
+            float x = originalPos.x + Random.Range(-1f, 1f) * magnitude;
+            float y = originalPos.y + Random.Range(-1f, 1f) * magnitude;
 
+            transform.localPosition = new Vector3(x, y, originalPos.z);
 
-            // 보간된 회전 계산
-            Vector3 newRotation = Vector3.Lerp(initialRotation, targetRotation, elapsedTime / duration);
-
-            // 현재 Transform에 보간된 위치와 회전 적용
-            transform.eulerAngles = newRotation;
-
+            elapsed += Time.deltaTime;
             yield return null;
         }
-
-        transform.eulerAngles = targetRotation;
-    }
-
-    void Update()
-    {
-
+        transform.localPosition = originalPos;
     }
 }
 
