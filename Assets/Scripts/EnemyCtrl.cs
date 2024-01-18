@@ -40,15 +40,8 @@ public class EnemyCtrl : Stats
             Destroy(gameObject);
             Destroy(deathParticle, 0.5f);
             GameManager.Instance.enemyCount++;
-            if (GameManager.Instance.enemyCount >= GameManager.Instance.goalEnemyCount && GameManager.Instance.stage_num == 1)
-            {
+            if (GameManager.Instance.enemyCount >= GameManager.Instance.goalEnemyCount)
                 GameManager.Instance.ClearStage();
-            }
-            else if (GameManager.Instance.enemyCount >= GameManager.Instance.goalEnemyCount && GameManager.Instance.stage_num == 2)
-
-            {
-                GameManager.Instance.ClearStage2();
-            }
         }
     }
 }

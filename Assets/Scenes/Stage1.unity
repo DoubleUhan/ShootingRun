@@ -565,6 +565,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b4ecbb154020e14a9a558413568f900, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isEnd: 0
 --- !u!1 &819875842
 GameObject:
   m_ObjectHideFlags: 0
@@ -819,14 +820,14 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1334867311}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: ClickClearBtn
-        m_Mode: 1
+        m_MethodName: ClickBtn
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: StageMap
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &984801205
@@ -1110,13 +1111,14 @@ MonoBehaviour:
   cameras:
   - {fileID: 6053650055669364426}
   - {fileID: 6053650055669364428}
-  fadeBG: {fileID: 701504334}
+  fadeBG: {fileID: 701504338}
   stage_Clear: 0
-  gameoverPopup: {fileID: 209329409}
+  gameoverPopup: {fileID: 1595134308}
   gameClearPopup: {fileID: 984801202}
   player_Count_T: {fileID: 1010881437}
   player_Count: 1000
   stage_num: 0
+  gameEnd: 0
 --- !u!4 &1334867312
 Transform:
   m_ObjectHideFlags: 0
@@ -1506,14 +1508,14 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1334867311}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: ClickScene1_GameOverBtn
-        m_Mode: 1
+        m_MethodName: ClickBtn
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: StageMap
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1595134311
