@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Rigidbody))]
 public class Shooter : MonoBehaviour
@@ -61,6 +62,9 @@ public class Shooter : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
+        if (GameManager.Instance.gameEnd)
+            return;
+
         string tag = other.gameObject.tag;
 
         if (other.CompareTag("ArithmeticTag"))
@@ -102,8 +106,7 @@ public class Shooter : MonoBehaviour
             player.Sub(1,true);
             if (player.shooterList.Count <= 0)
             {
-                Time.timeScale = 0;
-                GameManager.Instance.gameoverPopup.SetActive(true);
+                GameManager.Instance.OverStage();
             }
             Destroy(other.gameObject);
         }

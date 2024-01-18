@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System;
+using UnityEngine.InputSystem;
 
 public class GameManager : MonoBehaviour
 {
@@ -15,7 +16,7 @@ public class GameManager : MonoBehaviour
     public GameObject[] cameras; // 카메라 
 
     [Header("FadeOut 관련 변수")]
-    [SerializeField] GameObject fadeBG;
+    [SerializeField] FadeOut fadeBG;
     [HideInInspector] public bool stage_Clear;
 
     public GameObject gameoverPopup;
@@ -27,6 +28,9 @@ public class GameManager : MonoBehaviour
     public int player_Count;
 
     public int stage_num;
+
+    public bool gameEnd;
+
 
     private void Update()
     {
@@ -40,54 +44,50 @@ public class GameManager : MonoBehaviour
         {
             Instance = this;
         }
-
         Screen.SetResolution(540, 960, false);
         // image = GetComponent<Image>();
     }
 
     public void ClearStage()
     {
+        gameEnd = true;
         // 페이드 아웃, 캐릭터 앞으로 이동, 카메라 고정, 씬 넘어가기
         cameras[0].transform.SetParent(null);
         cameras[1].transform.SetParent(null);
-        fadeBG.SetActive(true);
+        fadeBG.gameObject.SetActive(true);
         StageManager.Instance.clearStageMax = PlayerPrefs.GetInt("Stage");
         StageManager.Instance.isClear_Stage[PlayerPrefs.GetInt("Stage") - 1] = true;
         PlayerPrefs.SetInt("IsClear", 1);
 
+        StartCoroutine(GameEndPopup(gameClearPopup));
+        //gameClearPopup.SetActive(true);
     }
 
-    public void ClearStage2()
+    public void OverStage()
     {
-        // 페이드 아웃, 캐릭터 앞으로 이동, 카메라 고정, 씬 넘어가기
-        cameras[0].transform.SetParent(null);
-        cameras[1].transform.SetParent(null);
-        fadeBG.SetActive(true);
-        StageManager.Instance.clearStageMax = PlayerPrefs.GetInt("Stage");
-        StageManager.Instance.isClear_Stage[PlayerPrefs.GetInt("Stage") - 1] = true;
-        PlayerPrefs.SetInt("IsClear", 1);
+        gameEnd = true;
+        fadeBG.gameObject.SetActive(true);
+        StartCoroutine(GameEndPopup(gameoverPopup));
+    }
+ 
+    private IEnumerator GameEndPopup(GameObject popup)
+    {
+        while (!fadeBG.isEnd)
+        {
+            yield return null;
+        }
+        fadeBG.gameObject.SetActive(false);
+        popup.SetActive(true);
+    }
 
-        gameClearPopup.SetActive(true);
-        Debug.Log("스테이지 클리어");
-        StartCoroutine(SceneMoveWait(2f, "MOB_BossScene"));
+    public void ClickBtn(string sceneName)
+    {
+        StartCoroutine(SceneMoveWait(0f, sceneName));
     }
 
     IEnumerator SceneMoveWait(float time, string sceneName)
     {
         yield return new WaitForSeconds(time);
         SceneManager.LoadScene(sceneName);
-    }
-    public void ClickClearBtn()
-    {
-        StartCoroutine(SceneMoveWait(0f, "StageMap"));
-    }
-
-    public void ClickScene1_GameOverBtn()
-    {
-        StartCoroutine(SceneMoveWait(0f, "Stage1"));
-    }
-    public void ClickScene2_GameOverBtn()
-    {
-        StartCoroutine(SceneMoveWait(0f, "Stage2"));
     }
 }

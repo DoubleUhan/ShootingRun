@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class FadeOut : MonoBehaviour
 {
+    public bool isEnd;
     Image image;
 
     private void Awake()
@@ -18,16 +19,11 @@ public class FadeOut : MonoBehaviour
 
         if (color.a < 1)
         {
+            isEnd = false;
             color.a += Time.deltaTime;
         }
+        else
+            isEnd = true;
         image.color = color;
-
-
-        //if (image.color.a >= 255 && GameManager.Instance.stage_num == 1)
-        //{
-        //    Debug.Log("123123");
-        //    GameManager.Instance.gameClearPopup.SetActive(true);
-        //    Time.timeScale = 0;
-        //}
     }
 }
