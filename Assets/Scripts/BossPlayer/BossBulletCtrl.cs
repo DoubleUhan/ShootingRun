@@ -7,6 +7,7 @@ public class BossBulletCtrl : MonoBehaviour
 {
     public BossPlayCtrl player;
     public GameObject target; // 따라볼 타겟
+    public ParticleSystem attackParticle;
 
     private GameObject playerController;
 
@@ -31,11 +32,21 @@ public class BossBulletCtrl : MonoBehaviour
         if (other.CompareTag("Boss"))
         {
             BossCtrl testBoss = other.gameObject.GetComponent<BossCtrl>();
-
-            // 보스에게 닿았을때 파티클 실행
-
+            StartCoroutine(BulletDelete());
             testBoss.OnDamaged(1000f); // 플레이어 데미지 10으로 고정값 설정함
-            Destroy(gameObject);
+
         }
+    }
+
+    IEnumerator BulletDelete()
+    {
+
+        yield return new WaitForSeconds(.3f);
+
+        // 보스에게 닿았을때 파티클 실행
+        attackParticle.transform.parent = null;
+        attackParticle.Play();
+
+        Destroy(gameObject);
     }
 }

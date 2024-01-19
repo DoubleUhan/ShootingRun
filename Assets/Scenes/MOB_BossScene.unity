@@ -7240,7 +7240,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1077510805
 RectTransform:
   m_ObjectHideFlags: 0
@@ -33285,7 +33285,7 @@ MonoBehaviour:
   - {fileID: 8779213907210613286, guid: 4176db00cd645de4a98829410fbe4c4e, type: 3}
   - {fileID: 6218828943016181569, guid: f98a48286758fab4e8a5b4a7dec7040a, type: 3}
   playerRotation: {x: 0, y: 0, z: 0, w: 0}
-  PlayerCount: 0
+  PlayerCount: 200
   shooterCount: {fileID: 1389370137}
   angle: 0
 --- !u!1 &9130754021178581933
