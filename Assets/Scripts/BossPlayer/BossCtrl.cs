@@ -42,6 +42,8 @@ public class BossCtrl : Stats
     [Header("폭탄 터짐")]
     public List<Boomb> bombs = new List<Boomb>();
 
+    bool bombInstall;
+
 
     [Range(0, 10)]
     public float attackArrange;
@@ -61,6 +63,8 @@ public class BossCtrl : Stats
         animator = GetComponent<Animator>();
         delay = 3f;
         curBossHP = maxBossHP;
+
+        bombInstall = false;
     }
 
     void Update()
@@ -106,7 +110,10 @@ public class BossCtrl : Stats
                     break;
 
                 case 3:
-                    StartCoroutine(Boom());
+                    if (bombInstall == true)
+                    {
+                        StartCoroutine(Boom());
+                    }
                     break;
             }
             yield return new WaitForSeconds(delay);
@@ -170,6 +177,7 @@ public class BossCtrl : Stats
         int randNum = UnityEngine.Random.Range(0, 9);
         Boomb spawnbomb = Instantiate(bomb, bombSpawnPoint[randNum].transform.position, Quaternion.Euler(-90f, 0f, 0f)).GetComponent<Boomb>();
         bombs.Add(spawnbomb);
+        bombInstall = true;
     }
 
     IEnumerator Boom() // 폭탄 터치는 함수 패턴 4
@@ -179,6 +187,7 @@ public class BossCtrl : Stats
         yield return new WaitForSeconds(1f);
 
         animator.SetTrigger("Idle");
+
 
         yield return null;
     }
@@ -190,6 +199,7 @@ public class BossCtrl : Stats
             bomb.Explode();
         }
         bombs.Clear();
+        bombInstall = false;
     }
 
 
