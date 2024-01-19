@@ -35,6 +35,7 @@ public class SoundManager : SingletonMonoBase<SoundManager>
     {
         instance = this;
     }
+
     public void Initalize()
     {
         // 보스 관련 사운드 리스트

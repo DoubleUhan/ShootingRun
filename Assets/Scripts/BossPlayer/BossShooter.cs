@@ -78,20 +78,24 @@ public class BossShooter : MonoBehaviour
             //    Camera.main.transform.SetParent(null);
             //    gameend.GameFail();
         }
-    } 
+        //else if (other.gameObject.CompareTag("Bomb"))
+        //{
+        //    Physics.IgnoreCollision(GetComponent<Collider>(), other.collider, true);
+        //}
+    }
 }
 
 
-    //public void Spawn()
-    //{
-    //    int random = Random.Range(0, 3);
+//public void Spawn()
+//{
+//    int random = Random.Range(0, 3);
 
-    //    // 適経 持失
-    //    num = 3; // PlayerPrefs.GetInt("PlayerCount");
-    //    for (int i = 0; i < num; i++)
-    //    {
-    //        Vector3 shooterSpawn = transform.position + new Vector3(Random.Range(-1f, 1f), 0f, Random.Range(-1f, 1f));
-    //        GameObject spawnShooter = Instantiate(shooter[random].gameObject, shooterSpawn, Quaternion.Euler(0f, -90f, 0f));
-    //    }
-    //}
+//    // 適経 持失
+//    num = 3; // PlayerPrefs.GetInt("PlayerCount");
+//    for (int i = 0; i < num; i++)
+//    {
+//        Vector3 shooterSpawn = transform.position + new Vector3(Random.Range(-1f, 1f), 0f, Random.Range(-1f, 1f));
+//        GameObject spawnShooter = Instantiate(shooter[random].gameObject, shooterSpawn, Quaternion.Euler(0f, -90f, 0f));
+//    }
+//}
 
