@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.ParticleSystem;
 
 public class BossBulletCtrl : MonoBehaviour
 {
@@ -23,13 +24,16 @@ public class BossBulletCtrl : MonoBehaviour
     private void Update()
     {
         transform.position += transform.forward * (10f * Time.deltaTime);
-        
+
     }
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Boss"))
         {
             BossCtrl testBoss = other.gameObject.GetComponent<BossCtrl>();
+
+            // 보스에게 닿았을때 파티클 실행
+
             testBoss.OnDamaged(1000f); // 플레이어 데미지 10으로 고정값 설정함
             Destroy(gameObject);
         }

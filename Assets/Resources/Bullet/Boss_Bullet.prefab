@@ -4873,6 +4873,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   target: {fileID: 0}
+  particle: {fileID: 1879272669879180, guid: ee4c3620db196c643bc7b29721204dcc, type: 3}
 --- !u!1 &1540588367011230
 GameObject:
   m_ObjectHideFlags: 0

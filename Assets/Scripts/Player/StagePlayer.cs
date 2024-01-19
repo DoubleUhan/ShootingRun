@@ -56,15 +56,18 @@ public class StagePlayer : MonoBehaviour
         switch (StageManager.Instance.clearStageMax)
         {
             case 0:
-                SceneManager.LoadScene("Stage1");
+                //   SceneManager.LoadScene("Stage1");
+                SceneManager.LoadScene("WantedScene");
                 PlayerPrefs.SetInt("Stage", 1);
                 break;
             case 1:
-                SceneManager.LoadScene("Stage2");
+                // SceneManager.LoadScene("Stage2");
+                SceneManager.LoadScene("WantedScene");
                 PlayerPrefs.SetInt("Stage", 2);
                 break;
             case 2:
-                SceneManager.LoadScene("MOB_BossScene");
+                SceneManager.LoadScene("WantedScene");
+                //SceneManager.LoadScene("MOB_BossScene");
                 break;
         }
     }
