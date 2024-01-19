@@ -33,7 +33,7 @@ public class BossBulletCtrl : MonoBehaviour
         {
             BossCtrl testBoss = other.gameObject.GetComponent<BossCtrl>();
             StartCoroutine(BulletDelete());
-            testBoss.OnDamaged(1000f); // 플레이어 데미지 10으로 고정값 설정함
+            testBoss.OnDamaged(10f); // 플레이어 데미지 10으로 고정값 설정함
 
         }
     }
