@@ -83,6 +83,7 @@ public class GameManager : MonoBehaviour
 
     public void ClickBtn(string sceneName)
     {
+        Debug.Log("클릭클릭");
         StartCoroutine(SceneMoveWait(0f, sceneName));
     }
 
