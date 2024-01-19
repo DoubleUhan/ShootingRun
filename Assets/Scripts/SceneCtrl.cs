@@ -26,4 +26,8 @@ public class SceneCtrl : MonoBehaviour
     {
         SceneManager.LoadScene("StageMap");
     }
+    public void OnClickBossStage()
+    {
+        SceneManager.LoadScene("MOB_BossScene");
+    }
 }

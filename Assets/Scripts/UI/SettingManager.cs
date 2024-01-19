@@ -56,6 +56,17 @@ public class SettingManager : MonoBehaviour
 
     public void WantedSceneEnd() // Wanted 수배지 씬 종료 후 게임 시작으로 넘어갑시다. | WantedScene - Canvas/Image에 있는 애니메이션에 해당 변수 이벤트 추가했습니다.
     {
-        SceneManager.LoadScene("MOB_BossScene"); // 게임 시작 씬 넣어주십사
+        if (StageManager.Instance.clearStageMax == 0)
+        {
+            SceneManager.LoadScene("Stage1"); // 게임 시작 씬 넣어주십사
+        }
+        else if (StageManager.Instance.clearStageMax == 1)
+        {
+            SceneManager.LoadScene("Stage2"); // 게임 시작 씬 넣어주십사
+        }
+        else if (StageManager.Instance.clearStageMax == 1)
+        {
+            SceneManager.LoadScene("MOB_BossScene"); // 게임 시작 씬 넣어주십사
+        }
     }
 }
