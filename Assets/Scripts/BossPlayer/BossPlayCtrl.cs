@@ -29,6 +29,9 @@ public class BossPlayCtrl : Stats
 
     public GameObject main_Camera;
 
+    public GameObject warning1;
+    public GameObject warning2;
+
     public GameObject prefabToSpawn; // 생성할 프리팹
 
     public GameObject[] target; // 바라볼 타겟
@@ -96,7 +99,7 @@ public class BossPlayCtrl : Stats
     void ShooterSpawn()
     {
         //클론 생성
-        num = PlayerPrefs.GetInt("PlayerCount");
+        num = 15; // PlayerPrefs.GetInt("PlayerCount");
         PlayerCount = num; //PlayerPrefs.GetInt("PlayerCount");
         
         
@@ -177,7 +180,6 @@ public class BossPlayCtrl : Stats
         Vector3 playerDirection = transform.forward;
         // 발사
         rigid.AddForce(playerDirection * shotPower, ForceMode.Impulse);
-        SoundManager.Instance.Boss_PlayerShot();
         curShorDelay = 0;
     }
 

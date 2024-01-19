@@ -5993,9 +5993,9 @@ GameObject:
   m_Component:
   - component: {fileID: 770479565}
   - component: {fileID: 770479564}
-  - component: {fileID: 770479563}
   - component: {fileID: 770479562}
   - component: {fileID: 770479566}
+  - component: {fileID: 770479567}
   m_Layer: 0
   m_Name: Warning2
   m_TagString: Untagged
@@ -6014,20 +6014,8 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 3.565002
+  m_Radius: 1.42
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &770479563
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 770479561}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 137183a70a91c524ba7baa621eed4ae1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!199 &770479564
 ParticleSystemRenderer:
   serializedVersion: 6
@@ -6109,7 +6097,7 @@ Transform:
   m_GameObject: {fileID: 770479561}
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 6.1, y: 0, z: 0}
-  m_LocalScale: {x: 3.5, y: 3.5, z: 3.5}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1486909770}
@@ -6134,6 +6122,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 48
   m_CollisionDetection: 0
+--- !u!114 &770479567
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 770479561}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b375d147a6d04eb40aad773791760141, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isPlayerIn: 0
+  collidingObjects: []
 --- !u!1 &776447064
 GameObject:
   m_ObjectHideFlags: 0
@@ -16650,6 +16652,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4844776855010971440}
   - component: {fileID: 6583498927904951975}
+  - component: {fileID: 6583498927904951976}
   m_Layer: 0
   m_Name: Point Light
   m_TagString: Untagged
@@ -25949,8 +25952,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5150427446580224796}
   - component: {fileID: 8758774390353950183}
-  - component: {fileID: 8758774390353950184}
   - component: {fileID: 8758774390353950185}
+  - component: {fileID: 8758774390353950186}
   m_Layer: 0
   m_Name: Warning1
   m_TagString: Untagged
@@ -26234,6 +26237,26 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &6583498927904951976
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2020828684439870467}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 1
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_LightLayerMask: 1
+  m_CustomShadowLayers: 0
+  m_ShadowLayerMask: 1
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
 --- !u!4 &6634536803856776027
 Transform:
   m_ObjectHideFlags: 0
@@ -32749,18 +32772,6 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
---- !u!114 &8758774390353950184
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6408247100570386610}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 137183a70a91c524ba7baa621eed4ae1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!135 &8758774390353950185
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -32772,8 +32783,22 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 3.565002
+  m_Radius: 1.49
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &8758774390353950186
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6408247100570386610}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b375d147a6d04eb40aad773791760141, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isPlayerIn: 0
+  collidingObjects: []
 --- !u!4 &8773140581290533682
 Transform:
   m_ObjectHideFlags: 0
@@ -33190,6 +33215,8 @@ MonoBehaviour:
   copyPlayer_Pos: []
   playerHP_bar: {fileID: 0}
   main_Camera: {fileID: 0}
+  warning1: {fileID: 6408247100570386610}
+  warning2: {fileID: 770479561}
   prefabToSpawn: {fileID: 0}
   target:
   - {fileID: 1247222894}

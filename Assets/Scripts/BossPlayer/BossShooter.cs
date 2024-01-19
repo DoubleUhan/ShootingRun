@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -15,6 +16,8 @@ public class BossShooter : MonoBehaviour
 
     public GameObject target; // 따라볼 타겟
 
+    public BossPlayCtrl warning1;
+    public BossPlayCtrl warning2;
 
     Rigidbody rb;
 
@@ -35,6 +38,7 @@ public class BossShooter : MonoBehaviour
         StartCoroutine(ShootingCor());
     }
 
+
     void Update()
     {
         // 복사본이 움직임
@@ -45,6 +49,30 @@ public class BossShooter : MonoBehaviour
         }
         transform.LookAt(target.transform.position);
 
+        //Check();
+    }
+
+    void Check()
+    {
+        Debug.Log("하이");
+        if (warning1.GetComponent<BossRange>().isPlayerIn)
+        {
+            Debug.Log(warning1);
+            Destroy(gameObject);
+            player.PlayerCount -= 1;
+        }
+
+        else if (warning2.GetComponent<BossRange>().isPlayerIn)
+        {
+            Debug.Log(warning2);
+            Destroy(gameObject);
+            player.PlayerCount -= 1;
+        }
+
+        else
+        {
+            return;
+        }
     }
 
     private IEnumerator ShootingCor()
@@ -55,34 +83,42 @@ public class BossShooter : MonoBehaviour
             WaitForSeconds delay = new WaitForSeconds(shotDelay);
             while (true)
             {
+
+                SoundManager.Instance.Gun1();
+
                 BossBulletCtrl bullet = Instantiate(bulletPrefab, transform.position + new Vector3(-1f, 0, 0), Quaternion.identity).GetComponent<BossBulletCtrl>();
                 bullet.GetTarget(target);
                 yield return delay;
             }
         }
     }
-
-    private void OnTriggerEnter(Collider other)
+    public void Hit()
     {
-        //Debug.Log(other.gameObject.name);
-        if (other.gameObject.CompareTag("BossPunch"))
-        {
-            Debug.Log("슈터 맞음");
-            Destroy(gameObject);
-            player.PlayerCount -= 1;
-            Debug.Log("남은 아이들은 : " + player.PlayerCount);
+        player.PlayerCount -= 1;
+        Destroy(gameObject);
+    }
 
-            //// 애들 다 죽으면 게임 종료
-            //if (player.PlayerCount <= 0)
-            //{
-            //    Camera.main.transform.SetParent(null);
-            //    gameend.GameFail();
-        }
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    //Debug.Log(other.gameObject.name);
+    //    if (other.gameObject.CompareTag("BossPunch"))
+    //    {
+    //        Debug.Log("슈터 맞음");
+    //        Destroy(gameObject);
+    //        player.PlayerCount -= 1;
+    //        Debug.Log("남은 아이들은 : " + player.PlayerCount);
+
+    //        //// 애들 다 죽으면 게임 종료
+    //        //if (player.PlayerCount <= 0)
+    //        //{
+    //        //    Camera.main.transform.SetParent(null);
+    //        //    gameend.GameFail();
+    //    }
         //else if (other.gameObject.CompareTag("Bomb"))
         //{
         //    Physics.IgnoreCollision(GetComponent<Collider>(), other.collider, true);
         //}
-    }
+    //}
 }
 
 

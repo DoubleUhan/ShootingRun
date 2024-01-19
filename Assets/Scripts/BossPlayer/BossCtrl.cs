@@ -52,6 +52,7 @@ public class BossCtrl : Stats
     bool isDead; // 보스 죽었는지 안죽었는지 체크하는 변수
     float delay; // 보스 공격 딜레이
 
+
     void Start()
     {
         Time.timeScale = 1;
@@ -60,6 +61,7 @@ public class BossCtrl : Stats
 
         target = GameObject.FindGameObjectWithTag("Player");
         StartCoroutine(BossAttack());
+        StartCoroutine(Laugh());
         animator = GetComponent<Animator>();
         delay = 3f;
         curBossHP = maxBossHP;
@@ -69,6 +71,7 @@ public class BossCtrl : Stats
 
     void Update()
     {
+
         if (isSkillActive)
         {
             Vector3 warningTarget = warning1.transform.position;
@@ -86,7 +89,16 @@ public class BossCtrl : Stats
         }
     }
 
-
+    IEnumerator Laugh()
+    {
+        while (!isDead)
+        {
+            yield return new WaitForSeconds(1f);
+            SoundManager.Instance.Boss_Smile(); // 보스 웃음 소리
+            yield return new WaitForSeconds(15f);
+        }
+        yield return null;
+    }
 
     IEnumerator BossAttack()
     {
@@ -129,11 +141,23 @@ public class BossCtrl : Stats
         isSkillActive = true;
 
         animator.SetTrigger("Attack1");
-        yield return new WaitForSeconds(0.3f); // 공격 시작 0.1초 뒤에 경고 삭제
+        yield return new WaitForSeconds(0.8f); // 공격 시작 0.1초 뒤에 경고 삭제
+
+        List<GameObject> collidingObjects = warning1.GetComponent<BossRange>().collidingObjects;
+
+        if (collidingObjects.Count > 0)
+        {
+            foreach (var collidingObject in collidingObjects)
+            {
+                if (collidingObject != null)
+                {
+                    collidingObject.GetComponent<BossShooter>().Hit();
+                }
+            }
+        }
+
         warning1.SetActive(false);
         animator.SetTrigger("Idle");
-
-        SoundManager.Instance.Boss_Smile(); // 보스 웃음 소리
 
         yield return null;
     }
@@ -145,12 +169,26 @@ public class BossCtrl : Stats
         //warning2.transform.rotation = target.transform.rotation;
         warning2.SetActive(true);
 
-        yield return new WaitForSeconds(1f); // 경고가 뜨고 1초 뒤에 공격 시작
+        yield return new WaitForSeconds(0.7f); // 경고가 뜨고 1초 뒤에 공격 시작
         isSkillActive = true;
 
         animator.SetTrigger("Attack2");
 
-        yield return new WaitForSeconds(0.3f); // 공격 시작 0.1초 뒤에 경고 삭제
+        yield return new WaitForSeconds(1.5f); // 공격 시작 0.1초 뒤에 경고 삭제
+
+        List<GameObject> collidingObjects = warning2.GetComponent<BossRange>().collidingObjects;
+
+        if (collidingObjects.Count > 0)
+        {
+            foreach (var collidingObject in collidingObjects)
+            {
+                if (collidingObject != null)
+                {
+                    collidingObject.GetComponent<BossShooter>().Hit();
+                }
+            }
+        }
+
         warning2.SetActive(false);
         animator.SetTrigger("Idle");
 
