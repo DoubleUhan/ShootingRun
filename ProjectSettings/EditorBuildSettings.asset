@@ -11,9 +11,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Stage1.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Scenes/MOB_BossScene.unity
     guid: e65d89bc129892c45b76f4f0b1888405
@@ -23,12 +20,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Stage2.unity
     guid: 319c82f9dc631c14d9509f5b2f2fe1c3
-  - enabled: 1
-    path: Assets/Scenes/GameOver.unity
-    guid: 5d9879ad08ad61a4ea0579c7fe851d35
-  - enabled: 1
-    path: Assets/Scenes/GameClear.unity
-    guid: 38ae536db59cf9f4aad0c86280ca20cf
   - enabled: 1
     path: Assets/Scenes/WantedScene.unity
     guid: b19121081f30c7d4290a3d49921504bf
