@@ -1026,7 +1026,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyCount: 0
-  goalEnemyCount: 3
+  goalEnemyCount: 60
   cameras:
   - {fileID: 6053650055669364426}
   - {fileID: 6053650055669364428}
@@ -1765,8 +1765,8 @@ MonoBehaviour:
   needle_Object: {fileID: 2340316391242920772, guid: 35229962d01ddc945a241b197583bc89, type: 3}
   enemySpawnMin: 0.1
   enemySpawnMax: 2
-  arithmeticSpawnMin: 10
-  arithmeticSpawnMax: 20
+  arithmeticSpawnMin: 15
+  arithmeticSpawnMax: 30
   needleSpawnMin: 10
   needleSpawnMax: 15
 --- !u!1 &1836636827
