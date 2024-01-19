@@ -48,6 +48,8 @@ public class BossPlayCtrl : Stats
     float num;
     public float PlayerCount; // 일반 스테이지에서 넘어온 슈터 숫자;
 
+    public Text shooterCount;
+
     // 원으로 이동 관련
     float tempAngle = 0;
     [SerializeField]
@@ -81,6 +83,8 @@ public class BossPlayCtrl : Stats
 
         playerRotation = transform.rotation;
 
+        shooterCount.text = PlayerCount.ToString();
+
         // 애들 다 죽으면 게임 종료
         if (PlayerCount <= 0)
         {
@@ -94,6 +98,8 @@ public class BossPlayCtrl : Stats
         //클론 생성
         num = PlayerPrefs.GetInt("PlayerCount");
         PlayerCount = num; //PlayerPrefs.GetInt("PlayerCount");
+        
+        
         Debug.Log(PlayerCount);
 
         for (int i = 0; i < num; i++)

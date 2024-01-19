@@ -66,6 +66,7 @@ public class Boomb : MonoBehaviour
                 rb.AddExplosionForce(explosionForce, transform.position, explosionRadius);
             }
         }
+        gameObject.layer = 0;
 
         StartCoroutine(Explotion());
         StartCoroutine(DeleteObject());
