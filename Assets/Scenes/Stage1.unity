@@ -1038,6 +1038,7 @@ MonoBehaviour:
   player_Count: 1000
   stage_num: 0
   gameEnd: 0
+  settingManager: {fileID: 1836636828}
 --- !u!4 &1334867312
 Transform:
   m_ObjectHideFlags: 0
