@@ -157,12 +157,12 @@ MonoBehaviour:
   - {fileID: 7053859821706944000, guid: de21eb1e7b7ecb74ba7e5a3fd0cc860e, type: 3}
   arithmetic_Object: {fileID: 554577839963898272, guid: 6953b99c427984d40acd87af2999acb7, type: 3}
   needle_Object: {fileID: 2340316391242920772, guid: 35229962d01ddc945a241b197583bc89, type: 3}
-  enemySpawnMin: 1
-  enemySpawnMax: 2
-  arithmeticSpawnMin: 7
-  arithmeticSpawnMax: 10
-  needleSpawnMin: 10
-  needleSpawnMax: 15
+  enemySpawnMin: 0.1
+  enemySpawnMax: 0.3
+  arithmeticSpawnMin: 10
+  arithmeticSpawnMax: 15
+  needleSpawnMin: 8
+  needleSpawnMax: 10
 --- !u!4 &19925461
 Transform:
   m_ObjectHideFlags: 0
@@ -1341,7 +1341,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyCount: 0
-  goalEnemyCount: 20
+  goalEnemyCount: 150
   cameras:
   - {fileID: 1808042811}
   - {fileID: 1808042812}

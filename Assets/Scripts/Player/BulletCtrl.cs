@@ -11,7 +11,7 @@ public class BulletCtrl : MonoBehaviour
     {
         rigid = gameObject.GetComponent<Rigidbody>();
         rigid.AddForce(Vector3.left * 10, ForceMode.Impulse);
-        Destroy(gameObject, 5f);
+        Destroy(gameObject, 3.5f);
     }
 
     void Update()

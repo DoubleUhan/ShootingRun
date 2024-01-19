@@ -1038,7 +1038,6 @@ MonoBehaviour:
   player_Count: 1000
   stage_num: 0
   gameEnd: 0
-  settingManager: {fileID: 1836636828}
 --- !u!4 &1334867312
 Transform:
   m_ObjectHideFlags: 0
@@ -1765,11 +1764,11 @@ MonoBehaviour:
   arithmetic_Object: {fileID: 554577839963898272, guid: 6953b99c427984d40acd87af2999acb7, type: 3}
   needle_Object: {fileID: 2340316391242920772, guid: 35229962d01ddc945a241b197583bc89, type: 3}
   enemySpawnMin: 0.1
-  enemySpawnMax: 2
-  arithmeticSpawnMin: 15
+  enemySpawnMax: 0.4
+  arithmeticSpawnMin: 20
   arithmeticSpawnMax: 30
-  needleSpawnMin: 10
-  needleSpawnMax: 15
+  needleSpawnMin: 5
+  needleSpawnMax: 10
 --- !u!1 &1836636827
 GameObject:
   m_ObjectHideFlags: 0
@@ -2646,6 +2645,10 @@ PrefabInstance:
       propertyPath: arithmetic_BG
       value: 
       objectReference: {fileID: 1522860227}
+    - target: {fileID: 6980876924864240401, guid: 401fa80d167e75f4f86e748205d85ab2, type: 3}
+      propertyPath: decrease_Speed
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 6980876924864240401, guid: 401fa80d167e75f4f86e748205d85ab2, type: 3}
       propertyPath: goggle_Stamina
       value: 
