@@ -20,8 +20,15 @@ public class SoundManager : SingletonMonoBase<SoundManager>
     [Header("보스 BGM")]
     AudioClip BossBGM;
 
+    [Header("수배 BGM")]
+    AudioClip Want;
+
     [Header("총 소리")]
-    AudioClip shot;
+    AudioClip Gun_1;
+    AudioClip Gun_2;
+    AudioClip Gun_3;
+    AudioClip Gun_4;
+
 
     [Header("UI 소리")]
     AudioClip button;
@@ -46,9 +53,13 @@ public class SoundManager : SingletonMonoBase<SoundManager>
 
         // BGM 사운드 리스트
         BossBGM = Resources.Load<AudioClip>("Sounds/test_BGM");
+        Want = Resources.Load<AudioClip>("Sounds/Thunder_Sound");
 
         // 플레이어 관련 사운드 리스트
-        shot = Resources.Load<AudioClip>("Sounds/shot");
+        Gun_1 = Resources.Load<AudioClip>("Sounds/Gun Sound1");
+        Gun_2 = Resources.Load<AudioClip>("Sounds/Gun Sound2");
+        Gun_3 = Resources.Load<AudioClip>("Sounds/Gun Sound3");
+        Gun_4 = Resources.Load<AudioClip>("Sounds/Gun Sound4");
 
         // UI 관련 사운드 리스트
         button = Resources.Load<AudioClip>("Sounds/btn_click");
@@ -90,13 +101,6 @@ public class SoundManager : SingletonMonoBase<SoundManager>
         BGM.Play();
     }
 
-    public void Boss_PlayerShot()
-    {
-        if (audioSource == null) return;
-        audioSource.volume = 0.01f;
-        audioSource.PlayOneShot(shot);
-    }
-
     public void BTN_Click()
     {
         audioSource.volume = 1f;
@@ -107,6 +111,28 @@ public class SoundManager : SingletonMonoBase<SoundManager>
     {
         audioSource.volume = 1f;
         audioSource.PlayOneShot(bomb);
+    }
+
+    public void Gun1()
+    {
+        audioSource.PlayOneShot(Gun_1);
+    }
+    public void Gun2()
+    {
+        audioSource.PlayOneShot(Gun_2);
+    }
+    public void Gun3()
+    {
+        audioSource.PlayOneShot(Gun_3);
+    }
+    public void Gun4()
+    {
+        audioSource.PlayOneShot(Gun_4);
+    }
+
+    public void Wanted()
+    {
+        audioSource.PlayOneShot(Want);
     }
 }
 
