@@ -58,9 +58,9 @@ public class BossPlayCtrl : Stats
     void Start()
     {
         //shooter.GetComponent<BossShooter>().Spawn();
-        PlayerPrefs.SetInt("PlayerCount", 3);
-        Debug.Log(PlayerPrefs.GetInt("PlayerCount"));
+        //PlayerPrefs.SetInt("PlayerCount", 3);
         ShooterSpawn();
+        Debug.Log(PlayerPrefs.GetInt("PlayerCount"));
 
         //HP = PlayerPrefs.GetInt("PlayerCount");
         //Debug.Log($"player Max hp = {HP}");
