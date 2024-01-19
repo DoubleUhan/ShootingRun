@@ -85,15 +85,19 @@ public class Shooter : MonoBehaviour
             switch (artic.type)
             {
                 case ArithmeticType.add:
+                    print("더하기");
                     player.Add(artic.value);
                     break;
                 case ArithmeticType.sub:
+                    print("빼기");
                     player.Sub(artic.value,false);
                     break;
                 case ArithmeticType.mult:
+                    print("곱하기");
                     player.Mult(artic.value);
                     break;
                 case ArithmeticType.div:
+                    print("나누기");
                     player.Div(artic.value);
                     break;
             }
