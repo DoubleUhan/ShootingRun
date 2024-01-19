@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PosXMove : MonoBehaviour
 {
-    float moveSpeed = 5;
+    public float moveSpeed;
     void Update()
     {
         Move();
