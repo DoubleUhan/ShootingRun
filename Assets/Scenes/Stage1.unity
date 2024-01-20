@@ -1182,7 +1182,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyCount: 0
-  goalEnemyCount: 3
+  goalEnemyCount: 50
   cameras:
   - {fileID: 6053650055669364426}
   - {fileID: 6053650055669364428}
