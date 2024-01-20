@@ -1837,7 +1837,7 @@ PrefabInstance:
       objectReference: {fileID: 1528105435}
     - target: {fileID: 6980876924864240401, guid: 401fa80d167e75f4f86e748205d85ab2, type: 3}
       propertyPath: shooterList.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6980876924864240401, guid: 401fa80d167e75f4f86e748205d85ab2, type: 3}
       propertyPath: shooterPrefab.Array.data[0]

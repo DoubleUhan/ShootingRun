@@ -13,6 +13,13 @@ public class SceneCtrl : MonoBehaviour
     {
         SceneManager.LoadScene("StageMap"); // 원래 SampleScene이었던 씬 이름 바꾸면 
     }
+    public void BossStageBtn()
+    {
+        //  Destroy(StageManager.Instance.stageCol);
+        SceneManager.LoadScene("StageMap"); // 원래 SampleScene이었던 씬 이름 바꾸면 
+
+        //StageManager.Instance.SetNextStagePos();
+    }
     public void Stage1Scene()
     {
         SceneManager.LoadScene("Stage1");

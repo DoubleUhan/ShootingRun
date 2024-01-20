@@ -15,8 +15,8 @@ public class StagePlayer : MonoBehaviour
         Time.timeScale = 1;
         agent = GetComponent<NavMeshAgent>();
 
-        transform.position = StageManager.Instance.GetStartPos();
         StageManager.Instance.SetNextStagePos();
+        transform.position = StageManager.Instance.GetStartPos();
     }
 
     void Update()
@@ -30,19 +30,23 @@ public class StagePlayer : MonoBehaviour
         {
             int layerMask = 1 << LayerMask.NameToLayer("Object"); // "ClickableObject" 레이어만 감지하도록 레이어 마스크 설정
 
-            if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, Mathf.Infinity, layerMask))
+            if (Input.GetMouseButton(1))/*Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, Mathf.Infinity, layerMask)*/
             {
                 Debug.Log("우클릭");
+                MoveToTarget(StageManager.Instance.stageCol.position);
 
-                if (hit.collider.CompareTag("Stage1") || hit.collider.CompareTag("Stage2") || hit.collider.CompareTag("BossStage"))
-                {
-                    MoveToTarget(hit.point);
-                }
-                else
-                {
-                    Debug.Log("다른 곳 클릭");
-                    // 다른 곳을 클릭했을 때 추가적인 동작을 수행하거나 무시할 수 있습니다.
-                }
+                //if (hit.collider.CompareTag("Road"))
+                //{
+                //    MoveToTarget(hit.point);
+                //    Debug.Log("HIT");
+                //}
+                //else
+                //{
+                //    Debug.Log("다른 곳 클릭");
+                //}
+                //if (hit.collider.CompareTag("Stage1") || hit.collider.CompareTag("Stage2") || hit.collider.CompareTag("BossStage"))
+                //{
+                //}
             }
         }
     }
