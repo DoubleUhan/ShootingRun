@@ -15,6 +15,8 @@ public class SceneCtrl : MonoBehaviour
     }
     public void BossStageBtn()
     {
+        StageManager.Instance.clearStageMax = Mathf.Clamp(StageManager.Instance.clearStageMax - 1, 0, 2);
+        StageManager.Instance.SetNextStagePos();
         //  Destroy(StageManager.Instance.stageCol);
         SceneManager.LoadScene("StageMap"); // 원래 SampleScene이었던 씬 이름 바꾸면 
 
