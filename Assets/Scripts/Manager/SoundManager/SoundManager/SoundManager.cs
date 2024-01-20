@@ -16,6 +16,8 @@ public class SoundManager : SingletonMonoBase<SoundManager>
     AudioClip smile1;
     AudioClip smile2;
     AudioClip bomb;
+    AudioClip danceBomb;
+    AudioClip die;
 
     [Header("보스 BGM")]
     AudioClip BossBGM;
@@ -32,6 +34,12 @@ public class SoundManager : SingletonMonoBase<SoundManager>
 
     [Header("UI 소리")]
     AudioClip button;
+
+    [Header("엔딩 팝업 소리")]
+    AudioClip clear;
+    AudioClip fail;
+
+    AudioClip fall;
 
     private void Start()
     {
@@ -50,6 +58,10 @@ public class SoundManager : SingletonMonoBase<SoundManager>
         smile2 = Resources.Load<AudioClip>("Sounds/laugh 2");
         smile3 = Resources.Load<AudioClip>("Sounds/laugh 3");
         bomb = Resources.Load<AudioClip>("Sounds/bomb");
+        fall = Resources.Load<AudioClip>("Sounds/Fall");
+        danceBomb = Resources.Load<AudioClip>("Sounds/DanceBomb");
+        die = Resources.Load<AudioClip>("Sounds/Die");
+
 
         // BGM 사운드 리스트
         BossBGM = Resources.Load<AudioClip>("Sounds/test_BGM");
@@ -60,6 +72,10 @@ public class SoundManager : SingletonMonoBase<SoundManager>
         Gun_2 = Resources.Load<AudioClip>("Sounds/Gun Sound2");
         Gun_3 = Resources.Load<AudioClip>("Sounds/Gun Sound3");
         Gun_4 = Resources.Load<AudioClip>("Sounds/Gun Sound4");
+
+        // 게임 팝업 관련 사운드
+        clear = Resources.Load<AudioClip>("Sounds/ClearBG");
+        fail = Resources.Load<AudioClip>("Sounds/FailBG");
 
         // UI 관련 사운드 리스트
         button = Resources.Load<AudioClip>("Sounds/btn_click");
@@ -133,6 +149,36 @@ public class SoundManager : SingletonMonoBase<SoundManager>
     public void Wanted()
     {
         audioSource.PlayOneShot(Want);
+    }
+
+    public void Clear()
+    {
+        audioSource.PlayOneShot(clear);
+    }
+    public void Fail()
+    {
+        audioSource.PlayOneShot(fail);
+    }
+
+    public void Stop()
+    {
+        audioSource.Stop();
+    }
+
+    public void BGMStop()
+    {
+        BGM.Stop();
+    }
+
+    public void Dance_bomb()
+    {
+        audioSource.PlayOneShot(danceBomb);
+    }
+
+    public void BossDie()
+    {
+        audioSource.volume = 0.2f;
+        audioSource.PlayOneShot(die);
     }
 }
 

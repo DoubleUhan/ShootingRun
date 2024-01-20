@@ -24,10 +24,10 @@ public class BossDance : MonoBehaviour
     IEnumerator Move()
     {
         yield return new WaitForSeconds(5.5f);
-        transform.position = Vector3.MoveTowards(transform.position, target, 0.01f); // 보스 위로 이동
+        transform.position = Vector3.MoveTowards(transform.position, target, 0.05f); // 보스 위로 이동
         transform.rotation = Quaternion.Lerp(transform.rotation, targetRo, 0.005f);
 
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(10f);
 
         SceneManager.LoadScene("MOB_BossScene");
         // 여기서 보스 댄스 끝남
