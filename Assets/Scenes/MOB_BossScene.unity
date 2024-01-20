@@ -18256,13 +18256,14 @@ MonoBehaviour:
   - {fileID: 1822287765}
   - {fileID: 15101255}
   bossHP_bar: {fileID: 1232459507}
-  maxBossHP: 50000
+  maxBossHP: 50
   trackingTarget: {fileID: 524751612}
   isSkillActive: 0
   warningOn: 0
   cameraShake: {fileID: 2045858210}
   bombs: []
   attackArrange: 3.77
+  targetMaterials: []
 --- !u!136 &3212751486313734115
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -18818,7 +18819,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 6fd2866a5af16424b849fc243364fdfd, type: 2}
+  - {fileID: 2100000, guid: 46432d7741176e443bd1676fda901e57, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -24719,8 +24720,8 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 215f60a9195506b4d8d5494d17a81c03, type: 2}
-  - {fileID: 2100000, guid: 0bfc8e22399d7f44c8e4946af0b505c9, type: 2}
+  - {fileID: 2100000, guid: 485c9a3ad5179fd43b8821acd3f9971f, type: 2}
+  - {fileID: 2100000, guid: 2900ac5c93a6dcd46ba61f04b01fbf22, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

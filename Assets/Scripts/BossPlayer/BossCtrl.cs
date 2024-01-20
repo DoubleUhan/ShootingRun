@@ -8,6 +8,7 @@ using UnityEngine;
 using UnityEngine.Animations;
 using UnityEngine.Animations.Rigging;
 using UnityEngine.UI;
+using UnityEngine.Windows;
 
 public class BossCtrl : Stats
 {
@@ -52,12 +53,24 @@ public class BossCtrl : Stats
     bool isDead; // 보스 죽었는지 안죽었는지 체크하는 변수
     float delay; // 보스 공격 딜레이
 
+    public List<Material> targetMaterials; // 조절할 머테리얼
+
 
     void Start()
     {
         Time.timeScale = 1;
 
         SoundManager.Instance.Boss_BGM();
+
+        Renderer[] renderers = GetComponentsInChildren<Renderer>();
+
+        foreach (Renderer r in renderers)
+        {
+            foreach (Material m in r.materials)
+            {
+                targetMaterials.Add(m);
+            }
+        }
 
         target = GameObject.FindGameObjectWithTag("Player");
         StartCoroutine(BossAttack());
@@ -71,6 +84,8 @@ public class BossCtrl : Stats
 
     void Update()
     {
+
+        BossDeahAnimation();
 
         if (isSkillActive)
         {
@@ -259,14 +274,26 @@ public class BossCtrl : Stats
 
         if (curBossHP <= 0)
         {
-            isDead = true;
             // 보스 죽는 애니메이션
-            animator.Play("Death");
-            GameClear();
+            StartCoroutine(WaitForClearAnimation());
         }
 
         bossHP_bar.fillAmount = curBossHP / maxBossHP;
     }
+
+    public void BossDeahAnimation ()
+    {
+
+        if (isDead) {
+            foreach (Material targetMaterial in targetMaterials)
+            {
+                float currentSplitValue = targetMaterial.GetFloat("_Split_Value");
+                float newSplitValue = Mathf.Lerp(currentSplitValue, 0, Time.deltaTime * .5f);
+                targetMaterial.SetFloat("_Split_Value", newSplitValue);
+            }
+        }
+    }
+
 
     public void GameFail()
     {
@@ -281,5 +308,17 @@ public class BossCtrl : Stats
         // 게임 클리어 한 거임 -> 클리어 메세지 또는 화면 출력
         clearPopup.SetActive(true);
         Time.timeScale = 0;
+    }
+
+    IEnumerator WaitForClearAnimation()
+    {
+        animator.SetTrigger("Death");
+        yield return new WaitForSeconds(2f);
+
+        isDead = true;
+
+        yield return new WaitForSeconds(3.5f);
+
+        GameClear();
     }
 }
