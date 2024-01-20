@@ -66,7 +66,7 @@ public class SettingManager : MonoBehaviour
         }
         else if (StageManager.Instance.clearStageMax == 2)
         {
-            SceneManager.LoadScene("MOB_BossScene"); // 게임 시작 씬 넣어주십사
+            SceneManager.LoadScene("BossDance"); // 게임 시작 씬 넣어주십사
         }
     }
 }

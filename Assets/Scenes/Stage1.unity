@@ -1182,7 +1182,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyCount: 0
-  goalEnemyCount: 50
+  goalEnemyCount: 3
   cameras:
   - {fileID: 6053650055669364426}
   - {fileID: 6053650055669364428}
@@ -2743,7 +2743,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3006751058591909386, guid: 401fa80d167e75f4f86e748205d85ab2, type: 3}
       propertyPath: m_CullingMask.m_Bits
-      value: 408695
+      value: 409207
       objectReference: {fileID: 0}
     - target: {fileID: 3982165000576164678, guid: 401fa80d167e75f4f86e748205d85ab2, type: 3}
       propertyPath: m_RootOrder

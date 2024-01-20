@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class BossDance : MonoBehaviour
 {
@@ -27,6 +28,8 @@ public class BossDance : MonoBehaviour
         transform.rotation = Quaternion.Lerp(transform.rotation, targetRo, 0.005f);
 
         yield return new WaitForSeconds(5);
+
+        SceneManager.LoadScene("MOB_BossScene");
         // 여기서 보스 댄스 끝남
     }
 }

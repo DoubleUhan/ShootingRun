@@ -23,4 +23,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/WantedScene.unity
     guid: b19121081f30c7d4290a3d49921504bf
+  - enabled: 1
+    path: Assets/Scenes/BossDance.unity
+    guid: c320a8a2ac13e6a4abf214d8721c4b96
   m_configObjects: {}
