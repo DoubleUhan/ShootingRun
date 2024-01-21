@@ -70,7 +70,9 @@ public class BossCtrl : Stats
     public float attackArrange;
 
     float curBossHP; // 보스 체력 설정
-    bool isDead; // 보스 죽었는지 안죽었는지 체크하는 변수
+
+    [HideInInspector]
+    public bool isDead; // 보스 죽었는지 안죽었는지 체크하는 변수
     float delay; // 보스 공격 딜레이
 
     public List<Material> targetMaterials; // 조절할 머테리얼
@@ -194,7 +196,10 @@ public class BossCtrl : Stats
             {
                 if (collidingObject != null)
                 {
-                    collidingObject.GetComponent<BossShooter>().Hit();
+                    if (!isDead)
+                    {
+                        collidingObject.GetComponent<BossShooter>().Hit();
+                    }
                 }
             }
         }
@@ -227,7 +232,10 @@ public class BossCtrl : Stats
             {
                 if (collidingObject != null)
                 {
-                    collidingObject.GetComponent<BossShooter>().Hit();
+                    if (!isDead)
+                    {
+                        collidingObject.GetComponent<BossShooter>().Hit();
+                    }
                 }
             }
         }

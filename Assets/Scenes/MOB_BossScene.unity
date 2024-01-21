@@ -5418,8 +5418,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4291214028
+  m_fontColor: {r: 0.8018868, g: 0.73001957, b: 0.7780519, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -18432,7 +18432,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2872782922558391652}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b2d8418b0b9634b1892b0268dd9c2743, type: 3}
   m_Name: 
@@ -18524,7 +18524,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ceca46179d70ab49b6a8192e381f8f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HP: 100
+  HP: 1000
   ATK: 0
   formatTarget: {fileID: 932802151}
   warning1: {fileID: 6408247100570386610}
@@ -18553,6 +18553,7 @@ MonoBehaviour:
   cameraShake: {fileID: 2045858210}
   bombs: []
   attackArrange: 3.77
+  isDead: 0
   targetMaterials: []
 --- !u!136 &3212751486313734115
 CapsuleCollider:

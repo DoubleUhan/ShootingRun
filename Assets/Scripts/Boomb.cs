@@ -7,10 +7,10 @@ public class Boomb : MonoBehaviour
 {
     public float explosionRadius;
     public float explosionForce = 1000f;
-    public float fuseTime; // ÆøÅºÀÌ ÅÍÁö±â±îÁöÀÇ ´ë±â ½Ã°£
+    public float fuseTime; // ï¿½ï¿½Åºï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½
 
-    public BossPlayCtrl player; // ¸ÞÀÎ ÇÃ·¹ÀÌ¾î
-    public BossCtrl gameend; // BossCtrl ÂüÁ¶?
+    public BossPlayCtrl player; // ï¿½ï¿½ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½Ì¾ï¿½
+    public BossCtrl gameend; // BossCtrl ï¿½ï¿½ï¿½ï¿½?
 
     // public GameObject effect;
 
@@ -20,7 +20,6 @@ public class Boomb : MonoBehaviour
 
     void Awake()
     {
-
         pieces = GetComponentsInChildren<Transform>();
         foreach (Transform t in pieces)
         {
@@ -28,7 +27,6 @@ public class Boomb : MonoBehaviour
             {
                 t.gameObject.SetActive(false);
             }
-
         }
     }
 
@@ -39,9 +37,9 @@ public class Boomb : MonoBehaviour
         //Debug.Log(explosionRadius);
 
         boss = GameObject.FindGameObjectWithTag("Boss");
+        gameend = boss.GetComponent<BossCtrl>();
         meshRenderer = GetComponent<MeshRenderer>();
         //StartCoroutine(StartFuse());
-
     }
 
     IEnumerator StartFuse()
@@ -86,7 +84,7 @@ public class Boomb : MonoBehaviour
 
     IEnumerator DeleteObject()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1f);
         Destroy(gameObject);
     }
 
@@ -101,10 +99,12 @@ public class Boomb : MonoBehaviour
             {
                 if (IsWithinExplosionRange(nearbyObject.transform.position))
                 {
-                    Destroy(nearbyObject.gameObject);
+                    if (!gameend.isDead)
+                    {
+                        Destroy(nearbyObject.gameObject);
+                        player.PlayerCount -= 1;
+                    }
                     //nearbyObject.gameObject.SetActive(false);
-
-                    player.PlayerCount -= 1;
                 }
             }
         }
