@@ -40,6 +40,11 @@ public class SceneCtrl : MonoBehaviour
         SceneManager.LoadScene("MOB_BossScene");
     }
 
+    public void ToBoss()
+    {
+        SceneManager.LoadScene("WantedScene");
+    }    
+
     public void EndBoss()
     {
         Time.timeScale = 1;

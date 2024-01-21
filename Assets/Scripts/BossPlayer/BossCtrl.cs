@@ -222,7 +222,7 @@ public class BossCtrl : Stats
 
         animator.SetTrigger("Attack2");
 
-        yield return new WaitForSeconds(1.5f); // 공격 시작 0.1초 뒤에 경고 삭제
+        yield return new WaitForSeconds(1.0f); // 공격 시작 0.1초 뒤에 경고 삭제
 
         List<GameObject> collidingObjects = warning2.GetComponent<BossRange>().collidingObjects;
 
@@ -314,7 +314,7 @@ public class BossCtrl : Stats
 
         if (curBossHP <= 0)
         {
-            isDead = false;
+            isDead = true;
             // 보스 죽는 애니메이션
             SoundManager.Instance.Stop(); // 사운드 전부 중지
             SoundManager.Instance.BossDie();

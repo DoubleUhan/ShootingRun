@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class BossDance : MonoBehaviour
 {
+    public GameObject image;
+
     Vector3 target = new Vector3(0f, -15.12f, 0f);
     Quaternion targetRo = Quaternion.Euler(0, 45, 0);
 
@@ -25,7 +27,8 @@ public class BossDance : MonoBehaviour
 
         yield return new WaitForSeconds(8f);
 
+        image.SetActive(true);
+        yield return new WaitForSeconds(2f);
         SceneManager.LoadScene("MOB_BossScene");
-        // ���⼭ ���� ���� ����
     }
 }

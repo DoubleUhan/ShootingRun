@@ -99,7 +99,7 @@ public class BossPlayCtrl : Stats
     void ShooterSpawn()
     {
         //適経 持失
-        num = PlayerPrefs.GetInt("PlayerCount");
+        num = 20; // PlayerPrefs.GetInt("PlayerCount");
         PlayerCount = num; //PlayerPrefs.GetInt("PlayerCount");
         
         

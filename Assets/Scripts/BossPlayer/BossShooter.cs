@@ -84,11 +84,12 @@ public class BossShooter : MonoBehaviour
             while (true)
             {
 
+                yield return delay;
+
                 SoundManager.Instance.Gun1();
 
                 BossBulletCtrl bullet = Instantiate(bulletPrefab, transform.position + new Vector3(-1f, 0, 0), Quaternion.identity).GetComponent<BossBulletCtrl>();
                 bullet.GetTarget(target);
-                yield return delay;
             }
         }
     }

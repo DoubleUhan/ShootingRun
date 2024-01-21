@@ -5386,7 +5386,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 435}
+  m_AnchoredPosition: {x: 0, y: 447}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &468412379
@@ -5409,7 +5409,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: BOSS
+  m_text: Pumpkin Pierrot
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 211950c28c9d7d4488ea617201339f99, type: 2}
   m_sharedMaterial: {fileID: 1373881946431917889, guid: 211950c28c9d7d4488ea617201339f99, type: 2}
@@ -5738,7 +5738,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 393.5}
+  m_AnchoredPosition: {x: 0, y: 400.09998}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &617456494
@@ -18546,7 +18546,7 @@ MonoBehaviour:
   - {fileID: 1822287765}
   - {fileID: 15101255}
   bossHP_bar: {fileID: 1232459507}
-  maxBossHP: 50
+  maxBossHP: 5000
   trackingTarget: {fileID: 524751612}
   isSkillActive: 0
   warningOn: 0
