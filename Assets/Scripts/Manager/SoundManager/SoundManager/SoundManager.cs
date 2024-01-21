@@ -64,7 +64,7 @@ public class SoundManager : SingletonMonoBase<SoundManager>
         smile3 = Resources.Load<AudioClip>("Sounds/laugh 3");
         bomb = Resources.Load<AudioClip>("Sounds/bomb");
         fall = Resources.Load<AudioClip>("Sounds/Fall");
-        danceBomb = Resources.Load<AudioClip>("Sounds/DanceBomb");
+        danceBomb = Resources.Load<AudioClip>("Sounds/DanceBomb3");
         die = Resources.Load<AudioClip>("Sounds/Die");
 
 

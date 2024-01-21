@@ -314,7 +314,7 @@ public class BossCtrl : Stats
 
         if (curBossHP <= 0)
         {
-            isDead = false;
+            isDead = true;
             // 보스 죽는 애니메이션
             SoundManager.Instance.Stop(); // 사운드 전부 중지
             SoundManager.Instance.BossDie();

@@ -32,12 +32,13 @@ public class Boomb : MonoBehaviour
 
     void Start()
     {
-        player = GameObject.FindWithTag("Shooter").GetComponent<BossPlayCtrl>();
+        player = GameObject.FindWithTag("Player").GetComponent<BossPlayCtrl>();
 
         //Debug.Log(explosionRadius);
 
         boss = GameObject.FindGameObjectWithTag("Boss");
         gameend = boss.GetComponent<BossCtrl>();
+        Debug.Log(gameend);
         meshRenderer = GetComponent<MeshRenderer>();
         //StartCoroutine(StartFuse());
     }
