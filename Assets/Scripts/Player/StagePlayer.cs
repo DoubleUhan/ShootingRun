@@ -10,6 +10,7 @@ public class StagePlayer : MonoBehaviour
     RaycastHit hit;
 
     bool isArrive;
+
     void Start()
     {
         Time.timeScale = 1;
@@ -26,13 +27,13 @@ public class StagePlayer : MonoBehaviour
 
     void HandleMovementInput()
     {
-        if (Input.GetMouseButtonDown(1))
+        if (Input.GetMouseButtonDown(0))
         {
-            int layerMask = 1 << LayerMask.NameToLayer("Object"); // "ClickableObject" ·¹ÀÌ¾î¸¸ °¨ÁöÇÏµµ·Ï ·¹ÀÌ¾î ¸¶½ºÅ© ¼³Á¤
+            int layerMask = 1 << LayerMask.NameToLayer("Object"); // "ClickableObject" ï¿½ï¿½ï¿½Ì¾î¸¸ ï¿½ï¿½ï¿½ï¿½ï¿½Ïµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì¾ï¿½ ï¿½ï¿½ï¿½ï¿½Å© ï¿½ï¿½ï¿½ï¿½
 
-            if (Input.GetMouseButton(1))/*Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, Mathf.Infinity, layerMask)*/
+            if (Input.GetMouseButton(0)) /*Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, Mathf.Infinity, layerMask)*/
             {
-                Debug.Log("¿ìÅ¬¸¯");
+                Debug.Log("ï¿½ï¿½Å¬ï¿½ï¿½");
                 MoveToTarget(StageManager.Instance.stageCol.position);
 
                 //if (hit.collider.CompareTag("Road"))
@@ -42,7 +43,7 @@ public class StagePlayer : MonoBehaviour
                 //}
                 //else
                 //{
-                //    Debug.Log("´Ù¸¥ °÷ Å¬¸¯");
+                //    Debug.Log("ï¿½Ù¸ï¿½ ï¿½ï¿½ Å¬ï¿½ï¿½");
                 //}
                 //if (hit.collider.CompareTag("Stage1") || hit.collider.CompareTag("Stage2") || hit.collider.CompareTag("BossStage"))
                 //{
@@ -50,6 +51,7 @@ public class StagePlayer : MonoBehaviour
             }
         }
     }
+
     void MoveToTarget(Vector3 targetPosition)
     {
         agent.SetDestination(targetPosition);
