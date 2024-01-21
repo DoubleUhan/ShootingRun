@@ -186,7 +186,8 @@ public class BossCtrl : Stats
         isSkillActive = true;
 
         animator.SetTrigger("Attack1");
-        yield return new WaitForSeconds(0.8f); // 공격 시작 0.1초 뒤에 경고 삭제
+        yield return new WaitForSeconds(0.6f); // 공격 시작 0.1초 뒤에 경고 삭제
+        SoundManager.Instance.Atk();
 
         List<GameObject> collidingObjects = warning1.GetComponent<BossRange>().collidingObjects;
 
@@ -221,8 +222,8 @@ public class BossCtrl : Stats
         isSkillActive = true;
 
         animator.SetTrigger("Attack2");
-
-        yield return new WaitForSeconds(1.0f); // 공격 시작 0.1초 뒤에 경고 삭제
+        yield return new WaitForSeconds(0.8f); // 공격 시작 0.1초 뒤에 경고 삭제
+        SoundManager.Instance.Atk();
 
         List<GameObject> collidingObjects = warning2.GetComponent<BossRange>().collidingObjects;
 
