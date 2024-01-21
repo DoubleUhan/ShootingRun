@@ -222,7 +222,7 @@ public class BossCtrl : Stats
 
         animator.SetTrigger("Attack2");
 
-        yield return new WaitForSeconds(1.5f); // 공격 시작 0.1초 뒤에 경고 삭제
+        yield return new WaitForSeconds(1.0f); // 공격 시작 0.1초 뒤에 경고 삭제
 
         List<GameObject> collidingObjects = warning2.GetComponent<BossRange>().collidingObjects;
 

@@ -19,7 +19,6 @@ public class Sound : MonoBehaviour
     void Update()
     {
         time += Time.deltaTime;
-        Debug.Log(time);
         if (time > stop)
         {
             audioSource.volume = 0f;

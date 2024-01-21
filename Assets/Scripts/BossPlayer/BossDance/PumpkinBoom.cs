@@ -68,8 +68,8 @@ public class PumpkinBoom : MonoBehaviour
                 piece.GetComponent<MeshRenderer>().enabled = true;
                 rb.isKinematic = false;
                 rb.AddExplosionForce(explosionForce, transform.position, explosionRadius);
+                SoundManager.Instance.Boss_Appear();
             }
         }
-
     }
 }

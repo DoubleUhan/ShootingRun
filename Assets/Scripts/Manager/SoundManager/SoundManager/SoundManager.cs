@@ -21,6 +21,8 @@ public class SoundManager : SingletonMonoBase<SoundManager>
 
     [Header("보스 BGM")]
     AudioClip BossBGM;
+    AudioClip VS_Boss;
+    AudioClip BossAppear;
 
     [Header("수배 BGM")]
     AudioClip Want;
@@ -41,10 +43,13 @@ public class SoundManager : SingletonMonoBase<SoundManager>
 
     AudioClip fall;
 
+    float time;
+
     private void Start()
     {
         Initalize();
     }
+
 
     private SoundManager()
     {
@@ -66,6 +71,9 @@ public class SoundManager : SingletonMonoBase<SoundManager>
         // BGM 사운드 리스트
         BossBGM = Resources.Load<AudioClip>("Sounds/test_BGM");
         Want = Resources.Load<AudioClip>("Sounds/Thunder_Sound");
+
+        BossAppear = Resources.Load<AudioClip>("Sounds/BossBG1");
+        VS_Boss = Resources.Load<AudioClip>("Sounds/BossBG2");
 
         // 플레이어 관련 사운드 리스트
         Gun_1 = Resources.Load<AudioClip>("Sounds/Gun Sound1");
@@ -109,10 +117,17 @@ public class SoundManager : SingletonMonoBase<SoundManager>
         }
     }
 
-    public void Boss_BGM() // BossCtrl - 33줄
+    public void Boss_BGM() // 보스랑 싸울 때
     {
         if (audioSource == null) return;
-        BGM.clip = BossBGM;
+        BGM.clip = VS_Boss;
+        BGM.volume = 0.5f;
+        BGM.Play();
+    }
+    public void Boss_Appear() // 보스 인트로
+    {
+        if (audioSource == null) return;
+        BGM.clip = BossAppear;
         BGM.volume = 0.5f;
         BGM.Play();
     }
@@ -165,7 +180,7 @@ public class SoundManager : SingletonMonoBase<SoundManager>
         audioSource.Stop();
     }
 
-    public void BGMStop()
+    public void BGMStop() // BGM 멈추기
     {
         BGM.Stop();
     }
