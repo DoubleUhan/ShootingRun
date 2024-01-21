@@ -18,11 +18,14 @@ public class SoundManager : SingletonMonoBase<SoundManager>
     AudioClip bomb;
     AudioClip danceBomb;
     AudioClip die;
+    AudioClip atkBomb;
+    AudioClip atk;
 
     [Header("보스 BGM")]
     AudioClip BossBGM;
     AudioClip VS_Boss;
     AudioClip BossAppear;
+
 
     [Header("수배 BGM")]
     AudioClip Want;
@@ -66,7 +69,8 @@ public class SoundManager : SingletonMonoBase<SoundManager>
         fall = Resources.Load<AudioClip>("Sounds/Fall");
         danceBomb = Resources.Load<AudioClip>("Sounds/DanceBomb3");
         die = Resources.Load<AudioClip>("Sounds/Die");
-
+        atkBomb = Resources.Load<AudioClip>("Sounds/AtkBomb");
+        atk = Resources.Load<AudioClip>("Sounds/Atk");
 
         // BGM 사운드 리스트
         BossBGM = Resources.Load<AudioClip>("Sounds/test_BGM");
@@ -95,7 +99,7 @@ public class SoundManager : SingletonMonoBase<SoundManager>
             BGM = gameObject.AddComponent<AudioSource>();
         }
         BGM.loop = true;    // 배경음악은 계속 나와야 하기에 loop를 켜준다.
-        BGM.volume = 0.2f;      // 소리자체가 커서 조절
+        BGM.volume = 0.1f;      // 소리자체가 커서 조절
         audioSource.volume = 0.3f;  // 모바일 이기에 폰 볼륨으로 조절 가능하여 자체에서 작게 설정
         audioSource.playOnAwake = false;
     }
@@ -121,7 +125,7 @@ public class SoundManager : SingletonMonoBase<SoundManager>
     {
         if (audioSource == null) return;
         BGM.clip = VS_Boss;
-        BGM.volume = 0.5f;
+        BGM.volume = 0.2f;
         BGM.Play();
     }
     public void Boss_Appear() // 보스 인트로
@@ -194,6 +198,16 @@ public class SoundManager : SingletonMonoBase<SoundManager>
     {
         audioSource.volume = 0.2f;
         audioSource.PlayOneShot(die);
+    }
+
+    public void BossBomb()
+    {
+        audioSource.PlayOneShot(atkBomb);
+    }
+
+    public void Atk()
+    {
+        audioSource.PlayOneShot(atk);
     }
 }
 

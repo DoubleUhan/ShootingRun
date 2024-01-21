@@ -66,6 +66,7 @@ public class Boomb : MonoBehaviour
             }
         }
         gameObject.layer = 0;
+        SoundManager.Instance.BossBomb();
 
         StartCoroutine(Explotion());
         StartCoroutine(DeleteObject());
@@ -92,7 +93,6 @@ public class Boomb : MonoBehaviour
     IEnumerator Explotion()
     {
         yield return new WaitForSeconds(0.05f);
-
         Collider[] colliders = Physics.OverlapSphere(transform.position, explosionRadius);
         foreach (Collider nearbyObject in colliders)
         {
