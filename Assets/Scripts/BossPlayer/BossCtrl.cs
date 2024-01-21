@@ -13,29 +13,50 @@ using UnityEngine.Windows;
 public class BossCtrl : Stats
 {
     GameObject target; // 플레이어
-    [SerializeField] GameObject formatTarget; // 스킬 사용후 바라볼 위치 (가운대)
 
-    [SerializeField] GameObject warning1; // 패턴 1 공격 예고 오브젝트
-    [SerializeField] GameObject warning2; // 패턴 2 공격 예고 오브젝트
-    [SerializeField] GameObject toBoss; // 패턴 2 공격 예고 각도(방향) 맞추는 용도
+    [SerializeField]
+    GameObject formatTarget; // 스킬 사용후 바라볼 위치 (가운대)
+
+    [SerializeField]
+    GameObject warning1; // 패턴 1 공격 예고 오브젝트
+
+    [SerializeField]
+    GameObject warning2; // 패턴 2 공격 예고 오브젝트
+
+    [SerializeField]
+    GameObject toBoss; // 패턴 2 공격 예고 각도(방향) 맞추는 용도
 
     [Header("팝업 설정")]
-    [SerializeField] GameObject failPopup; // 게임 실패 시 뜨는 팝업
-    [SerializeField] GameObject clearPopup; // 게임 클리어 시 뜨는 팝업
+    [SerializeField]
+    GameObject failPopup; // 게임 실패 시 뜨는 팝업
+
+    [SerializeField]
+    GameObject clearPopup; // 게임 클리어 시 뜨는 팝업
 
     [Header("보스 설정")]
-    [SerializeField] GameObject bomb; // 떨굴 폭탄
-    [SerializeField] GameObject[] bombSpawnPoint;
+    [SerializeField]
+    GameObject bomb; // 떨굴 폭탄
 
-    [SerializeField] Image bossHP_bar;
-    [SerializeField] float maxBossHP;
+    [SerializeField]
+    GameObject[] bombSpawnPoint;
+
+    [SerializeField]
+    Image bossHP_bar;
+
+    [SerializeField]
+    float maxBossHP;
 
     [Header("머리따라가는 에니메이션")]
-    [SerializeField] GameObject trackingTarget;
+    [SerializeField]
+    GameObject trackingTarget;
 
     Animator animator;
-    [HideInInspector] public bool isSkillActive; // 보스 스킬 실행 여부
-    [HideInInspector] public bool warningOn = false;
+
+    [HideInInspector]
+    public bool isSkillActive; // 보스 스킬 실행 여부
+
+    [HideInInspector]
+    public bool warningOn = false;
 
     [Header("카메라 흔들림")]
     public CameraShake cameraShake;
@@ -44,7 +65,6 @@ public class BossCtrl : Stats
     public List<Boomb> bombs = new List<Boomb>();
 
     bool bombInstall;
-
 
     [Range(0, 10)]
     public float attackArrange;
@@ -85,7 +105,6 @@ public class BossCtrl : Stats
 
     void Update()
     {
-
         BossDeahAnimation();
 
         if (isSkillActive)
@@ -94,14 +113,22 @@ public class BossCtrl : Stats
             warningTarget.y = transform.position.y;
             Vector3 dir = warningTarget - transform.position;
 
-            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(dir), Time.deltaTime * 5);
+            transform.rotation = Quaternion.Lerp(
+                transform.rotation,
+                Quaternion.LookRotation(dir),
+                Time.deltaTime * 5
+            );
         }
         else
         {
             Vector3 warningTarget = warning1.transform.position;
             warningTarget.x = transform.position.x;
             Vector3 dir = formatTarget.transform.position - transform.position;
-            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(dir), Time.deltaTime * 3);
+            transform.rotation = Quaternion.Lerp(
+                transform.rotation,
+                Quaternion.LookRotation(dir),
+                Time.deltaTime * 3
+            );
         }
     }
 
@@ -215,6 +242,7 @@ public class BossCtrl : Stats
     {
         StartCoroutine(cameraShake.Shake(0.3f, 0.4f));
     }
+
     IEnumerator Bomb() // 애니메, 사운드 없음ㄴ
     {
         int random = UnityEngine.Random.Range(3, 6);
@@ -229,7 +257,12 @@ public class BossCtrl : Stats
     void BombSpawn()
     {
         int randNum = UnityEngine.Random.Range(0, 9);
-        Boomb spawnbomb = Instantiate(bomb, bombSpawnPoint[randNum].transform.position, Quaternion.Euler(-90f, 0f, 0f)).GetComponent<Boomb>();
+        Boomb spawnbomb = Instantiate(
+                bomb,
+                bombSpawnPoint[randNum].transform.position,
+                Quaternion.Euler(-90f, 0f, 0f)
+            )
+            .GetComponent<Boomb>();
         bombs.Add(spawnbomb);
         bombInstall = true;
     }
@@ -241,7 +274,6 @@ public class BossCtrl : Stats
         yield return new WaitForSeconds(1f);
 
         animator.SetTrigger("Idle");
-
 
         yield return null;
     }
@@ -255,7 +287,6 @@ public class BossCtrl : Stats
         bombs.Clear();
         bombInstall = false;
     }
-
 
     void SkillEnded()
     {
@@ -285,19 +316,18 @@ public class BossCtrl : Stats
         bossHP_bar.fillAmount = curBossHP / maxBossHP;
     }
 
-    public void BossDeahAnimation ()
+    public void BossDeahAnimation()
     {
-
-        if (isDead) {
+        if (isDead)
+        {
             foreach (Material targetMaterial in targetMaterials)
             {
                 float currentSplitValue = targetMaterial.GetFloat("_Split_Value");
-                float newSplitValue = Mathf.Lerp(currentSplitValue, 0, Time.deltaTime * .100f);
+                float newSplitValue = Mathf.Lerp(currentSplitValue, 0, Time.deltaTime * .5f);
                 targetMaterial.SetFloat("_Split_Value", newSplitValue);
             }
         }
     }
-
 
     public void GameFail()
     {
@@ -325,7 +355,7 @@ public class BossCtrl : Stats
 
         isDead = true;
 
-        yield return new WaitForSeconds(3.5f);
+        yield return new WaitForSeconds(4f);
 
         GameClear();
     }
