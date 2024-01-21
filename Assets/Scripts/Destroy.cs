@@ -26,6 +26,7 @@ public class Destroy : MonoBehaviour
             if (GameManager.Instance.player_Count <= 0)
             {
                 Debug.Log("게임 종료");
+                GameManager.Instance.OverStage();
             }
         }
     }
