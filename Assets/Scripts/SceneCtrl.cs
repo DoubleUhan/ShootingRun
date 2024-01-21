@@ -39,4 +39,10 @@ public class SceneCtrl : MonoBehaviour
     {
         SceneManager.LoadScene("MOB_BossScene");
     }
+
+    public void EndBoss()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene("home");
+    }
 }

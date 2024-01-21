@@ -46,6 +46,7 @@ public class PumpkinBoom : MonoBehaviour
 
         if (trans <= -8)
         {
+            SoundManager.Instance.Dance_bomb();
             Explode();
         }
     }

@@ -34,7 +34,7 @@ public class Boomb : MonoBehaviour
 
     void Start()
     {
-        player = GameObject.FindWithTag("Player").GetComponent<BossPlayCtrl>();
+        player = GameObject.FindWithTag("Shooter").GetComponent<BossPlayCtrl>();
 
         //Debug.Log(explosionRadius);
 

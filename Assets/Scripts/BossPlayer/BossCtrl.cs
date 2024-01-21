@@ -55,6 +55,7 @@ public class BossCtrl : Stats
 
     public List<Material> targetMaterials; // 조절할 머테리얼
 
+    AudioSource BGaudio;
 
     void Start()
     {
@@ -274,7 +275,10 @@ public class BossCtrl : Stats
 
         if (curBossHP <= 0)
         {
+            isDead = false;
             // 보스 죽는 애니메이션
+            SoundManager.Instance.Stop(); // 사운드 전부 중지
+            SoundManager.Instance.BossDie();
             StartCoroutine(WaitForClearAnimation());
         }
 
@@ -288,7 +292,7 @@ public class BossCtrl : Stats
             foreach (Material targetMaterial in targetMaterials)
             {
                 float currentSplitValue = targetMaterial.GetFloat("_Split_Value");
-                float newSplitValue = Mathf.Lerp(currentSplitValue, 0, Time.deltaTime * .5f);
+                float newSplitValue = Mathf.Lerp(currentSplitValue, 0, Time.deltaTime * .100f);
                 targetMaterial.SetFloat("_Split_Value", newSplitValue);
             }
         }
@@ -299,14 +303,18 @@ public class BossCtrl : Stats
     {
         //target.GetComponent<Renderer>().enabled = false;
         target.SetActive(false);
+        SoundManager.Instance.BGMStop();
         failPopup.SetActive(true);
+        SoundManager.Instance.Fail();
         Time.timeScale = 0;
     }
 
     void GameClear()
     {
+        SoundManager.Instance.BGMStop();
         // 게임 클리어 한 거임 -> 클리어 메세지 또는 화면 출력
         clearPopup.SetActive(true);
+        SoundManager.Instance.Clear();
         Time.timeScale = 0;
     }
 

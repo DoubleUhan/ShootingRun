@@ -49,6 +49,7 @@ public class Shooter : MonoBehaviour
             {
                 if (!player.isGoggle) // Check if isGoggle is false
                 {
+                    SoundManager.Instance.Gun1();
                     GameObject playerEffectObj = Instantiate(playerEffect, player.transform.position + new Vector3(-0.5f, 0, 0), Quaternion.identity);
                     Destroy(playerEffectObj, 0.5f);
                     BulletCtrl bullet = Instantiate(bulletPrefab, transform.position + new Vector3(-1f, 0, 0), Quaternion.identity).GetComponent<BulletCtrl>();

@@ -78,12 +78,25 @@ public class GameManager : MonoBehaviour
         }
         fadeBG.gameObject.SetActive(false);
         popup.SetActive(true);
+
+        // 엔딩 팝업에 따라 사운드 재생
+        if (popup == gameClearPopup)
+        {
+            SoundManager.Instance.Clear();
+            
+        }
+        else if (popup == gameoverPopup)
+        {
+            SoundManager.Instance.Fail();
+        }
+
         Time.timeScale = 0;
     }
 
     public void ClickBtn(string sceneName)
     {
         Debug.Log("클릭클릭");
+        SoundManager.Instance.Stop();
         StartCoroutine(SceneMoveWait(0f, sceneName));
     }
 
