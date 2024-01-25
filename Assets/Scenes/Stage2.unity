@@ -745,7 +745,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: MOB_BossScene
+          m_StringArgument: WantedScene
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &733201942
@@ -1386,7 +1386,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyCount: 0
-  goalEnemyCount: 10
+  goalEnemyCount: 100
   cameras:
   - {fileID: 1808042811}
   - {fileID: 1808042812}

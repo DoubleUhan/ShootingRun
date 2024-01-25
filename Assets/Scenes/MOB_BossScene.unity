@@ -18288,7 +18288,7 @@ MonoBehaviour:
   - {fileID: 1822287765}
   - {fileID: 15101255}
   bossHP_bar: {fileID: 1232459507}
-  maxBossHP: 200
+  maxBossHP: 5000
   trackingTarget: {fileID: 524751612}
   isSkillActive: 0
   warningOn: 0
