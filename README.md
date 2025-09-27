@@ -19,5 +19,5 @@ https://idontbeliveinghosts.vercel.app/
 
 ## 시연 영상
 ```
-https://youtu.be/AeV2KVPsxs4?si=C4K39odwoKgtgsog
+https://youtu.be/DlovIyPDy1g
 ```
