@@ -1,4 +1,4 @@
-# I don't belive in ghosts
+# I don't believe in ghosts
 ### 사칙연산으로 아군을 늘려 적을 물리치세요
 
 <br>
